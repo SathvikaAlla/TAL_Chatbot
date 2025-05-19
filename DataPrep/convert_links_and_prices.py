@@ -6,15 +6,14 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
 # === CONFIGURATION ===
-CONVERTERS_EXCEL = "SALES GEBRUIK_TAL MATRIX LEDCONVERTERS 2024 v10.8.2.xlsx"
-LUMINAIRES_EXCEL = "Copy of Pricelist 2025_V1.xlsx"
-OUTPUT_JSON = "combined_luminaires_converters.json"
-
+EXCEL_PATH = "SALES GEBRUIK_TAL MATRIX LEDCONVERTERS 2024 v10.8.2.xlsx"
+PRICELIST_PATH = "Copy of Pricelist 2025_V1.xlsx"
+OUTPUT_JSON = "converters_with_links_and_pricelist.json"
 HEADER_SKIP_ROWS = 4
 GENERAL_INFO_COLUMNS = 14
 BASE_URL = "https://www.tal.be"
 DOWNLOADS_FOLDER_URL = "https://www.tal.be/en/downloads?folder=3-Brochures-Brochures-Brochures-Brosch%C3%BCren&page={}"
-NUM_PAGES = 24
+NUM_PAGES = 24  # Number of pages to scrape
 
 def scrape_all_pdf_links(num_pages):
     pdf_links = {}
@@ -45,27 +44,39 @@ def main():
     pdf_mapping = scrape_all_pdf_links(NUM_PAGES)
     print(f"✅ Found {len(pdf_mapping)} PDF links.")
 
-    print("📥 Reading converters Excel file...")
-    df_converters = pd.read_excel(CONVERTERS_EXCEL, skiprows=HEADER_SKIP_ROWS)
-    df_converters.dropna(how="all", inplace=True)
+    print("📥 Reading main Excel file...")
+    df = pd.read_excel(EXCEL_PATH, skiprows=HEADER_SKIP_ROWS)
+    df.dropna(how="all", inplace=True)
 
-    print("📥 Reading luminaires Excel file...")
-    df_luminaires = pd.read_excel(LUMINAIRES_EXCEL)
-    df_luminaires.dropna(how="all", inplace=True)
+    if "TYPE" not in df.columns or "ARTNR" not in df.columns:
+        raise KeyError("❌ 'TYPE' or 'ARTNR' column not found in main Excel file.")
 
-    # Build a dict: luminaire name -> price
-    luminaire_price_map = {}
-    for _, row in df_luminaires.iterrows():
-        name = str(row['Name']).strip()
-        price = row['Listprice']
-        luminaire_price_map[name] = price
+    print("📥 Reading pricelist Excel file...")
+    pricelist_df = pd.read_excel(PRICELIST_PATH)
+    # Ensure 'ARTNR' column exists in pricelist for merging
+    if "ARTNR" not in pricelist_df.columns:
+        # You may need to rename the column here if different, e.g.:
+        # pricelist_df.rename(columns={"Reference": "ARTNR"}, inplace=True)
+        raise KeyError("❌ 'ARTNR' column not found in pricelist Excel file.")
+
+    print("🔧 Merging main data with pricelist data...")
+    # Merge on 'ARTNR' column, left join to keep all converters
+    merged_df = df.merge(pricelist_df, on="ARTNR", how="left", suffixes=('', '_pricelist'))
+
+    print("🔧 Matching converters with PDF links and merging pricelist info...")
 
     converters_json = {}
-    for _, row in df_converters.iterrows():
+
+    # Define pricelist fields you want to add from the pricelist file
+    # Replace these with actual column names from your pricelist Excel
+    pricelist_fields = [col for col in pricelist_df.columns if col != "ARTNR"]
+
+    for _, row in merged_df.iterrows():
         converter_type = str(row.get("TYPE", "")).strip()
         artnr_raw = row.get("ARTNR")
         if pd.isna(artnr_raw):
             continue
+        # Convert float article number to int string (e.g., 40082.0 -> "40082")
         artnr_int = int(artnr_raw)
         artnr_str = str(artnr_int)
 
@@ -75,24 +86,23 @@ def main():
         converter_id = f"{converter_type} - {artnr_str}"
         info = row.iloc[:GENERAL_INFO_COLUMNS].dropna().to_dict()
 
-        # Add PDF link if available
+        # Add pricelist fields to info dictionary
+        for field in pricelist_fields:
+            val = row.get(field)
+            if pd.notna(val):
+                info[field] = val
+
+        # Match PDF link by article number string key
         pdf_link = pdf_mapping.get(artnr_str)
         if pdf_link:
             info["pdf_link"] = pdf_link
         else:
             print(f"⚠️ No PDF found for converter: {converter_id}")
 
-        # Add price from luminaires if matching by converter_type == luminaire name
-        price = luminaire_price_map.get(converter_type)
-        if price is not None:
-            info["price"] = price
-        else:
-            print(f"⚠️ No price found for luminaire: {converter_type}")
-
-        # Extract lamp info
+        # Extract lamp info from remaining columns (after GENERAL_INFO_COLUMNS)
         lamps = {}
-        for col in df_converters.columns[GENERAL_INFO_COLUMNS:]:
-            if col in ["ARTNR", "NAME_norm"]:
+        for col in merged_df.columns[GENERAL_INFO_COLUMNS:]:
+            if col in ["ARTNR", "NAME_norm"] or col in pricelist_fields:
                 continue
             val = row[col]
             if pd.notna(val):
@@ -105,11 +115,11 @@ def main():
 
         converters_json[converter_id] = info
 
-    print(f"💾 Saving combined output to {OUTPUT_JSON}...")
+    print(f"💾 Saving output to {OUTPUT_JSON}...")
     with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
         json.dump(converters_json, f, indent=4, ensure_ascii=False)
 
-    print(f"✅ Done! Exported {len(converters_json)} combined converters with prices.")
+    print(f"✅ Done! Exported {len(converters_json)} converters.")
 
 if __name__ == "__main__":
     main()
