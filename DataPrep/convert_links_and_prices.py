@@ -109,7 +109,6 @@ def main():
                 lamps[str(col).strip()] = {
                     "min": val,
                     "max": val,
-                    "avg": val
                 }
         info["lamps"] = lamps
 
