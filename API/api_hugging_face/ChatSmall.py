@@ -71,7 +71,7 @@ import gradio as gr
 from gpt4all import GPT4All
 
 # Load JSON data once
-with open("DataPrep/converters_with_links_and_pricelist.json", "r", encoding="utf-8") as f:
+with open("/Users/alessiacolumban/TAL_Chatbot/DataPrep/converters_with_links_and_pricelist.json", "r", encoding="utf-8") as f:
     converters = json.load(f)
 
 def find_converter_by_artnr(artnr):
