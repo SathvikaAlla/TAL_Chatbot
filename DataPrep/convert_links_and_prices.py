@@ -94,22 +94,29 @@ def main():
 
         # Match PDF link by article number string key
         pdf_link = pdf_mapping.get(artnr_str)
-        if pdf_link:
-            info["pdf_link"] = pdf_link
-        else:
+        info["pdf_link"] = pdf_link if pdf_link else None
+        if not pdf_link:
             print(f"⚠️ No PDF found for converter: {converter_id}")
+
 
         # Extract lamp info from remaining columns (after GENERAL_INFO_COLUMNS)
         lamps = {}
         for col in merged_df.columns[GENERAL_INFO_COLUMNS:]:
             if col in ["ARTNR", "NAME_norm"] or col in pricelist_fields:
                 continue
-            val = row[col]
-            if pd.notna(val):
+            val = str(row[col])
+            if pd.notna(row[col]) and val.strip():  # Skip empty cells
+                if "-" in val:
+                    parts = val.split("-", 1)
+                    min_val = parts[0].strip()
+                    max_val = parts[1].strip()
+                else:
+                    min_val = max_val = val.strip()
                 lamps[str(col).strip()] = {
-                    "min": val,
-                    "max": val,
+                    "min": min_val,
+                    "max": max_val,
                 }
+
         info["lamps"] = lamps
 
         converters_json[converter_id] = info

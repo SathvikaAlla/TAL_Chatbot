@@ -17,18 +17,19 @@
         "Listprice": 62.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "m LEDLINE medium power 9,6W": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "m LEDLINE high power 14,4W": {
-                "min": 0.66,
-                "max": 0.66
+                "min": "0.66",
+                "max": "0.66"
             },
             "m LEDLINE very high power 19,2W": {
-                "min": 0.5,
-                "max": 0.5
+                "min": "0.5",
+                "max": "0.5"
             }
         }
     },
@@ -50,18 +51,19 @@
         "Listprice": 77.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "m LEDLINE medium power 9,6W": {
-                "min": 2.0,
-                "max": 2.0
+                "min": "2.0",
+                "max": "2.0"
             },
             "m LEDLINE high power 14,4W": {
-                "min": 1.33,
-                "max": 1.33
+                "min": "1.33",
+                "max": "1.33"
             },
             "m LEDLINE very high power 19,2W": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             }
         }
     },
@@ -84,18 +86,19 @@
         "Unit": "PC",
         "Gross Weight": 0.15,
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "m LEDLINE medium power 9,6W": {
-                "min": 2.0,
-                "max": 2.0
+                "min": "2.0",
+                "max": "2.0"
             },
             "m LEDLINE high power 14,4W": {
-                "min": 1.33,
-                "max": 1.33
+                "min": "1.33",
+                "max": "1.33"
             },
             "m LEDLINE very high power 19,2W": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             }
         }
     },
@@ -117,18 +120,19 @@
         "Listprice": 84.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "m LEDLINE medium power 9,6W": {
-                "min": 2.0,
-                "max": 2.0
+                "min": "2.0",
+                "max": "2.0"
             },
             "m LEDLINE high power 14,4W": {
-                "min": 1.33,
-                "max": 1.33
+                "min": "1.33",
+                "max": "1.33"
             },
             "m LEDLINE very high power 19,2W": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             }
         }
     },
@@ -150,18 +154,19 @@
         "Listprice": 83.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "m LEDLINE medium power 9,6W": {
-                "min": 3.5,
-                "max": 3.5
+                "min": "3.5",
+                "max": "3.5"
             },
             "m LEDLINE high power 14,4W": {
-                "min": 2.33,
-                "max": 2.33
+                "min": "2.33",
+                "max": "2.33"
             },
             "m LEDLINE very high power 19,2W": {
-                "min": 1.75,
-                "max": 1.75
+                "min": "1.75",
+                "max": "1.75"
             }
         }
     },
@@ -183,18 +188,19 @@
         "Listprice": 177.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "m LEDLINE medium power 9,6W": {
-                "min": 4.0,
-                "max": 4.0
+                "min": "4.0",
+                "max": "4.0"
             },
             "m LEDLINE high power 14,4W": {
-                "min": 2.66,
-                "max": 2.66
+                "min": "2.66",
+                "max": "2.66"
             },
             "m LEDLINE very high power 19,2W": {
-                "min": 2.0,
-                "max": 2.0
+                "min": "2.0",
+                "max": "2.0"
             }
         }
     },
@@ -216,18 +222,19 @@
         "Listprice": 141.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "m LEDLINE medium power 9,6W": {
-                "min": 5.0,
-                "max": 5.0
+                "min": "5.0",
+                "max": "5.0"
             },
             "m LEDLINE high power 14,4W": {
-                "min": 3.33,
-                "max": 3.33
+                "min": "3.33",
+                "max": "3.33"
             },
             "m LEDLINE very high power 19,2W": {
-                "min": 2.5,
-                "max": 2.5
+                "min": "2.5",
+                "max": "2.5"
             }
         }
     },
@@ -249,18 +256,19 @@
         "Listprice": 94.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "m LEDLINE medium power 9,6W": {
-                "min": 6.0,
-                "max": 6.0
+                "min": "6.0",
+                "max": "6.0"
             },
             "m LEDLINE high power 14,4W": {
-                "min": 4.0,
-                "max": 4.0
+                "min": "4.0",
+                "max": "4.0"
             },
             "m LEDLINE very high power 19,2W": {
-                "min": 3.0,
-                "max": 3.0
+                "min": "3.0",
+                "max": "3.0"
             }
         }
     },
@@ -282,18 +290,19 @@
         "Listprice": 217.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "m LEDLINE medium power 9,6W": {
-                "min": 6.0,
-                "max": 6.0
+                "min": "6.0",
+                "max": "6.0"
             },
             "m LEDLINE high power 14,4W": {
-                "min": 4.0,
-                "max": 4.0
+                "min": "4.0",
+                "max": "4.0"
             },
             "m LEDLINE very high power 19,2W": {
-                "min": 3.0,
-                "max": 3.0
+                "min": "3.0",
+                "max": "3.0"
             }
         }
     },
@@ -315,18 +324,19 @@
         "Listprice": 181.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "m LEDLINE medium power 9,6W": {
-                "min": 8.0,
-                "max": 8.0
+                "min": "8.0",
+                "max": "8.0"
             },
             "m LEDLINE high power 14,4W": {
-                "min": 5.33,
-                "max": 5.33
+                "min": "5.33",
+                "max": "5.33"
             },
             "m LEDLINE very high power 19,2W": {
-                "min": 4.0,
-                "max": 4.0
+                "min": "4.0",
+                "max": "4.0"
             }
         }
     },
@@ -348,18 +358,19 @@
         "Listprice": 255.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "m LEDLINE medium power 9,6W": {
-                "min": 9.0,
-                "max": 9.0
+                "min": "9.0",
+                "max": "9.0"
             },
             "m LEDLINE high power 14,4W": {
-                "min": 6.0,
-                "max": 6.0
+                "min": "6.0",
+                "max": "6.0"
             },
             "m LEDLINE very high power 19,2W": {
-                "min": 4.5,
-                "max": 4.5
+                "min": "4.5",
+                "max": "4.5"
             }
         }
     },
@@ -381,18 +392,19 @@
         "Listprice": 154.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "m LEDLINE medium power 9,6W": {
-                "min": 10.0,
-                "max": 10.0
+                "min": "10.0",
+                "max": "10.0"
             },
             "m LEDLINE high power 14,4W": {
-                "min": 6.66,
-                "max": 6.66
+                "min": "6.66",
+                "max": "6.66"
             },
             "m LEDLINE very high power 19,2W": {
-                "min": 5.0,
-                "max": 5.0
+                "min": "5.0",
+                "max": "5.0"
             }
         }
     },
@@ -414,18 +426,19 @@
         "Listprice": 343.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "m LEDLINE medium power 9,6W": {
-                "min": 12.0,
-                "max": 12.0
+                "min": "12.0",
+                "max": "12.0"
             },
             "m LEDLINE high power 14,4W": {
-                "min": 8.0,
-                "max": 8.0
+                "min": "8.0",
+                "max": "8.0"
             },
             "m LEDLINE very high power 19,2W": {
-                "min": 6.0,
-                "max": 6.0
+                "min": "6.0",
+                "max": "6.0"
             }
         }
     },
@@ -447,18 +460,19 @@
         "Listprice": 174.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "m LEDLINE medium power 9,6W": {
-                "min": 15.0,
-                "max": 15.0
+                "min": "15.0",
+                "max": "15.0"
             },
             "m LEDLINE high power 14,4W": {
-                "min": 10.0,
-                "max": 10.0
+                "min": "10.0",
+                "max": "10.0"
             },
             "m LEDLINE very high power 19,2W": {
-                "min": 7.5,
-                "max": 7.5
+                "min": "7.5",
+                "max": "7.5"
             }
         }
     },
@@ -480,22 +494,23 @@
         "Listprice": 67.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "Thinksmall single on track": {
-                "min": 10.0,
-                "max": 10.0
+                "min": "10.0",
+                "max": "10.0"
             },
             "Thinksmall double on track": {
-                "min": 5.0,
-                "max": 5.0
+                "min": "5.0",
+                "max": "5.0"
             },
             "Haloled single on track": {
-                "min": 5.0,
-                "max": 5.0
+                "min": "5.0",
+                "max": "5.0"
             },
             "Haloled double on track": {
-                "min": 2.0,
-                "max": 2.0
+                "min": "2.0",
+                "max": "2.0"
             }
         }
     },
@@ -518,22 +533,23 @@
         "Unit": "PC",
         "Gross Weight": 0.3,
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "Thinksmall single on track": {
-                "min": 22.0,
-                "max": 22.0
+                "min": "22.0",
+                "max": "22.0"
             },
             "Thinksmall double on track": {
-                "min": 11.0,
-                "max": 11.0
+                "min": "11.0",
+                "max": "11.0"
             },
             "Haloled single on track": {
-                "min": 12.0,
-                "max": 12.0
+                "min": "12.0",
+                "max": "12.0"
             },
             "Haloled double on track": {
-                "min": 6.0,
-                "max": 6.0
+                "min": "6.0",
+                "max": "6.0"
             }
         }
     },
@@ -557,22 +573,23 @@
         "Unit": "PC",
         "Gross Weight": 0.15,
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "Thinksmall single on track": {
-                "min": 14.0,
-                "max": 14.0
+                "min": "14.0",
+                "max": "14.0"
             },
             "Thinksmall double on track": {
-                "min": 7.0,
-                "max": 7.0
+                "min": "7.0",
+                "max": "7.0"
             },
             "Haloled single on track": {
-                "min": 8.0,
-                "max": 8.0
+                "min": "8.0",
+                "max": "8.0"
             },
             "Haloled double on track": {
-                "min": 4.0,
-                "max": 4.0
+                "min": "4.0",
+                "max": "4.0"
             }
         }
     },
@@ -596,22 +613,23 @@
         "Unit": "PC",
         "Gross Weight": 0.15,
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "Thinksmall single on track": {
-                "min": 14.0,
-                "max": 14.0
+                "min": "14.0",
+                "max": "14.0"
             },
             "Thinksmall double on track": {
-                "min": 7.0,
-                "max": 7.0
+                "min": "7.0",
+                "max": "7.0"
             },
             "Haloled single on track": {
-                "min": 8.0,
-                "max": 8.0
+                "min": "8.0",
+                "max": "8.0"
             },
             "Haloled double on track": {
-                "min": 4.0,
-                "max": 4.0
+                "min": "4.0",
+                "max": "4.0"
             }
         }
     },
@@ -635,10 +653,11 @@
         "Listprice": 54.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "Beaufort": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Single led XPE": {
                 "min": "7",
@@ -657,12 +676,12 @@
                 "max": "2"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Beaufort²": {
                 "min": "1",
@@ -708,8 +727,8 @@
         "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930546%20POWERLED%20CONVERTOR%20REMOTE%201-20W%20180mA%201-10V%20DIMM%20930546%20MANUAL.pdf",
         "lamps": {
             "Beaufort": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Thinksmall halosphere single": {
                 "min": "1",
@@ -740,20 +759,20 @@
                 "max": "2"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "MIX 13 halosphere": {
                 "min": "1",
                 "max": "1"
             },
             "ORBITAL monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL halosphere": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Beaufort²": {
                 "min": "1",
@@ -800,8 +819,8 @@
         "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930565%20POWERLED%20CONVERT%20REMOTE%201x180mA%20DIMM%20LC%20%201-10V%20v1.pdf",
         "lamps": {
             "Beaufort": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Thinksmall halosphere single": {
                 "min": "2",
@@ -812,8 +831,8 @@
                 "max": "1"
             },
             "Thinksmall halosphere triple": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Single led XPE": {
                 "min": "9",
@@ -836,20 +855,20 @@
                 "max": "3"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "MIX 13 halosphere": {
                 "min": "1",
                 "max": "1"
             },
             "ORBITAL monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL halosphere": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Beaufort²": {
                 "min": "1",
@@ -894,8 +913,8 @@
         "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930545%20POWERLED%20CONVERTOR%20REMOTE%202.5-15W%20180mA%20MANUAL.pdf",
         "lamps": {
             "Beaufort": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Single led XPE": {
                 "min": "1",
@@ -914,12 +933,12 @@
                 "max": "2"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Beaufort²": {
                 "min": "1",
@@ -965,8 +984,8 @@
         "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930588%20POWERLED%20REMOTE%20CONVERTER%20%2815W%29%20TOUCH%20DALI%20DIM%20180mA_v1.pdf",
         "lamps": {
             "Beaufort": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Thinksmall halosphere single": {
                 "min": "2",
@@ -977,8 +996,8 @@
                 "max": "1"
             },
             "Thinksmall halosphere triple": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Single led XPE": {
                 "min": "7",
@@ -1001,20 +1020,20 @@
                 "max": "3"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "MIX 13 halosphere": {
                 "min": "1",
                 "max": "1"
             },
             "ORBITAL monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL halosphere": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Beaufort²": {
                 "min": "1",
@@ -1061,8 +1080,8 @@
         "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930605%20POWERLED%20REMOTE%20CONVERTER%20180mA%2018W%20V2.pdf",
         "lamps": {
             "Beaufort": {
-                "min": 2.0,
-                "max": 2.0
+                "min": "2.0",
+                "max": "2.0"
             },
             "Thinksmall halosphere single": {
                 "min": "3",
@@ -1073,8 +1092,8 @@
                 "max": "3"
             },
             "Thinksmall halosphere triple": {
-                "min": 2.0,
-                "max": 2.0
+                "min": "2.0",
+                "max": "2.0"
             },
             "Single led XPE": {
                 "min": "17",
@@ -1097,20 +1116,20 @@
                 "max": "6"
             },
             "MIX 13 monocolor": {
-                "min": 2.0,
-                "max": 2.0
+                "min": "2.0",
+                "max": "2.0"
             },
             "MIX 13 halosphere": {
                 "min": "2",
                 "max": "3"
             },
             "ORBITAL monocolor": {
-                "min": 2.0,
-                "max": 2.0
+                "min": "2.0",
+                "max": "2.0"
             },
             "ORBITAL halosphere": {
-                "min": 2.0,
-                "max": 2.0
+                "min": "2.0",
+                "max": "2.0"
             },
             "Beaufort²": {
                 "min": "2",
@@ -1156,8 +1175,8 @@
         "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930606%20POWERLED%20REMOTE%20CONVERTER%208W%20180mA%20CASAMBI%20MANUAL_v1.pdf",
         "lamps": {
             "Beaufort": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Thinksmall halosphere single": {
                 "min": "1",
@@ -1188,20 +1207,20 @@
                 "max": "2"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "MIX 13 halosphere": {
                 "min": "1",
                 "max": "1"
             },
             "ORBITAL monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL halosphere": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Beaufort²": {
                 "min": "1",
@@ -1248,8 +1267,8 @@
         "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930598%20POWERLED%20CONVERTOR%205W%20260mA%20MAINS%20DIMM%20v2.pdf",
         "lamps": {
             "Thinksmall halosphere single": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Single led XPE": {
                 "min": "4",
@@ -1308,12 +1327,12 @@
         "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930603%20POWERLED%20CONVERTOR%2012W%20260mA%20MAINS%20DIMM%20v3.pdf",
         "lamps": {
             "Thinksmall halosphere single": {
-                "min": 2,
-                "max": 2
+                "min": "2",
+                "max": "2"
             },
             "Thinksmall halosphere double": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Single led XPE": {
                 "min": "8",
@@ -1336,20 +1355,20 @@
                 "max": "2"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "MIX 13 halosphere": {
                 "min": "1",
                 "max": "1"
             },
             "ORBITAL monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL halosphere": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Beaufort²": {
                 "min": "1",
@@ -1399,8 +1418,8 @@
                 "max": "2"
             },
             "Thinksmall halosphere double": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Single led XPE": {
                 "min": "2",
@@ -1423,20 +1442,20 @@
                 "max": "2"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "MIX 13 halosphere": {
                 "min": "1",
                 "max": "1"
             },
             "ORBITAL monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL halosphere": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Beaufort²": {
                 "min": "1",
@@ -1486,12 +1505,12 @@
                 "max": "3"
             },
             "Thinksmall halosphere double": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Thinksmall halosphere triple": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Single led XPE": {
                 "min": "4",
@@ -1514,20 +1533,20 @@
                 "max": "3"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "MIX 13 halosphere": {
                 "min": "1",
                 "max": "1"
             },
             "ORBITAL monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL halosphere": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Beaufort²": {
                 "min": "1",
@@ -1574,16 +1593,16 @@
         "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930604%20POWERLED%20REMOTE%20CONVERTER%20260mA%2020W%20v2.pdf",
         "lamps": {
             "Thinksmall halosphere single": {
-                "min": "4",
+                "min": "3",
                 "max": "4"
             },
             "Thinksmall halosphere double": {
-                "min": 2,
-                "max": 2
+                "min": "2",
+                "max": "2"
             },
             "Thinksmall halosphere triple": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Single led XPE": {
                 "min": "12",
@@ -1606,20 +1625,20 @@
                 "max": "4"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "MIX 13 halosphere": {
                 "min": "2",
                 "max": "2"
             },
             "ORBITAL monocolor": {
-                "min": 2.0,
-                "max": 2.0
+                "min": "2.0",
+                "max": "2.0"
             },
             "ORBITAL halosphere": {
-                "min": 2.0,
-                "max": 2.0
+                "min": "2.0",
+                "max": "2.0"
             },
             "Beaufort²": {
                 "min": "2",
@@ -1669,8 +1688,8 @@
                 "max": "2"
             },
             "Thinksmall halosphere double": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Single led XPE": {
                 "min": "5",
@@ -1693,20 +1712,20 @@
                 "max": "2"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "MIX 13 halosphere": {
                 "min": "1",
                 "max": "1"
             },
             "ORBITAL monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL halosphere": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Beaufort²": {
                 "min": "1",
@@ -1757,8 +1776,8 @@
                 "max": "3"
             },
             "Thinksmall/floorspot WC luxeon MX": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Haloled": {
                 "min": "1",
@@ -1769,8 +1788,8 @@
                 "max": "1"
             },
             "*BOA WC": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             }
         }
     },
@@ -1800,12 +1819,12 @@
                 "max": "5"
             },
             "Thinksmall/floorspot WC luxeon MX": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Cedrus quantum": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Haloled": {
                 "min": "1",
@@ -1816,8 +1835,8 @@
                 "max": "1"
             },
             "*BOA WC": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             }
         }
     },
@@ -1850,12 +1869,12 @@
                 "max": "2"
             },
             "*MIX 6 monocolor": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Cedrus quantum": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Haloled": {
                 "min": "1",
@@ -1900,12 +1919,12 @@
                 "max": "2"
             },
             "*MIX 6 monocolor": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Cedrus quantum": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Haloled": {
                 "min": "1",
@@ -1952,8 +1971,8 @@
                 "max": "3"
             },
             "*MIX 6 monocolor": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Cedrus quantum": {
                 "min": "1",
@@ -1964,8 +1983,8 @@
                 "max": "2"
             },
             "MIX 13 halosphere": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Haloled": {
                 "min": "2",
@@ -2001,6 +2020,7 @@
         "Listprice": 58.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "Single led XPE": {
                 "min": "1",
@@ -2011,12 +2031,12 @@
                 "max": "2"
             },
             "*MIX 6 monocolor": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Cedrus quantum": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Haloled": {
                 "min": "1",
@@ -2052,6 +2072,7 @@
         "Listprice": 39.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "Single led XPE": {
                 "min": "6",
@@ -2066,24 +2087,24 @@
                 "max": "2"
             },
             "Cedrus quantum": {
-                "min": 2,
-                "max": 2
+                "min": "2",
+                "max": "2"
             },
             "*MIX 6 halosphere": {
-                "min": 2,
-                "max": 2
+                "min": "2",
+                "max": "2"
             },
             "MIX 13 halosphere": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "ORBITAL monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL halosphere": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Beaufort²": {
                 "min": "1",
@@ -2127,6 +2148,7 @@
         "Unit": "PC",
         "Gross Weight": 0.13,
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "Single led XPE": {
                 "min": "2",
@@ -2149,20 +2171,20 @@
                 "max": "2"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "MIX 13 halosphere": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "ORBITAL monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL halosphere": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Beaufort²": {
                 "min": "1",
@@ -2205,6 +2227,7 @@
         "Listprice": 67.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "Single led XPE": {
                 "min": "3",
@@ -2215,7 +2238,7 @@
                 "max": "4"
             },
             "*MIX 6 monocolor": {
-                "min": "2",
+                "min": "1",
                 "max": "2"
             },
             "Cedrus quantum": {
@@ -2227,20 +2250,20 @@
                 "max": "2"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "MIX 13 halosphere": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "ORBITAL monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL halosphere": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Beaufort²": {
                 "min": "1",
@@ -2307,20 +2330,20 @@
                 "max": "3"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "MIX 13 halosphere": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "ORBITAL monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL halosphere": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Beaufort²": {
                 "min": "1",
@@ -2388,20 +2411,20 @@
                 "max": "2"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "MIX 13 halosphere": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "ORBITAL monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL halosphere": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Beaufort²": {
                 "min": "1",
@@ -2444,6 +2467,7 @@
         "Listprice": 47.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "Single led XPE": {
                 "min": "3",
@@ -2466,20 +2490,20 @@
                 "max": "2"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "MIX 13 halosphere": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "ORBITAL monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL halosphere": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Beaufort²": {
                 "min": "1",
@@ -2540,12 +2564,12 @@
                 "max": "4"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL monocolor": {
-                "min": 2.0,
-                "max": 2.0
+                "min": "2.0",
+                "max": "2.0"
             },
             "Beaufort²": {
                 "min": "2",
@@ -2607,12 +2631,12 @@
                 "max": "4"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL monocolor": {
-                "min": 2.0,
-                "max": 2.0
+                "min": "2.0",
+                "max": "2.0"
             },
             "Beaufort²": {
                 "min": "2",
@@ -2631,7 +2655,7 @@
                 "max": "2"
             },
             "*BOA WC": {
-                "min": "8",
+                "min": "4",
                 "max": "8"
             }
         }
@@ -2678,20 +2702,20 @@
                 "max": "3"
             },
             "MIX 13 monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "MIX 13 halosphere": {
                 "min": "1",
                 "max": "1"
             },
             "ORBITAL monocolor": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "ORBITAL halosphere": {
-                "min": 1.0,
-                "max": 1.0
+                "min": "1.0",
+                "max": "1.0"
             },
             "Beaufort²": {
                 "min": "1",
@@ -2735,18 +2759,19 @@
         "Listprice": 37.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "Haloled": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "B4": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "*BOA WC": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             }
         }
     },
@@ -2849,8 +2874,8 @@
         "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930602%20POWERLED%20CONVERTER%2021W%20500mA%20MAINS%20DIMM%20MANUAL.pdf",
         "lamps": {
             "Beaufort²": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Haloled": {
                 "min": "2",
@@ -2889,10 +2914,11 @@
         "Listprice": 73.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "Beaufort²": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Haloled": {
                 "min": "1",
@@ -2934,8 +2960,8 @@
         "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930585%20POWERLED%20REMOTE%20CONVERTER%20%2835W%29%20TOUCH%20DALI%20DIM%20500mA_v1.pdf",
         "lamps": {
             "Beaufort²": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Haloled": {
                 "min": "3",
@@ -2981,7 +3007,7 @@
                 "max": "2"
             },
             "Haloled": {
-                "min": "8",
+                "min": "1",
                 "max": "8"
             },
             "B4": {
@@ -3063,8 +3089,8 @@
         "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930609%20POWERLED%20REMOTE%20CONVERTER%2027W%20500mA%20CASAMBI%20MANUAL_v1.pdf",
         "lamps": {
             "Beaufort²": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "Haloled": {
                 "min": "1",
@@ -3107,12 +3133,12 @@
         "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930592%20POWERLED%20CONVERTER%2010W%20700mA%20230V%20IP20%20MAINS%20DIM%20MANUAL_v1.pdf",
         "lamps": {
             "Haloled": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "B4": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "*BOA WC": {
                 "min": "1",
@@ -3143,16 +3169,16 @@
         "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930594%20POWERLED%20CONVERTOR%2012W%20700mA%20MAINS%20DIMM%20v1.pdf",
         "lamps": {
             "Haloled": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "B4": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "*BOA WC": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             }
         }
     },
@@ -3176,14 +3202,15 @@
         "Listprice": 58.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "Haloled": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "B4": {
-                "min": 1,
-                "max": 1
+                "min": "1",
+                "max": "1"
             },
             "*BOA WC": {
                 "min": "1",
@@ -3355,6 +3382,7 @@
         "Listprice": 45.0,
         "Unit": "PC",
         "LifeCycle": "A",
+        "pdf_link": null,
         "lamps": {
             "Haloled": {
                 "min": "3",
