@@ -2,7 +2,6 @@ import os
 import gradio as gr
 from dotenv import load_dotenv, find_dotenv
 
-# Load environment variables from .env
 load_dotenv(find_dotenv())
 
 from langchain_openai import AzureChatOpenAI, AzureOpenAIEmbeddings
@@ -28,7 +27,7 @@ embeddings = AzureOpenAIEmbeddings(
     azure_endpoint=os.getenv("OPENAI_API_ENDPOINT"),
     azure_deployment=os.getenv("OPENAI_EMBEDDINGS_MODEL_DEPLOYMENT"),
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    openai_api_version=os.getenv("AZURE_OPENAI_API_VERSION")  # Optional, but can be included
+    openai_api_version=os.getenv("AZURE_OPENAI_API_VERSION")  
 )
 
 

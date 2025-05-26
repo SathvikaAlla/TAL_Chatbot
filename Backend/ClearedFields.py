@@ -1,16 +1,26 @@
 # import json
 # import gradio as gr
+# import pandas as pd
+# import datetime
 # from typing import Dict, Any
 
-# JSON_PATH = "/Users/alessiacolumban/TAL_Chatbot/DataPrep/converters_with_links_and_pricelist.json"
+# # File paths
+# DATA_PATH = "/Users/alessiacolumban/TAL_Chatbot/DataPrep/converters_with_links_and_pricelist.json"
+# META_PATH = "/Users/alessiacolumban/TAL_Chatbot/DataPrep/converters_metadata.json"
 
-# def load_json() -> Dict[str, Any]:
-#     with open(JSON_PATH, "r", encoding="utf-8") as f:
-#         return json.load(f)
+# def load_json(path) -> Dict[str, Any]:
+#     try:
+#         with open(path, "r", encoding="utf-8") as f:
+#             return json.load(f)
+#     except FileNotFoundError:
+#         return {}
 
-# def save_json(data: Dict[str, Any]):
-#     with open(JSON_PATH, "w", encoding="utf-8") as f:
+# def save_json(data: Dict[str, Any], path):
+#     with open(path, "w", encoding="utf-8") as f:
 #         json.dump(data, f, indent=4, ensure_ascii=False)
+
+# def get_current_time():
+#     return datetime.datetime.now().isoformat()
 
 # def add_converter(
 #     converter_id, converter_type, artnr, description, strain_relief, location, dimmability,
@@ -18,7 +28,8 @@
 #     price, unit, lifecycle, pdf_link
 # ):
 #     converter_id = converter_id.strip()
-#     data = load_json()
+#     data = load_json(DATA_PATH)
+#     meta = load_json(META_PATH)
 #     if converter_id in data:
 #         return f"Converter '{converter_id}' already exists."
 #     info = {}
@@ -43,7 +54,16 @@
 #     if pdf_link: info["pdf_link"] = pdf_link
 #     info["lamps"] = {}
 #     data[converter_id] = info
-#     save_json(data)
+
+#     now = get_current_time()
+#     meta[converter_id] = {
+#         "created_at": now,
+#         "updated_at": now,
+#         "deleted_at": None,
+#         "price_history": [{"timestamp": now, "price": float(price)}] if price else []
+#     }
+#     save_json(data, DATA_PATH)
+#     save_json(meta, META_PATH)
 #     return f"Added converter '{converter_id}'."
 
 # def update_converter(
@@ -52,10 +72,12 @@
 #     price, unit, lifecycle, pdf_link
 # ):
 #     converter_id = converter_id.strip()
-#     data = load_json()
+#     data = load_json(DATA_PATH)
+#     meta = load_json(META_PATH)
 #     if converter_id not in data:
 #         return f"Converter '{converter_id}' does not exist."
 #     info = data[converter_id]
+#     now = get_current_time()
 #     # Update fields if provided
 #     if converter_type: info["TYPE"] = converter_type
 #     if artnr: info["ARTNR"] = float(artnr)
@@ -72,65 +94,154 @@
 #     if output_voltage: info["OUTPUT VOLTAGE (V)"] = output_voltage
 #     if barcode: info["Barcode"] = barcode
 #     if name: info["Name"] = name
-#     if price: info["Listprice"] = float(price)
+#     if price:
+#         price = float(price)
+#         if "Listprice" not in info or price != info.get("Listprice"):
+#             if converter_id not in meta:
+#                 meta[converter_id] = {
+#                     "created_at": now,
+#                     "updated_at": now,
+#                     "deleted_at": None,
+#                     "price_history": []
+#                 }
+#             if "price_history" not in meta[converter_id]:
+#                 meta[converter_id]["price_history"] = []
+#             meta[converter_id]["price_history"].append({"timestamp": now, "price": price})
+#         info["Listprice"] = price
 #     if unit: info["Unit"] = unit
 #     if lifecycle: info["LifeCycle"] = lifecycle
 #     if pdf_link: info["pdf_link"] = pdf_link
+
+#     # Update metadata
+#     if converter_id not in meta:
+#         meta[converter_id] = {
+#             "created_at": now,
+#             "updated_at": now,
+#             "deleted_at": None,
+#             "price_history": []
+#         }
+#     meta[converter_id]["updated_at"] = now
 
 #     # Compute new id
 #     new_type = info["TYPE"]
 #     new_artnr = int(info["ARTNR"])
 #     new_id = f"{new_type}mA - {new_artnr}"
 
-#     # Only update key if it has changed
 #     if new_id != converter_id:
 #         data[new_id] = info
+#         meta[new_id] = meta.pop(converter_id)
 #         del data[converter_id]
-#         save_json(data)
+#         save_json(data, DATA_PATH)
+#         save_json(meta, META_PATH)
 #         return f"Updated converter. ID changed to '{new_id}'."
 #     else:
 #         data[converter_id] = info
-#         save_json(data)
+#         save_json(data, DATA_PATH)
+#         save_json(meta, META_PATH)
 #         return f"Updated converter '{converter_id}'."
 
 # def delete_converter(converter_id):
 #     converter_id = converter_id.strip()
-#     data = load_json()
+#     data = load_json(DATA_PATH)
+#     meta = load_json(META_PATH)
 #     if converter_id not in data:
 #         return f"Converter '{converter_id}' does not exist."
-#     del data[converter_id]
-#     save_json(data)
+#     now = get_current_time()
+#     if converter_id not in meta:
+#         meta[converter_id] = {
+#             "created_at": now,
+#             "updated_at": now,
+#             "deleted_at": now,
+#             "price_history": []
+#         }
+#     else:
+#         meta[converter_id]["deleted_at"] = now
+#     save_json(meta, META_PATH)
 #     return f"Deleted converter '{converter_id}'."
 
 # def add_or_update_lamp(converter_id, lamp_name, min_val, max_val):
 #     converter_id = converter_id.strip()
 #     lamp_name = lamp_name.strip()
-#     data = load_json()
+#     data = load_json(DATA_PATH)
 #     if converter_id not in data:
 #         return f"Converter '{converter_id}' does not exist."
 #     if "lamps" not in data[converter_id]:
 #         data[converter_id]["lamps"] = {}
 #     data[converter_id]["lamps"][lamp_name] = {"min": min_val, "max": max_val}
-#     save_json(data)
+#     save_json(data, DATA_PATH)
 #     return f"Added/updated lamp '{lamp_name}' in converter '{converter_id}'."
 
 # def delete_lamp(converter_id, lamp_name):
 #     converter_id = converter_id.strip()
 #     lamp_name = lamp_name.strip()
-#     data = load_json()
+#     data = load_json(DATA_PATH)
 #     if converter_id not in data:
 #         return f"Converter '{converter_id}' does not exist."
 #     lamps = data[converter_id].get("lamps", {})
 #     if lamp_name not in lamps:
 #         return f"Lamp '{lamp_name}' does not exist in converter '{converter_id}'."
 #     del lamps[lamp_name]
-#     save_json(data)
+#     save_json(data, DATA_PATH)
 #     return f"Deleted lamp '{lamp_name}' from converter '{converter_id}'."
 
 # def get_converter(converter_id):
 #     converter_id = converter_id.strip()
-#     data = load_json()
+#     data = load_json(DATA_PATH)
 #     return json.dumps(data.get(converter_id, {}), indent=2, ensure_ascii=False)
+
+# def filter_lamps(filter_type, n_latest):
+#     data = load_json(DATA_PATH)
+#     meta = load_json(META_PATH)
+#     records = []
+#     for cid, cinfo in data.items():
+#         m = meta.get(cid, {})
+#         created_at = m.get("created_at", "")
+#         updated_at = m.get("updated_at", "")
+#         deleted_at = m.get("deleted_at", None)
+#         price_history = m.get("price_history", [])
+#         price = cinfo.get("Listprice", "")
+#         lamps = cinfo.get("lamps", {})
+#         if filter_type == "Latest Added":
+#             if not deleted_at:
+#                 records.append({
+#                     "Converter ID": cid,
+#                     "Created At": created_at,
+#                     "Updated At": updated_at,
+#                     "Price": price,
+#                     "Lamps": ", ".join(lamps.keys())
+#                 })
+#         elif filter_type == "Latest Updated":
+#             if not deleted_at:
+#                 records.append({
+#                     "Converter ID": cid,
+#                     "Created At": created_at,
+#                     "Updated At": updated_at,
+#                     "Price": price,
+#                     "Lamps": ", ".join(lamps.keys())
+#                 })
+#         elif filter_type == "Deleted":
+#             if deleted_at:
+#                 records.append({
+#                     "Converter ID": cid,
+#                     "Deleted At": deleted_at,
+#                     "Price": price,
+#                     "Lamps": ", ".join(lamps.keys())
+#                 })
+#         elif filter_type == "Price Change":
+#             if len(price_history) > 1:
+#                 records.append({
+#                     "Converter ID": cid,
+#                     "Price History": str(price_history),
+#                     "Current Price": price,
+#                     "Lamps": ", ".join(lamps.keys())
+#                 })
+#     # Sort and limit
+#     if filter_type == "Latest Added":
+#         records = sorted(records, key=lambda x: x.get("Created At", ""), reverse=True)[:n_latest]
+#     elif filter_type == "Latest Updated":
+#         records = sorted(records, key=lambda x: x.get("Updated At", ""), reverse=True)[:n_latest]
+#     df = pd.DataFrame(records)
+#     return df
 
 # with gr.Blocks(title="TAL Converter JSON Editor") as demo:
 #     gr.Markdown("# TAL Converter JSON Editor")
@@ -277,6 +388,21 @@
 #         view_output = gr.Textbox(label="Converter Data", lines=10)
 #         view_btn.click(get_converter, inputs=converter_id_v, outputs=view_output)
 
+#     with gr.Tab("Converters Table & Filters"):
+#         filter_type = gr.Dropdown(
+#             choices=["Latest Added", "Latest Updated", "Deleted", "Price Change"],
+#             value="Latest Added",
+#             label="Filter Type"
+#         )
+#         n_latest = gr.Slider(1, 20, value=5, label="How many (for latest)")
+#         lamp_table = gr.DataFrame(label="Converters Table", interactive=False, show_search="filter")
+#         filter_btn = gr.Button("Apply Filter")
+#         filter_btn.click(
+#             filter_lamps,
+#             inputs=[filter_type, n_latest],
+#             outputs=lamp_table
+#         )
+
 # if __name__ == "__main__":
 #     demo.launch()
 
@@ -287,14 +413,19 @@ import pandas as pd
 import datetime
 from typing import Dict, Any
 
-JSON_PATH = "/Users/alessiacolumban/TAL_Chatbot/DataPrep/converters_with_links_and_pricelist.json"
+# File paths
+DATA_PATH = "/Users/alessiacolumban/TAL_Chatbot/DataPrep/converters_with_links_and_pricelist.json"
+META_PATH = "/Users/alessiacolumban/TAL_Chatbot/DataPrep/converters_metadata.json"
 
-def load_json() -> Dict[str, Any]:
-    with open(JSON_PATH, "r", encoding="utf-8") as f:
-        return json.load(f)
+def load_json(path) -> Dict[str, Any]:
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
 
-def save_json(data: Dict[str, Any]):
-    with open(JSON_PATH, "w", encoding="utf-8") as f:
+def save_json(data: Dict[str, Any], path):
+    with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
 def get_current_time():
@@ -306,10 +437,10 @@ def add_converter(
     price, unit, lifecycle, pdf_link
 ):
     converter_id = converter_id.strip()
-    data = load_json()
+    data = load_json(DATA_PATH)
+    meta = load_json(META_PATH)
     if converter_id in data:
         return f"Converter '{converter_id}' already exists."
-    now = get_current_time()
     info = {}
     if converter_type: info["TYPE"] = converter_type
     if artnr: info["ARTNR"] = float(artnr)
@@ -331,12 +462,17 @@ def add_converter(
     if lifecycle: info["LifeCycle"] = lifecycle
     if pdf_link: info["pdf_link"] = pdf_link
     info["lamps"] = {}
-    info["created_at"] = now
-    info["updated_at"] = now
-    info["deleted_at"] = None
-    info["price_history"] = [{"timestamp": now, "price": float(price)}] if price else []
     data[converter_id] = info
-    save_json(data)
+
+    now = get_current_time()
+    meta[converter_id] = {
+        "created_at": now,
+        "updated_at": now,
+        "deleted_at": None,
+        "price_history": [{"timestamp": now, "price": float(price)}] if price else []
+    }
+    save_json(data, DATA_PATH)
+    save_json(meta, META_PATH)
     return f"Added converter '{converter_id}'."
 
 def update_converter(
@@ -345,7 +481,8 @@ def update_converter(
     price, unit, lifecycle, pdf_link
 ):
     converter_id = converter_id.strip()
-    data = load_json()
+    data = load_json(DATA_PATH)
+    meta = load_json(META_PATH)
     if converter_id not in data:
         return f"Converter '{converter_id}' does not exist."
     info = data[converter_id]
@@ -369,126 +506,139 @@ def update_converter(
     if price:
         price = float(price)
         if "Listprice" not in info or price != info.get("Listprice"):
-            if "price_history" not in info:
-                info["price_history"] = []
-            info["price_history"].append({"timestamp": now, "price": price})
+            if converter_id not in meta:
+                meta[converter_id] = {
+                    "created_at": now,
+                    "updated_at": now,
+                    "deleted_at": None,
+                    "price_history": []
+                }
+            if "price_history" not in meta[converter_id]:
+                meta[converter_id]["price_history"] = []
+            meta[converter_id]["price_history"].append({"timestamp": now, "price": price})
         info["Listprice"] = price
     if unit: info["Unit"] = unit
     if lifecycle: info["LifeCycle"] = lifecycle
     if pdf_link: info["pdf_link"] = pdf_link
-    info["updated_at"] = now
+
+    # Update metadata
+    if converter_id not in meta:
+        meta[converter_id] = {
+            "created_at": now,
+            "updated_at": now,
+            "deleted_at": None,
+            "price_history": []
+        }
+    meta[converter_id]["updated_at"] = now
 
     # Compute new id
     new_type = info["TYPE"]
     new_artnr = int(info["ARTNR"])
     new_id = f"{new_type}mA - {new_artnr}"
 
-    # Only update key if it has changed
     if new_id != converter_id:
         data[new_id] = info
+        meta[new_id] = meta.pop(converter_id)
         del data[converter_id]
-        save_json(data)
+        save_json(data, DATA_PATH)
+        save_json(meta, META_PATH)
         return f"Updated converter. ID changed to '{new_id}'."
     else:
         data[converter_id] = info
-        save_json(data)
+        save_json(data, DATA_PATH)
+        save_json(meta, META_PATH)
         return f"Updated converter '{converter_id}'."
 
 def delete_converter(converter_id):
     converter_id = converter_id.strip()
-    data = load_json()
+    data = load_json(DATA_PATH)
+    meta = load_json(META_PATH)
     if converter_id not in data:
         return f"Converter '{converter_id}' does not exist."
     now = get_current_time()
-    if "deleted_at" in data[converter_id]:
-        data[converter_id]["deleted_at"] = now
+    if converter_id not in meta:
+        meta[converter_id] = {
+            "created_at": now,
+            "updated_at": now,
+            "deleted_at": now,
+            "price_history": []
+        }
     else:
-        data[converter_id].update({"deleted_at": now})
-    save_json(data)
+        meta[converter_id]["deleted_at"] = now
+    save_json(meta, META_PATH)
     return f"Deleted converter '{converter_id}'."
 
 def add_or_update_lamp(converter_id, lamp_name, min_val, max_val):
     converter_id = converter_id.strip()
     lamp_name = lamp_name.strip()
-    data = load_json()
+    data = load_json(DATA_PATH)
     if converter_id not in data:
         return f"Converter '{converter_id}' does not exist."
     if "lamps" not in data[converter_id]:
         data[converter_id]["lamps"] = {}
     data[converter_id]["lamps"][lamp_name] = {"min": min_val, "max": max_val}
-    save_json(data)
+    save_json(data, DATA_PATH)
     return f"Added/updated lamp '{lamp_name}' in converter '{converter_id}'."
 
 def delete_lamp(converter_id, lamp_name):
     converter_id = converter_id.strip()
     lamp_name = lamp_name.strip()
-    data = load_json()
+    data = load_json(DATA_PATH)
     if converter_id not in data:
         return f"Converter '{converter_id}' does not exist."
     lamps = data[converter_id].get("lamps", {})
     if lamp_name not in lamps:
         return f"Lamp '{lamp_name}' does not exist in converter '{converter_id}'."
     del lamps[lamp_name]
-    save_json(data)
+    save_json(data, DATA_PATH)
     return f"Deleted lamp '{lamp_name}' from converter '{converter_id}'."
 
 def get_converter(converter_id):
     converter_id = converter_id.strip()
-    data = load_json()
+    data = load_json(DATA_PATH)
     return json.dumps(data.get(converter_id, {}), indent=2, ensure_ascii=False)
 
 def filter_lamps(filter_type, n_latest):
-    data = load_json()
+    data = load_json(DATA_PATH)
+    meta = load_json(META_PATH)
     records = []
     for cid, cinfo in data.items():
-        # Handle missing metadata for legacy entries
-        created_at = cinfo.get("created_at", "")
-        updated_at = cinfo.get("updated_at", "")
-        deleted_at = cinfo.get("deleted_at", None)
+        m = meta.get(cid, {})
+        created_at = m.get("created_at", "")
+        updated_at = m.get("updated_at", "")
+        deleted_at = m.get("deleted_at", None)
+        price_history = m.get("price_history", [])
         price = cinfo.get("Listprice", "")
         lamps = cinfo.get("lamps", {})
-        price_history = cinfo.get("price_history", [])
-        if filter_type == "Latest Added":
+        record = {
+            "Converter ID": cid,
+            "Created At": created_at,
+            "Updated At": updated_at,
+            "Deleted At": deleted_at,
+            "Price": price,
+            "Lamps": ", ".join(lamps.keys())
+        }
+        if filter_type == "Show All":
+            records.append(record)
+        elif filter_type == "Latest Added":
             if not deleted_at:
-                records.append({
-                    "Converter ID": cid,
-                    "Created At": created_at,
-                    "Updated At": updated_at,
-                    "Price": price,
-                    "Lamps": ", ".join(lamps.keys())
-                })
+                records.append(record)
         elif filter_type == "Latest Updated":
             if not deleted_at:
-                records.append({
-                    "Converter ID": cid,
-                    "Created At": created_at,
-                    "Updated At": updated_at,
-                    "Price": price,
-                    "Lamps": ", ".join(lamps.keys())
-                })
+                records.append(record)
         elif filter_type == "Deleted":
             if deleted_at:
-                records.append({
-                    "Converter ID": cid,
-                    "Deleted At": deleted_at,
-                    "Price": price,
-                    "Lamps": ", ".join(lamps.keys())
-                })
+                records.append(record)
         elif filter_type == "Price Change":
             if len(price_history) > 1:
-                records.append({
-                    "Converter ID": cid,
-                    "Price History": str(price_history),
-                    "Current Price": price,
-                    "Lamps": ", ".join(lamps.keys())
-                })
-    # Sort and limit
+                record["Price History"] = str(price_history)
+                records.append(record)
+    # Apply sorting and slicing only for the relevant filters
     if filter_type == "Latest Added":
         records = sorted(records, key=lambda x: x.get("Created At", ""), reverse=True)[:n_latest]
     elif filter_type == "Latest Updated":
         records = sorted(records, key=lambda x: x.get("Updated At", ""), reverse=True)[:n_latest]
-    df = pd.DataFrame(records)
-    return df
+    return pd.DataFrame(records)
 
 with gr.Blocks(title="TAL Converter JSON Editor") as demo:
     gr.Markdown("# TAL Converter JSON Editor")
@@ -637,11 +787,11 @@ with gr.Blocks(title="TAL Converter JSON Editor") as demo:
 
     with gr.Tab("Converters Table & Filters"):
         filter_type = gr.Dropdown(
-            choices=["Latest Added", "Latest Updated", "Deleted", "Price Change"],
-            value="Latest Added",
+            choices=["Show All", "Latest Added", "Latest Updated", "Deleted", "Price Change"],
+            value="Show All",
             label="Filter Type"
         )
-        n_latest = gr.Slider(1, 20, value=5, label="How many (for latest)")
+        n_latest = gr.Slider(1, 20, value=5, step=1, label="How many (for latest)")
         lamp_table = gr.DataFrame(label="Converters Table", interactive=False, show_search="filter")
         filter_btn = gr.Button("Apply Filter")
         filter_btn.click(
