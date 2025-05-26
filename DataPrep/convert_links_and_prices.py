@@ -208,7 +208,7 @@ BASE_URL = "https://www.tal.be"
 def scrape_pdf_links_by_article_numbers(article_numbers):
     pdf_links = {}
     for artnr in article_numbers:
-        url = f"https://www.tal.be/en/downloads?field_download_category_target_id=3840&name={artnr}&field_file_type_target_id=All"
+        url = f"https://www.tal.be/en/downloads?field_download_category_target_id=All&name={artnr}&field_file_type_target_id=All"
         print(f"🔍 Searching PDF for: {artnr}")
         try:
             response = requests.get(url)
@@ -217,7 +217,7 @@ def scrape_pdf_links_by_article_numbers(article_numbers):
             found = False
             for link in soup.find_all("a", href=True):
                 href = link["href"].strip()
-                if href.lower().endswith(".pdf") and artnr in href:
+                if href.lower().endswith(".pdf") and (artnr in href or artnr in link.get_text()):
                     pdf_links[str(artnr)] = urljoin(BASE_URL, href)
                     found = True
                     print(f"✅ Found PDF for {artnr}")
@@ -227,6 +227,7 @@ def scrape_pdf_links_by_article_numbers(article_numbers):
         except Exception as e:
             print(f"❌ Error for {artnr}: {e}")
     return pdf_links
+
 
 # ======================
 # Download PDFs (optional)

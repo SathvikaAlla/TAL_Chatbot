@@ -460,7 +460,7 @@
         "Listprice": 174.0,
         "Unit": "PC",
         "LifeCycle": "A",
-        "pdf_link": null,
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-05/40073%2024V%20150W%2097759.pdf",
         "lamps": {
             "m LEDLINE medium power 9,6W": {
                 "min": "15.0",
@@ -1172,7 +1172,7 @@
         "Listprice": 166.0,
         "Unit": "PC",
         "LifeCycle": "A",
-        "pdf_link": null,
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-05/930606%20POWERLED%20REMOTE%20CONVERTER%208W%20180mA%20CASAMBI%20MANUAL_v1.pdf",
         "lamps": {
             "Beaufort": {
                 "min": "1.0",
@@ -1681,7 +1681,7 @@
         "Listprice": 166.0,
         "Unit": "PC",
         "LifeCycle": "A",
-        "pdf_link": null,
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-05/930607%20POWERLED%20REMOTE%20CONVERTER%2010W%20250mA%20CASAMBI%20MANUAL_v1.pdf",
         "lamps": {
             "Thinksmall halosphere single": {
                 "min": "1",
@@ -2759,7 +2759,7 @@
         "Listprice": 37.0,
         "Unit": "PC",
         "LifeCycle": "A",
-        "pdf_link": null,
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-05/930620%20POWERLED%20CONVERTER%206%2C5W%20500mA%20IP20%20MAINS%20DIMM%20RC%20V2.pdf",
         "lamps": {
             "Haloled": {
                 "min": "1",
@@ -2871,7 +2871,7 @@
         "Listprice": 59.0,
         "Unit": "PC",
         "LifeCycle": "A",
-        "pdf_link": null,
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-05/930602%20POWERLED%20CONVERTER%2021W%20500mA%20MAINS%20DIMM%20MANUAL.pdf",
         "lamps": {
             "Beaufort²": {
                 "min": "1",
