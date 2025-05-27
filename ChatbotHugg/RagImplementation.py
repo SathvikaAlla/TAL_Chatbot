@@ -12,7 +12,14 @@ from langgraph.graph import StateGraph, START
 
 # --- Configuration ---
 
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = "***REMOVED***"
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Access the Hugging Face API token
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = os.getenv("HUGGINGFACEHUB_API_TOKEN")
 file_path = "/Users/alessiacolumban/TAL_Chatbot/DataPrep/converters_with_links_and_pricelist.json"
 try:
     with open(file_path, 'r', encoding='utf-8') as f:
