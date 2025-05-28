@@ -9,16 +9,11 @@ from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import ChatPromptTemplate
 from typing import List, TypedDict
 from langgraph.graph import StateGraph, START
+from dotenv import load_dotenv
 
 # --- Configuration ---
 
-from dotenv import load_dotenv
-import os
-
-# Load environment variables from .env file
 load_dotenv()
-
-# Access the Hugging Face API token
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = os.getenv("HUGGINGFACEHUB_API_TOKEN")
 file_path = "/Users/alessiacolumban/TAL_Chatbot/DataPrep/converters_with_links_and_pricelist.json"
 try:
@@ -37,6 +32,15 @@ vector_store = FAISS.from_documents(docs, embeddings)
 chatbot = pipeline("text-generation", model="facebook/blenderbot-400M-distill")
 
 # --- Helper Functions ---
+
+def parse_float(s):
+    """Convert a string with either dot or comma as decimal separator to float."""
+    try:
+        if isinstance(s, (list, tuple)):
+            s = s[0]  # for size fields split by '*'
+        return float(str(s).replace(',', '.').strip())
+    except Exception:
+        return float('inf')  # fallback for missing or invalid values
 
 def normalize_artnr(artnr):
     """Convert ARTNR to string for robust matching."""
@@ -97,8 +101,39 @@ def get_lamp_quantity(converter_number: str, lamp_name: str, tech_info: dict) ->
                 return f"You can use between {min_val} and {max_val} {lamp_key} lamp(s) with converter {converter_number}."
     return f"Sorry, no data found for lamp '{lamp_name}' with converter {converter_number}."
 
+def get_recommended_converter(user_message, tech_info):
+    # Example: "I need a 24V converter for 2x 14.4W LEDLINE. Which one should I use?"
+    match = re.search(r"(\d+)\s*x\s*([\d.,]+)\s*w\s*(\w+)", user_message.lower())
+    if not match:
+        return None
+    num_lamps = int(match.group(1))
+    wattage = float(match.group(2).replace(',', '.'))
+    lamp_type = match.group(3)
+    candidates = []
+    for v in tech_info.values():
+        if "24v" in v["TYPE"].lower():
+            for lamp, vals in v["LAMPS"].items():
+                lamp_norm = lamp.lower().replace(',', '.')
+                wattage_str = str(wattage).replace(',', '.')
+                if lamp_type.lower() in lamp_norm and wattage_str in lamp_norm:
+                    max_lamps = float(str(vals.get("max", 0)).replace(',', '.'))
+                    if max_lamps >= num_lamps:
+                        candidates.append(v)
+    if not candidates:
+        return f"Sorry, I couldn't find a 24V converter that supports {num_lamps}x {wattage}W {lamp_type}."
+    else:
+        return "\n".join([
+            f"You can use {v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])}) for {num_lamps}x {wattage}W {lamp_type}."
+            for v in candidates
+        ])
+
 def answer_technical_question(question: str, tech_info: dict) -> str:
     q = question.lower()
+    # Use-case: "I need a 24V converter for 2x 14.4W LEDLINE" (and similar)
+    if re.search(r"\d+\s*x\s*[\d.,]+\s*w\s*\w+", q):
+        result = get_recommended_converter(question, tech_info)
+        if result:
+            return result
     # Outdoor installation
     if "outdoor" in q:
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})"
@@ -109,7 +144,10 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
         candidates = [v for v in tech_info.values() if "24v" in v["TYPE"].lower()]
         if not candidates:
             return "No 24V converters found."
-        best = max(candidates, key=lambda x: float(str(x["EFFICIENCY"]).replace(',', '.')) if str(x["EFFICIENCY"]).replace('.', '').replace(',','').isdigit() else 0)
+        best = max(
+            candidates,
+            key=lambda x: float(str(x["EFFICIENCY"]).replace(',', '.')) if str(x["EFFICIENCY"]).replace('.', '').replace(',','').isdigit() else 0
+        )
         return f"The most efficient 24V converter is {best['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(best['ARTNR'])}) with efficiency {best['EFFICIENCY']}."
     # 24V converter with dimming
     if "24v" in q and ("dimmable" in q or "dimming" in q or "supports dimming" in q):
@@ -150,7 +188,7 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
         candidates = []
         for v in tech_info.values():
             for lamp, vals in v["LAMPS"].items():
-                if "ledline" in lamp.lower() and "9.6w" in lamp.lower() and float(str(vals.get("max", 0))) > 1:
+                if "ledline" in lamp.lower() and "9.6w" in lamp.lower() and float(str(vals.get("max", 0)).replace(',', '.')) > 1:
                     candidates.append(f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])}) supports up to {vals['max']} {lamp}")
         return "\n".join(candidates) if candidates else "No converter supports more than 1 LEDLINE 9.6W lamp."
     # Smallest 24V converters
@@ -158,17 +196,20 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
         candidates = [v for v in tech_info.values() if "24v" in v["TYPE"].lower()]
         if not candidates:
             return "No 24V converters found."
-        smallest = min(candidates, key=lambda x: float(str(x["SIZE"].split('*')[0])))
+        smallest = min(
+            candidates,
+            key=lambda x: parse_float(str(x["SIZE"].split('*')[0]))
+        )
         return f"Smallest 24V converter: {smallest['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(smallest['ARTNR'])}), size: {smallest['SIZE']}"
     # Under 100mm length
     if "under 100mm" in q or ("length" in q and "100" in q):
-        candidates = [v for v in tech_info.values() if float(str(v["SIZE"].split('*')[0])) < 100]
+        candidates = [v for v in tech_info.values() if parse_float(str(v["SIZE"].split('*')[0])) < 100]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])}), size: {v['SIZE']}" for v in candidates])
     # Use-case: 2x 14.4W LEDLINE
     if "2x 14.4w ledline" in q:
         for v in tech_info.values():
             for lamp, vals in v["LAMPS"].items():
-                if "ledline" in lamp.lower() and "14.4w" in lamp.lower() and float(str(vals.get("max", 0))) >= 2:
+                if "ledline" in lamp.lower() and "14.4w" in lamp.lower() and float(str(vals.get("max", 0)).replace(',', '.')) >= 2:
                     return f"You can use {v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])}) for 2x 14.4W LEDLINE."
     # Can I use converter X with Y lamp
     if "can i use converter" in q and "ledline" in q:
@@ -181,7 +222,7 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
                         return f"Converter {numbers[0]} supports up to {vals.get('max', 0)} {lamp}."
     # IP67 and 1-10V dimming
     if "ip67" in q and "1-10v" in q:
-        candidates = [v for v in tech_info.values() if "ip67" in str(v["CONVERTER DESCRIPTION"]).lower() and "1-10v" in str(v["DIMMABILITY"]).lower()]
+        candidates = [v for v in tech_info.values() if "ip67" in str(v["CONVERTER DESCRIPTION"]).lower() and "1-10v" in str(v["DIMMABILITY"].lower())]
         if candidates:
             return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
     # Built-in strain relief
@@ -274,15 +315,12 @@ graph = graph_builder.compile()
 # --- Chatbot Function ---
 
 def tal_langchain_chatbot(user_message, history):
-    # Lamp quantity questions
     lamp_name, converter_number = extract_converter_and_lamp(user_message)
     if lamp_name and converter_number:
         answer = get_lamp_quantity(converter_number, lamp_name, tech_info)
     else:
-        # Technical, comparison, size, use-case, installation, pricing, product info questions
         answer = answer_technical_question(user_message, tech_info)
         if not answer:
-            # Fall back to LLM
             response = graph.invoke({"question": user_message})
             answer = response["answer"]
     history = history or []
@@ -307,7 +345,7 @@ custom_css = """
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 12px rgba 0,0,0,0.3;
     display: flex;
     align-items: center;
     justify-content: center;
