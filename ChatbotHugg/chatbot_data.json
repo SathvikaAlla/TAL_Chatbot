@@ -1,0 +1,175 @@
+{"prompt": "How many haloled lamps for converter 40067?", "response": "You can connect 5 Haloled single on track lamps or 2 Haloled double on track lamps to the LEDCONVERTER REMOTE 48V 70W IP20 (ARTNR: 40067)."}
+{"prompt": "How many beaufort lamps for converter 930544?", "response": "You can connect 1 Beaufort lamp to the POWERLED CONVERTER REMOTE 180mA 7,2W IP20 MAINS DIM C (ARTNR: 930544)."}
+{"prompt": "Which converter can I use for outdoor installations?", "response": "For outdoor installations, choose converters with IP67 or IP65 ratings, such as LEDCONVERTER 24V 20W IP67 (ARTNR: 40063), LEDCONVERTER 24V 35W IP67 (ARTNR: 40070), or POWERLED CONVERTER 260mA 12W IP65 MAINS DIM LC (ARTNR: 930603)."}
+{"prompt": "What is the most efficient 24V converter available?", "response": "The most efficient 24V converter is LEDCONVERTER 24V 120W IP67 1-10V (ARTNR: 40084) with an efficiency of 0.93 at full load."}
+{"prompt": "Do you have a 24V converter that supports dimming?", "response": "Yes, these 24V converters support dimming: LEDCONVERTER REMOTE 24V 20W IP20 1-10V (ARTNR: 40080), LEDCONVERTER 24V 40W IP67 1-10V (ARTNR: 40081), LEDCONVERTER REMOTE 24V 50W IP20 DALI/TOUCHDIM (ARTNR: 40087), LEDCONVERTER REMOTE 24V 80W IP20 DALI/TOUCHDIM (ARTNR: 40088), LEDCONVERTER 24V 90W IP67 1-10V (ARTNR: 40083), LEDCONVERTER 24V 120W IP67 1-10V (ARTNR: 40084), and LEDCONVERTER 24V 60W IP20 1-10V (ARTNR: 40082)."}
+{"prompt": "Can you recommend a converter for a 19.2W LEDLINE?", "response": "For a 19.2W LEDLINE, you can use LEDCONVERTER 24V 10W IP20 (ARTNR: 40025) for up to 0.5 meters, LEDCONVERTER REMOTE 24V 20W IP20 (ARTNR: 40057) for up to 1 meter, LEDCONVERTER 24V 20W IP67 (ARTNR: 40063) for up to 1 meter, or higher wattage models for longer runs."}
+{"prompt": "Which converters have strain relief included?", "response": "The following converters have strain relief included: LEDCONVERTER REMOTE 24V 20W IP20 (ARTNR: 40057), LEDCONVERTER REMOTE 24V 20W IP20 1-10V (ARTNR: 40080), LEDCONVERTER REMOTE 24V 50W IP20 DALI/TOUCHDIM (ARTNR: 40087), and LEDCONVERTER REMOTE 24V 80W IP20 DALI/TOUCHDIM (ARTNR: 40088)."}
+{"prompt": "Compare the 40057 and 40080 converters.", "response": "LEDCONVERTER REMOTE 24V 20W IP20 (ARTNR: 40057) is not dimmable, has strain relief, and is for indoor use. LEDCONVERTER REMOTE 24V 20W IP20 1-10V (ARTNR: 40080) supports 1-10V dimming, also has strain relief, and is for indoor use. Both support similar LEDLINE lengths but differ in dimming capability."}
+{"prompt": "What are the differences between converters with IP20 and IP67?", "response": "IP20 converters are suitable for indoor use and offer basic protection against solid objects. IP67 converters are suitable for both indoor and outdoor use, providing complete protection against dust and temporary immersion in water."}
+{"prompt": "Which converters support more than 1 LEDLINE 9.6W lamp?", "response": "Converters supporting more than 1 meter of LEDLINE medium power 9.6W include: LEDCONVERTER REMOTE 24V 20W IP20 (ARTNR: 40057) - 2m, LEDCONVERTER 24V 20W IP67 (ARTNR: 40063) - 2m, LEDCONVERTER 24V 35W IP67 (ARTNR: 40070) - 3.5m, LEDCONVERTER 24V 40W IP67 1-10V (ARTNR: 40081) - 4m, LEDCONVERTER REMOTE 24V 50W IP20 DALI/TOUCHDIM (ARTNR: 40087) - 5m, LEDCONVERTER 24V 60W IP67 (ARTNR: 40071) - 6m, LEDCONVERTER 24V 60W IP20 1-10V (ARTNR: 40082) - 6m, LEDCONVERTER REMOTE 24V 80W IP20 DALI/TOUCHDIM (ARTNR: 40088) - 8m, LEDCONVERTER 24V 90W IP67 1-10V (ARTNR: 40083) - 9m, LEDCONVERTER 24V 100W IP67 (ARTNR: 40072) - 10m, LEDCONVERTER 24V 120W IP67 1-10V (ARTNR: 40084) - 12m, LEDCONVERTER 24V 150W IP67 (ARTNR: 40073) - 15m."}
+{"prompt": "What is the weight of the converter 40063?", "response": "The gross weight of LEDCONVERTER 24V 20W IP67 (ARTNR: 40063) is 0.15 kg."}
+{"prompt": "What’s the input voltage range of the 40080 model?", "response": "The input voltage range for LEDCONVERTER REMOTE 24V 20W IP20 1-10V (ARTNR: 40080) is 100 - 264V."}
+{"prompt": "Can I get the datasheet for converter 40080?", "response": "Yes, you can download the datasheet for LEDCONVERTER REMOTE 24V 20W IP20 1-10V (ARTNR: 40080) here: https://www.tal.be/sites/default/files/2025-02/40080%20LEDCONVERTER%20230V%20LED%2024V%2020VA%20IP20%20DIMMABLE%201-10V.pdf"}
+{"prompt": "What is the price of the most affordable 24V converter?", "response": "The most affordable 24V converter is LEDCONVERTER 24V 20W IP67 (ARTNR: 40063) with a list price of €59.00."}
+{"prompt": "Show me all 24V converters with a price below €65.", "response": "24V converters under €65: LEDCONVERTER 24V 10W IP20 (ARTNR: 40025) - €62.00, LEDCONVERTER 24V 20W IP67 (ARTNR: 40063) - €59.00."}
+{"prompt": "Which converters are suitable for both indoor and outdoor use?", "response": "Converters suitable for both indoor and outdoor use include LEDCONVERTER 24V 20W IP67 (ARTNR: 40063), LEDCONVERTER 24V 35W IP67 (ARTNR: 40070), LEDCONVERTER 24V 40W IP67 1-10V (ARTNR: 40081), LEDCONVERTER 24V 60W IP67 (ARTNR: 40071), LEDCONVERTER 24V 60W IP20 1-10V (ARTNR: 40082), LEDCONVERTER 24V 90W IP67 1-10V (ARTNR: 40083), LEDCONVERTER 24V 100W IP67 (ARTNR: 40072), LEDCONVERTER 24V 120W IP67 1-10V (ARTNR: 40084), and LEDCONVERTER 24V 150W IP67 (ARTNR: 40073)."}
+{"prompt": "What is the efficiency at full load for each converter?", "response": "Efficiencies at full load: LEDCONVERTER 24V 10W IP20: 0.6, LEDCONVERTER REMOTE 24V 20W IP20: 0.83, LEDCONVERTER 24V 20W IP67: 0.83, LEDCONVERTER REMOTE 24V 20W IP20 1-10V: 0.88, LEDCONVERTER 24V 35W IP67: 0.85, LEDCONVERTER 24V 40W IP67 1-10V: 0.87, LEDCONVERTER REMOTE 24V 50W IP20 DALI/TOUCHDIM: 0.9, LEDCONVERTER 24V 60W IP67: 0.86, LEDCONVERTER 24V 60W IP20 1-10V: 0.89, LEDCONVERTER REMOTE 24V 80W IP20 DALI/TOUCHDIM: 0.9, LEDCONVERTER 24V 90W IP67 1-10V: 0.9, LEDCONVERTER 24V 100W IP67: 0.92, LEDCONVERTER 24V 120W IP67 1-10V: 0.93, LEDCONVERTER 24V 150W IP67: 0.92."}
+{"prompt": "What is the IP rating for each converter, and what does it mean for installation?", "response": "IP20 converters are for indoor use and protect against solid objects. IP67 converters are for both indoor and outdoor use, protecting against dust and temporary water immersion. IP65 converters are also suitable for outdoor use, protecting against dust and water jets."}
+{"prompt": "What is the class (electrical safety class) of each converter?", "response": "Most converters are Class 2, providing double insulation and no protective earth required. The LEDCONVERTER 24V 120W IP67 1-10V (ARTNR: 40084) is Class 1, requiring protective earth."}
+{"prompt": "What are the dimensions (LBH) of each converter?", "response": "Dimensions (L*B*H in mm): LEDCONVERTER 24V 10W IP20: 76*36*18, LEDCONVERTER REMOTE 24V 20W IP20: 109*50*35, LEDCONVERTER 24V 20W IP67: 118*35*26, LEDCONVERTER REMOTE 24V 20W IP20 1-10V: 103*67*21, LEDCONVERTER 24V 35W IP67: 148*40*30, LEDCONVERTER 24V 40W IP67 1-10V: 162.5*43*32, LEDCONVERTER REMOTE 24V 50W IP20 DALI/TOUCHDIM: 346*32*22, LEDCONVERTER 24V 60W IP67: 162.5*42.5*32, LEDCONVERTER 24V 60W IP20 1-10V: 162.5*43*32, LEDCONVERTER REMOTE 24V 80W IP20 DALI/TOUCHDIM: 346*32*22, LEDCONVERTER 24V 90W IP67 1-10V: 161*61*36, LEDCONVERTER 24V 100W IP67: 262*66*42, LEDCONVERTER 24V 120W IP67 1-10V: 220*68*38.8, LEDCONVERTER 24V 150W IP67: 211*66*42."}
+{"prompt": "What is the gross weight of the LEDCONVERTER IN-TRACK 48V 100W IP20 WHITE?", "response": "The gross weight of LEDCONVERTER IN-TRACK 48V 100W IP20 WHITE (ARTNR: 40069) is 0.15 kg."}
+{"prompt": "What is the output voltage for each converter model?", "response": "Output voltages: LEDCONVERTER 24V 10W IP20: 24V, LEDCONVERTER REMOTE 24V 20W IP20: 24V, LEDCONVERTER 24V 20W IP67: 24V, LEDCONVERTER REMOTE 24V 20W IP20 1-10V: 24V, LEDCONVERTER 24V 35W IP67: 24V, LEDCONVERTER 24V 40W IP67 1-10V: 24V, LEDCONVERTER REMOTE 24V 50W IP20 DALI/TOUCHDIM: 24V, LEDCONVERTER 24V 60W IP67: 24V, LEDCONVERTER 24V 60W IP20 1-10V: 24V, LEDCONVERTER REMOTE 24V 80W IP20 DALI/TOUCHDIM: 24V, LEDCONVERTER 24V 90W IP67 1-10V: 24V, LEDCONVERTER 24V 100W IP67: 24V, LEDCONVERTER 24V 120W IP67 1-10V: 24V, LEDCONVERTER 24V 150W IP67: 24V, LEDCONVERTER REMOTE 48V 70W IP20: 48V, LEDCONVERTER REMOTE 48V 150W IP20: 48V, LEDCONVERTER IN-TRACK 48V 100W IP20 BLACK: 48V, LEDCONVERTER IN-TRACK 48V 100W IP20 WHITE: 48V."}
+{"prompt": "What is the minimum and maximum number of lamps that can be connected to each converter?", "response": "For LEDCONVERTER 24V 10W IP20 (ARTNR: 40025): 1.0 x LEDLINE medium power 9.6W, 0.66 x LEDLINE high power 14.4W, 0.5 x LEDLINE very high power 19.2W. For LEDCONVERTER REMOTE 24V 20W IP20 (ARTNR: 40057): 2.0 x LEDLINE medium power 9.6W, 1.33 x LEDLINE high power 14.4W, 1.0 x LEDLINE very high power 19.2W. For LEDCONVERTER 24V 20W IP67 (ARTNR: 40063): 2.0 x LEDLINE medium power 9.6W, 1.33 x LEDLINE high power 14.4W, 1.0 x LEDLINE very high power 19.2W. (And so on for each converter and lamp type.)"}
+{"prompt": "Which converters support DALI/TouchDim dimming systems?", "response": "Converters supporting DALI/TouchDim dimming: LEDCONVERTER REMOTE 24V 50W IP20 DALI/TOUCHDIM (ARTNR: 40087), LEDCONVERTER REMOTE 24V 80W IP20 DALI/TOUCHDIM (ARTNR: 40088)."}
+{"prompt": "Which converters support 1-10V dimming?", "response": "Converters supporting 1-10V dimming: LEDCONVERTER REMOTE 24V 20W IP20 1-10V (ARTNR: 40080), LEDCONVERTER 24V 40W IP67 1-10V (ARTNR: 40081), LEDCONVERTER 24V 60W IP20 1-10V (ARTNR: 40082), LEDCONVERTER 24V 90W IP67 1-10V (ARTNR: 40083), LEDCONVERTER 24V 120W IP67 1-10V (ARTNR: 40084)."}
+{"prompt": "Are there converters that support Casambi dimming?", "response": "Yes, the POWERLED CONVERTER REMOTE 180mA 9W IP20 CASAMBI (ARTNR: 930606), POWERLED CONVERTER REMOTE 250mA 10W IP20 CASAMBI (ARTNR: 930607), POWERLED CONVERTER REMOTE 350mA 19W IP20 CASAMBI (ARTNR: 930608), POWERLED CONVERTER REMOTE 500mA 27W IP20 CASAMBI (ARTNR: 930609), and POWERLED CONVERTER REMOTE 700mA 36W IP20 CASAMBi (ARTNR: 930618) support Casambi dimming."}
+{"prompt": "What is the recommended converter for “Haloled double on track” fixtures?", "response": "For Haloled double on track fixtures, you can use the following converters: LEDCONVERTER REMOTE 48V 70W IP20 (ARTNR: 40067) supports up to 2 Haloled double on track lamps; LEDCONVERTER REMOTE 48V 150W IP20 (ARTNR: 40049) supports up to 6; LEDCONVERTER IN-TRACK 48V 100W IP20 BLACK (ARTNR: 40068) supports up to 4; and LEDCONVERTER IN-TRACK 48V 100W IP20 WHITE (ARTNR: 40069) supports up to 4."}
+{"prompt": "Which converters are not dimmable?", "response": "The following converters are not dimmable: LEDCONVERTER 24V 10W IP20 (ARTNR: 40025), LEDCONVERTER REMOTE 24V 20W IP20 (ARTNR: 40057), LEDCONVERTER 24V 20W IP67 (ARTNR: 40063), LEDCONVERTER 24V 35W IP67 (ARTNR: 40070), LEDCONVERTER 24V 60W IP67 (ARTNR: 40071), LEDCONVERTER 24V 100W IP67 (ARTNR: 40072), LEDCONVERTER 24V 150W IP67 (ARTNR: 40073), LEDCONVERTER REMOTE 48V 70W IP20 (ARTNR: 40067), LEDCONVERTER REMOTE 48V 150W IP20 (ARTNR: 40049), LEDCONVERTER IN-TRACK 48V 100W IP20 BLACK (ARTNR: 40068), LEDCONVERTER IN-TRACK 48V 100W IP20 WHITE (ARTNR: 40069), and several POWERLED models such as 930545, 930573, 930541, etc."}
+{"prompt": "What is the difference between “MAINS DIM LC” and “MAINS DIM RC” dimming types?", "response": "MAINS DIM LC (Leading Edge) and MAINS DIM RC (Trailing Edge) refer to the dimming technology used. LC (Leading Edge) is compatible with most standard wall dimmers, while RC (Trailing Edge) is designed for electronic dimmers and often provides smoother, quieter dimming. Check your dimmer compatibility before selecting a converter."}
+{"prompt": "Which converters support amplitude (CCR) dimming?", "response": "Converters that support amplitude (CCR) dimming have 'YES' in the 'CCR (AMPLITUDE)' field. Examples include: POWERLED CONVERTER REMOTE 180mA 8W IP20 1-10V (ARTNR: 930546), POWERLED CONVERTER REMOTE 180mA 10W IP20 MAINS DIM LC/1-10V (ARTNR: 930565), POWERLED CONVERTER REMOTE 180mA 18W IP20 MAINS DIM LC (ARTNR: 930605), and others. Please check the 'CCR (AMPLITUDE)' property for each model."}
+{"prompt": "Are there any converters that support both DALI and 1-10V dimming?", "response": "Yes, the POWERLED CONVERTER REMOTE 500mA 2x 20W IP20 DALI/TOUCHDIM/1-10V (ARTNR: 930557) supports both DALI and 1-10V dimming protocols."}
+{"prompt": "What is “TouchDim” and which converters support it?", "response": "TouchDim is a dimming technology that allows control via a standard push button. Converters supporting TouchDim include: LEDCONVERTER REMOTE 24V 50W IP20 DALI/TOUCHDIM (ARTNR: 40087), LEDCONVERTER REMOTE 24V 80W IP20 DALI/TOUCHDIM (ARTNR: 40088), POWERLED CONVERTER REMOTE 180mA 15W IP20 DALI/TOUCHDIM (ARTNR: 930588), POWERLED CONVERTER REMOTE 250mA 13,5W IP20 DALI/TOUCHDIM (ARTNR: 930601), and others."}
+{"prompt": "Are installation manuals available for each converter?", "response": "Yes, installation manuals are available for each converter. You can find the PDF manual linked in the 'pdf_link' field for each model in the database."}
+{"prompt": "Where can I find the PDF manual for a specific converter?", "response": "You can find the PDF manual for each converter in the 'pdf_link' field. For example, the manual for LEDCONVERTER 24V 10W IP20 (ARTNR: 40025) is available at: https://www.tal.be/sites/default/files/2025-02/40025-40027-40029%20LED%20CONVERTOR%2024V.pdf"}
+{"prompt": "What is the recommended installation environment for each converter (e.g., temperature, humidity)?", "response": "The recommended installation environment is indicated in the 'LOCATION' field. For example, LEDCONVERTER 24V 10W IP20 is for indoor use, while LEDCONVERTER 24V 20W IP67 is suitable for both indoor and outdoor use. For temperature and humidity specifics, refer to the product's datasheet."}
+{"prompt": "Are there any special installation requirements for IP65/IP67 converters?", "response": "Yes, IP65/IP67 converters are designed for outdoor or damp environments. Ensure all cable entries and connections are properly sealed to maintain the IP rating and prevent water ingress."}
+{"prompt": "What is the recommended wiring for each converter type?", "response": "Recommended wiring varies by converter. Please consult the installation manual linked in the 'pdf_link' field for each model for detailed wiring diagrams and instructions."}
+{"prompt": "Are there converters with built-in strain relief for safer installation?", "response": "Yes, converters with 'YES' in the 'STRAIN RELIEF' field have built-in strain relief. Examples include LEDCONVERTER REMOTE 24V 20W IP20 (ARTNR: 40057), LEDCONVERTER REMOTE 24V 20W IP20 1-10V (ARTNR: 40080), and others."}
+{"prompt": "What is the expected lifespan of each converter?", "response": "The expected lifespan is not explicitly listed in the database. Please refer to the product datasheet or contact TAL support for detailed information."}
+{"prompt": "What is the warranty period for each converter model?", "response": "Warranty periods are not listed in the database. Please refer to the product datasheet or contact TAL support for warranty information."}
+{"prompt": "How does the efficiency at full load affect energy consumption?", "response": "Higher efficiency at full load means less energy is lost as heat, resulting in lower energy consumption and operating costs. For example, a converter with 0.93 efficiency wastes only 7% of input energy."}
+{"prompt": "Are there any converters with a higher efficiency than 90%?", "response": "Yes, converters such as LEDCONVERTER 24V 100W IP67 (ARTNR: 40072), LEDCONVERTER 24V 120W IP67 1-10V (ARTNR: 40084), and LEDCONVERTER REMOTE 48V 70W IP20 (ARTNR: 40067) have efficiencies greater than 90%."}
+
+{"prompt": "What happens if I exceed the maximum number of lamps per converter?", "response": "Exceeding the maximum number of lamps per converter can cause overheating, reduced lifespan, malfunction, or failure of the converter. Always follow the maximum limits specified in the database."}
+
+{"prompt": "What is the list price for each converter?", "response": "List prices are available in the 'Listprice' field for each converter. For example, LEDCONVERTER 24V 10W IP20 (ARTNR: 40025) is €62.00, LEDCONVERTER 24V 20W IP67 (ARTNR: 40063) is €59.00, etc."}
+
+{"prompt": "Are there bulk discounts available for large orders?", "response": "Bulk discounts are not specified in the database. Please contact TAL sales for information about discounts for large orders."}
+
+{"prompt": "Is the price inclusive of VAT and shipping?", "response": "The database does not specify if prices include VAT or shipping. Please confirm with TAL sales for details about VAT and shipping costs."}
+
+{"prompt": "Are all models currently in stock?", "response": "Stock status is not shown in the database. Please contact TAL sales or check the TAL website for up-to-date availability."}
+
+{"prompt": "How can I order a specific converter?", "response": "To order a specific converter, contact TAL sales directly or use the TAL website to place your order. Reference the converter's ARTNR for accuracy."}
+
+{"prompt": "Are the converters certified for use in my country?", "response": "Certification details are not listed in the database. Please refer to the product datasheet or contact TAL support for certification information relevant to your country."}
+
+{"prompt": "What standards do the converters comply with (e.g., CE, RoHS)?", "response": "Compliance with standards like CE and RoHS is not explicitly listed in the database. Please refer to the product datasheet or contact TAL support for compliance documentation."}
+
+{"prompt": "Are there SELV (Safety Extra Low Voltage) certified models?", "response": "Most converters with output voltages of 24V or 48V are designed to comply with SELV requirements. For formal certification, check the product datasheet or consult TAL support."}
+
+{"prompt": "Are there aesthetic covers available for in-track converters?", "response": "Yes, in-track converters such as LEDCONVERTER IN-TRACK 48V 100W IP20 BLACK (ARTNR: 40068) and WHITE (ARTNR: 40069) are available without esthetic cover by default, but covers can be ordered separately."}
+
+{"prompt": "Which converters come in multiple color options?", "response": "The LEDCONVERTER IN-TRACK 48V 100W is available in both BLACK (ARTNR: 40068) and WHITE (ARTNR: 40069) color options."}
+
+{"prompt": "Are there accessories recommended for installation with each converter?", "response": "Accessories are not listed in the database. Please refer to the product datasheet or contact TAL support for recommended accessories."}
+
+{"prompt": "What should I do if the converter is not working as expected?", "response": "If your converter is not working as expected, check the wiring and load, consult the installation manual, and ensure you have not exceeded the maximum load. If issues persist, contact TAL technical support."}
+
+{"prompt": "Who can I contact for technical support or warranty claims?", "response": "For technical support or warranty claims, contact TAL support using the contact information provided on the TAL website or in your product documentation."}
+
+{"prompt": "Is there a return policy for converters?", "response": "Return policy details are not included in the database. Please contact TAL sales or check the TAL website for information about returns."}
+
+{"prompt": "Are any of the converters made with recycled materials?", "response": "The database does not specify if any converters are made with recycled materials. Please contact TAL for sustainability and materials information."}
+
+{"prompt": "Are there eco-friendly or energy-saving models available?", "response": "Converters with high efficiency (90% or higher) are more energy-saving. For example, LEDCONVERTER 24V 120W IP67 1-10V (ARTNR: 40084) has an efficiency of 0.93."}
+
+{"prompt": "Are there upcoming models or planned updates to the product line?", "response": "The database does not include information about future models or updates. Please contact TAL sales or check the TAL website for announcements."}
+
+{"prompt": "Will current models be compatible with future lamp releases?", "response": "Compatibility with future lamps is not guaranteed, but TAL designs converters to support a wide range of current and future LED products. For specific compatibility, consult TAL support."}
+
+{"prompt": "Which converter do I need to power exactly 2 meters of LEDLINE medium power 9.6W strips indoors?", "response": "To power 2 meters of LEDLINE medium power 9.6W strips indoors, use LEDCONVERTER REMOTE 24V 20W IP20 (ARTNR: 40057), LEDCONVERTER 24V 20W IP67 (ARTNR: 40063), or LEDCONVERTER REMOTE 24V 20W IP20 1-10V (ARTNR: 40080), each of which supports up to 2 meters."}
+
+{"prompt": "What is the minimum and maximum number of Thinksmall halosphere single lamps supported by the POWERLED CONVERTER REMOTE 180mA 8W IP20 1-10V?", "response": "The POWERLED CONVERTER REMOTE 180mA 8W IP20 1-10V (ARTNR: 930546) supports a minimum of 1 and a maximum of 2 Thinksmall halosphere single lamps."}
+
+{"prompt": "Which converter supports both DALI/TouchDim dimming and 3x Thinksmall halosphere single lamps?", "response": "The POWERLED CONVERTER REMOTE 250mA 13,5W IP20 DALI/TOUCHDIM (ARTNR: 930601) supports both DALI/TouchDim dimming and up to 3 Thinksmall halosphere single lamps."}
+
+{"prompt": "Can the LEDCONVERTER 24V 20W IP67 be used outdoors to power 1 meter of LEDLINE very high power 19.2W?", "response": "Yes, the LEDCONVERTER 24V 20W IP67 (ARTNR: 40063) is suitable for outdoor use and can power up to 1 meter of LEDLINE very high power 19.2W."}
+
+{"prompt": "Which 48V converter is suitable for powering 14 Thinksmall single on track lamps?", "response": "The LEDCONVERTER IN-TRACK 48V 100W IP20 BLACK (ARTNR: 40068) and WHITE (ARTNR: 40069) each support up to 14 Thinksmall single on track lamps."}
+
+{"prompt": "Is there a converter that can power 4 Haloled double on track lamps at 48V?", "response": "Yes, the LEDCONVERTER IN-TRACK 48V 100W IP20 BLACK (ARTNR: 40068) and WHITE (ARTNR: 40069) each support up to 4 Haloled double on track lamps at 48V."}
+
+{"prompt": "What is the most compact converter that supports 1-10V dimming and 2x Cedrus quantum lamps?", "response": "The POWERLED CONVERTER REMOTE 180mA 8W IP20 1-10V (ARTNR: 930546) is a compact model that supports 1-10V dimming and up to 2 Cedrus quantum lamps."}
+
+{"prompt": "Which converter should I use for 3x B4 lamps with DALI/TouchDim dimming?", "response": "Use the POWERLED CONVERTER REMOTE 350mA 15W IP20 DALI/TOUCHDIM (ARTNR: 930581), which supports up to 4 B4 lamps with DALI/TouchDim dimming."}
+{"prompt": "Is there a 350mA converter that supports amplitude (CCR) dimming and can power 7 Single led XPE lamps?", "response": "Yes, the POWERLED CONVERTER REMOTE 180mA 8W IP20 1-10V (ARTNR: 930546) supports amplitude (CCR) dimming and can power between 7 and 12 Single led XPE lamps."}
+
+{"prompt": "Can the POWERLED CONVERTER 350mA 26W IP66 power 23 Single led XPE lamps?", "response": "Yes, the POWERLED CONVERTER 350mA 26W IP66 (ARTNR: 930537) can power between 12 and 23 Single led XPE lamps."}
+
+{"prompt": "What is the efficiency at full load of the LEDCONVERTER 24V 120W IP67 1-10V?", "response": "The LEDCONVERTER 24V 120W IP67 1-10V (ARTNR: 40084) has an efficiency of 0.93 at full load."}
+
+{"prompt": "What is the IP rating and class of the POWERLED CONVERTER REMOTE 700mA 36W IP20 CASAMBI?", "response": "The POWERLED CONVERTER REMOTE 700mA 36W IP20 CASAMBI (ARTNR: 930618) has an IP rating of 20 and is Class 2."}
+
+{"prompt": "What is the nominal input voltage range for the LEDCONVERTER IN-TRACK 48V 100W IP20 BLACK?", "response": "The LEDCONVERTER IN-TRACK 48V 100W IP20 BLACK (ARTNR: 40068) has a nominal input voltage range of 176 - 264 V."}
+
+{"prompt": "What is the output voltage range for the POWERLED CONVERTER REMOTE 180mA 10W IP20 MAINS DIM LC/1-10V?", "response": "The POWERLED CONVERTER REMOTE 180mA 10W IP20 MAINS DIM LC/1-10V (ARTNR: 930565) has an output voltage range of 28 - 56 V."}
+
+{"prompt": "Which converter offers the highest efficiency at full load among all 24V DC models?", "response": "The LEDCONVERTER 24V 120W IP67 1-10V (ARTNR: 40084) offers the highest efficiency at full load among 24V DC models, with 0.93 efficiency."}
+
+{"prompt": "What is the gross weight of the LEDCONVERTER IN-TRACK 48V 100W IP20 WHITE?", "response": "The gross weight of the LEDCONVERTER IN-TRACK 48V 100W IP20 WHITE (ARTNR: 40069) is 0.15 kg."}
+
+{"prompt": "Which converter has strain relief and supports Casambi dimming?", "response": "The POWERLED CONVERTER REMOTE 250mA 10W IP20 CASAMBI (ARTNR: 930607) has strain relief and supports Casambi dimming."}
+
+{"prompt": "What are the dimensions of the POWERLED CONVERTER 12W 260mA 230V IP65 + WIRES MAINS DIMM LC?", "response": "The POWERLED CONVERTER 12W 260mA 230V IP65 + WIRES MAINS DIMM LC (ARTNR: 930603) has dimensions dia56*25 mm."}
+
+{"prompt": "What is the maximum output voltage of the POWERLED REMOTE CONVERTER (35W) TOUCH DALI DIM 700mA?", "response": "The POWERLED REMOTE CONVERTER (35W) TOUCH DALI DIM 700mA (ARTNR: 930582) has a maximum output voltage of 54 V."}
+
+{"prompt": "Which converter can operate at the lowest input voltage (e.g., 85V)?", "response": "The CONVERTER 230V LED 48V 150VA INDOOR ACC (DINRAIL) (ARTNR: 40049) can operate at input voltages as low as 85 V."}
+
+{"prompt": "Are there any IP67-rated converters for 24V DC that support 1-10V dimming?", "response": "Yes, LEDCONVERTER 24V 40W IP67 1-10V (ARTNR: 40081), LEDCONVERTER 24V 90W IP67 1-10V (ARTNR: 40083), and LEDCONVERTER 24V 120W IP67 1-10V (ARTNR: 40084) are IP67 rated and support 1-10V dimming."}
+
+{"prompt": "Which converter is suitable for both indoor and outdoor use and can power at least 10 meters of LEDLINE medium power 9.6W?", "response": "LEDCONVERTER 24V 100W IP67 (ARTNR: 40072) is suitable for indoor and outdoor use and can power up to 10 meters of LEDLINE medium power 9.6W."}
+
+{"prompt": "Does the POWERLED CONVERTER 250mA 5W IP65 MAINS DIM LC have strain relief?", "response": "No, the POWERLED CONVERTER 250mA 5W IP65 MAINS DIM LC (ARTNR: 930598) does not have strain relief."}
+
+{"prompt": "What is the recommended converter for outdoor installation with 3x Thinksmall/floorspot WC luxeon MX lamps?", "response": "The POWERLED CONVERTER REMOTE 180mA 15W IP20 (ARTNR: 930545) supports 3 Thinksmall/floorspot WC luxeon MX lamps and is suitable for indoor use; for outdoor, consider IP67 rated models with appropriate lamp support."}
+
+{"prompt": "Which converter is best for powering 2x MIX 26 monocolor lamps outdoors?", "response": "The POWERLED CONVERTER REMOTE 350mA 18W IP20 MAINS DIM LC (ARTNR: 930511) supports 2 MIX 26 monocolor lamps and is suitable for outdoor use."}
+
+{"prompt": "Are there any 350mA converters with a diameter form factor for in-ground installations?", "response": "Yes, the POWERLED CONVERTER 260mA 12W IP65 MAINS DIM LC (ARTNR: 930603) has a diameter form factor (dia56*25 mm) suitable for in-ground installations."}
+
+{"prompt": "Which converter is IP65 or higher and supports amplitude (CCR) dimming?", "response": "The POWERLED CONVERTER 260mA 12W IP65 MAINS DIM LC (ARTNR: 930603) is IP65 rated and supports amplitude (CCR) dimming."}
+
+{"prompt": "Can the LEDCONVERTER 24V 150W IP67 be used for both indoor and outdoor applications?", "response": "Yes, the LEDCONVERTER 24V 150W IP67 (ARTNR: 40073) is suitable for both indoor and outdoor applications."}
+
+{"prompt": "Which converter supports both indoor and outdoor use and has the highest wattage?", "response": "The LEDCONVERTER 24V 150W IP67 (ARTNR: 40073) supports both indoor and outdoor use and has the highest wattage among TAL converters."}
+
+{"prompt": "What is the smallest converter (by size) that is IP65 rated?", "response": "The POWERLED CONVERTER 250mA 5W IP65 MAINS DIM LC (ARTNR: 930598) is the smallest IP65 rated converter with dimensions 38*27*21 mm."}
+
+{"prompt": "Which converter supports Casambi dimming for 2x Thinksmall halosphere single lamps?", "response": "The POWERLED CONVERTER REMOTE 250mA 10W IP20 CASAMBI (ARTNR: 930607) supports Casambi dimming and can power 2 Thinksmall halosphere single lamps."}
+
+{"prompt": "Is there a 1-10V dimmable converter for 24V DC that can power 6 meters of LEDLINE medium power 9.6W?", "response": "Yes, the LEDCONVERTER 24V 60W IP20 1-10V (ARTNR: 40082) supports 1-10V dimming and can power up to 6 meters of LEDLINE medium power 9.6W."}
+
+{"prompt": "What is the difference between DALI/TouchDim and Casambi dimming in terms of compatible converters?", "response": "DALI/TouchDim dimming is supported by converters like LEDCONVERTER REMOTE 24V 50W IP20 DALI/TOUCHDIM (ARTNR: 40087), while Casambi dimming is supported by converters such as POWERLED CONVERTER REMOTE 180mA 9W IP20 CASAMBI (ARTNR: 930606). Some converters support only one dimming type, others support both."}
+
+{"prompt": "Which converter supports both MAINS DIM LC and amplitude (CCR) dimming at 350mA?", "response": "The POWERLED CONVERTER REMOTE 350mA 15W IP20 MAINS DIM LC (ARTNR: 930560) supports both MAINS DIM LC and amplitude (CCR) dimming."}
+
+{"prompt": "Can a single converter support both DALI and 1-10V dimming simultaneously?", "response": "Yes, the POWERLED CONVERTER REMOTE 500mA 2x 20W IP20 DALI/TOUCHDIM/1-10V (ARTNR: 930557) supports both DALI and 1-10V dimming simultaneously."}
+
+{"prompt": "What is the dimlist type for the POWERLED CONVERTER 350mA 4W IP65 MAINS DIM RC?", "response": "The dimlist type for POWERLED CONVERTER 350mA 4W IP65 MAINS DIM RC (ARTNR: 930512) is 'dimlist H'."}
+
+{"prompt": "Which converter supports amplitude dimming for 700mA output?", "response": "The POWERLED CONVERTER REMOTE 700mA 15W IP20 DALI/TOUCHDIM (ARTNR: 930587) supports amplitude (CCR) dimming for 700mA output."}
+
+{"prompt": "Are there any converters with both DALI/TouchDim and 1-10V dimming options?", "response": "Yes, the POWERLED CONVERTER REMOTE 500mA 2x 20W IP20 DALI/TOUCHDIM/1-10V (ARTNR: 930557) supports both DALI/TouchDim and 1-10V dimming."}
+
+{"prompt": "Which converter supports MAINS DIM RC dimming for 500mA output?", "response": "The POWERLED CONVERTER 6,5W 500mA IP20 MAINS DIM RC (ARTNR: 930620) supports MAINS DIM RC dimming for 500mA output."}
+
+{"prompt": "What is the minimum dimming percentage for MAINS DIM LC converters?", "response": "The minimum dimming percentage for MAINS DIM LC converters is typically 10%, as indicated by models like POWERLED CONVERTER REMOTE 350mA 13,5W IP20 MAINS DIM LC 10% (ARTNR: 930562)."}
+
+{"prompt": "Which converter do I need for 1x MIX 13 halosphere lamp with amplitude dimming?", "response": "The POWERLED CONVERTER REMOTE 180mA 7,2W IP20 MAINS DIM C (ARTNR: 930544) supports 1 MIX 13 halosphere lamp with amplitude dimming."}
+
+{"prompt": "Can the POWERLED CONVERTER 350mA 12W IP65 MAINS DIM LC power 2x Haloled lamps?", "response": "Yes, the POWERLED CONVERTER 350mA 12W IP65 MAINS DIM LC (ARTNR: 930595) can power 2 Haloled lamps."}
+
+{"prompt": "What is the maximum number of Single led XPE lamps supported by the POWERLED CONVERTER REMOTE 260mA 20W IP20 MAINS DIM LC?", "response": "The POWERLED CONVERTER REMOTE 260mA 20W IP20 MAINS DIM LC (ARTNR: 930604) supports up to 24 Single led XPE lamps."}
+
+{"prompt": "Which converter is recommended for 5x Thinksmall/floorspot WC luxeon MX lamps?", "response": "The POWERLED CONVERTER REMOTE 180mA 10W IP20 MAINS DIM LC/1-10V (ARTNR: 930565) supports 5 Thinksmall/floorspot WC luxeon MX lamps."}
+
+{"prompt": "Are there converters that can power both B4 and Haloled lamps simultaneously?", "response": "Yes, converters like POWERLED CONVERTER REMOTE 180mA 15W IP20 (ARTNR: 930545) support both B4 and Haloled lamps simultaneously."}
+
+{"prompt": "Which converter is suitable for 4x ORBITAL monocolor lamps?", "response": "The POWERLED CONVERTER REMOTE 180mA 15W IP20 (ARTNR: 930545) supports 4 ORBITAL monocolor lamps."}
+
+{"prompt": "What is the recommended converter for powering 8x Haloled lamps with 500mA output?", "response": "The POWERLED CONVERTER REMOTE 500mA 22W IP20 1-10V (ARTNR: 930553) supports powering 8 Haloled lamps."}
+
+{"prompt": "Which converter supports powering 3x Cedrus quantum lamps with 1-10V dimming?", "response": "The POWERLED CONVERTER REMOTE 350mA 15W IP20 1-10V (ARTNR: 930560) supports 3 Cedrus quantum lamps with 1-10V dimming."}
