@@ -11,6 +11,14 @@ from typing import List, TypedDict
 from langgraph.graph import StateGraph, START
 from dotenv import load_dotenv
 
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
+
+# Load the model and tokenizer
+llm_model = GPT2LMHeadModel.from_pretrained("/Users/alessiacolumban/TAL_Chatbot/results")
+llm_tokenizer = GPT2Tokenizer.from_pretrained("/Users/alessiacolumban/TAL_Chatbot/results")
+llm_tokenizer.pad_token = llm_tokenizer.eos_token
+
+
 # --- Configuration ---
 
 load_dotenv()
@@ -102,21 +110,23 @@ def get_technical_fit_info(product_data: dict) -> dict:
 tech_info = get_technical_fit_info(product_data)
 
 def recommend_converters_for_lamp(lamp_query, tech_info):
-    """
-    Returns all converters that support the requested lamp type (robust fuzzy matching).
-    """
-    # Normalize: lowercase, replace ',' and '.' with nothing, split into words
-    def normalize_lamp_string(s):
-        return set(s.lower().replace(",", "").replace(".", "").split())
-
-    lamp_query_norm = normalize_lamp_string(lamp_query)
+    def normalize(s):
+        # Lowercase, remove commas and dots, strip spaces
+        return s.lower().replace(",", "").replace(".", "").strip()
+    norm_query = normalize(lamp_query)
+    query_words = set(norm_query.split())
     results = []
     for v in tech_info.values():
         lamps = v.get("LAMPS", {})
         for lamp_name, lamp_data in lamps.items():
-            lamp_name_norm = normalize_lamp_string(lamp_name)
-            # Fuzzy match: all words in the lamp_query must be in the lamp_name (order and punctuation independent)
-            if lamp_query_norm.issubset(lamp_name_norm):
+            norm_lamp = normalize(lamp_name)
+            lamp_words = set(norm_lamp.split())
+            # Match if all query words are in lamp name OR query is a substring of lamp name OR lamp name is a substring of query
+            if (
+                query_words.issubset(lamp_words)
+                or norm_query in norm_lamp
+                or norm_lamp in norm_query
+            ):
                 min_val = lamp_data.get("min", "N/A")
                 max_val = lamp_data.get("max", "N/A")
                 desc = v.get("CONVERTER DESCRIPTION", v.get("CONVERTER DESCRIPTION:", "N/A")).strip()
@@ -167,21 +177,23 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
     q = question.lower()
 
     # --- Lamp-only queries like "Which converter should I use for 'LEDLINE medium power 9.6W' strips?" ---
-    lamp_only_match = re.search(
-        r'(?:for|supports|suitable for|use for|do i need for)[\s:]*["“”\']?([a-zA-Z0-9 ,.\-]+)[\s"”\']*(?:strips?|lamps?)?',
-        q
+    lamp_match = re.search(
+        r'(?:for|recommend|use|need)[\s:]*["“”\']?([a-zA-Z0-9 ,.\-]+w)[\s"”\']*(?:strips?|ledline|lamps?)?', q
     )
-    if lamp_only_match:
-        lamp_query = lamp_only_match.group(1).strip()
+    if lamp_match:
+        lamp_query = lamp_match.group(1).strip()
         result = recommend_converters_for_lamp(lamp_query, tech_info)
         if result and "couldn't find" not in result:
             return result
 
-    # Fallback: try to match any lamp in the database if the user mentions it anywhere in the question
+    # Fallback: match any lamp in the database if all its words are in the question
+    def normalize_lamp_string(s):
+        return set(s.lower().replace(",", "").replace(".", "").split())
+    q_words = set(q.replace(",", "").replace(".", "").split())
     for v in tech_info.values():
         for lamp_name in v.get("LAMPS", {}):
-            lamp_words = set(lamp_name.lower().replace(",", ".").split())
-            if lamp_words and lamp_words.issubset(set(q.split())):
+            lamp_words = normalize_lamp_string(lamp_name)
+            if lamp_words and lamp_words.issubset(q_words):
                 result = recommend_converters_for_lamp(lamp_name, tech_info)
                 if result and "couldn't find" not in result:
                     return result
@@ -190,21 +202,24 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
 
 def answer_technical_question(question: str, tech_info: dict) -> str:
     q = question.lower()
-    lamp_only_match = re.search(
-        r'(?:for|supports|suitable for|use for|do i need for)[\s:]*["“”\']?([a-zA-Z0-9 ,.\-]+)[\s"”\']*(?:strips?|lamps?)?',
-        q
+    # Try to extract lamp name after 'for', 'recommend', 'use', etc.
+    lamp_match = re.search(
+        r'(?:for|recommend|use|need)[\s:]*["“”\']?([a-zA-Z0-9 ,.\-]+w)[\s"”\']*(?:strips?|ledline|lamps?)?', q
     )
-    if lamp_only_match:
-        lamp_query = lamp_only_match.group(1).strip()
+    if lamp_match:
+        lamp_query = lamp_match.group(1).strip()
         result = recommend_converters_for_lamp(lamp_query, tech_info)
         if result and "couldn't find" not in result:
             return result
 
-    # Fallback: try to match any lamp in the database if the user mentions it anywhere in the question
+    # Fallback: match any lamp in the database if all its words are in the question
+    def normalize_lamp_string(s):
+        return set(s.lower().replace(",", "").replace(".", "").split())
+    q_words = set(q.replace(",", "").replace(".", "").split())
     for v in tech_info.values():
         for lamp_name in v.get("LAMPS", {}):
-            lamp_words = set(lamp_name.lower().replace(",", "").replace(".", "").split())
-            if lamp_words and lamp_words.issubset(set(q.replace(",", "").replace(".", "").split())):
+            lamp_words = normalize_lamp_string(lamp_name)
+            if lamp_words and lamp_words.issubset(q_words):
                 result = recommend_converters_for_lamp(lamp_name, tech_info)
                 if result and "couldn't find" not in result:
                     return result
@@ -232,29 +247,54 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
         type_match = re.search(r'(\d+\s*v|\d+\s*ma)', q)
         if type_match:
             search_type = type_match.group(1).replace(' ', '').lower()
-            candidates = [v for v in tech_info.values() if search_type in v["TYPE"].replace(' ', '').lower()]
+            candidates = [
+                v for v in tech_info.values()
+                if search_type in str(v["TYPE"]).replace(' ', '').lower()
+                and str(v.get("EFFICIENCY", v.get("EFFICIENCY @full load", ""))).replace(',', '.').replace('.', '').isdigit()
+            ]
             if not candidates:
                 return f"No {search_type.upper()} converters found."
             best = max(
                 candidates,
-                key=lambda x: float(str(x["EFFICIENCY"]).replace(',', '.')) if str(x["EFFICIENCY"]).replace('.', '').replace(',','').isdigit() else 0
+                key=lambda x: float(str(x.get("EFFICIENCY", x.get("EFFICIENCY @full load", "0"))).replace(',', '.'))
             )
-            return f"The most efficient {search_type.upper()} converter is {best['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(best['ARTNR'])}) with efficiency {best['EFFICIENCY']}."
+            desc = best.get("CONVERTER DESCRIPTION", best.get("CONVERTER DESCRIPTION:", "N/A")).strip()
+            artnr = int(float(best.get("ARTNR", "N/A"))) if best.get("ARTNR") else "N/A"
+            eff = best.get("EFFICIENCY", best.get("EFFICIENCY @full load", "N/A"))
+            return f"The most efficient {search_type.upper()} converter is {desc} (ARTNR: {artnr}) with efficiency {eff}."
         else:
-            candidates = [v for v in tech_info.values() if str(v["EFFICIENCY"]).replace(',', '.').replace('.', '').isdigit()]
+            # fallback: show most efficient overall
+            candidates = [
+                v for v in tech_info.values()
+                if str(v.get("EFFICIENCY", v.get("EFFICIENCY @full load", ""))).replace(',', '.').replace('.', '').isdigit()
+            ]
             if not candidates:
                 return "No converters with efficiency data found."
             best = max(
                 candidates,
-                key=lambda x: float(str(x["EFFICIENCY"].replace(',', '.')) if isinstance(x["EFFICIENCY"], str) else x["EFFICIENCY"])
+                key=lambda x: float(str(x.get("EFFICIENCY", x.get("EFFICIENCY @full load", "0"))).replace(',', '.'))
             )
-            return f"The most efficient converter overall is {best['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(best['ARTNR'])}) with efficiency {best['EFFICIENCY']}."
+            desc = best.get("CONVERTER DESCRIPTION", best.get("CONVERTER DESCRIPTION:", "N/A")).strip()
+            artnr = int(float(best.get("ARTNR", "N/A"))) if best.get("ARTNR") else "N/A"
+            eff = best.get("EFFICIENCY", best.get("EFFICIENCY @full load", "N/A"))
+            return f"The most efficient converter overall is {desc} (ARTNR: {artnr}) with efficiency {eff}."
+
     # Dimming support
     if "dimmable" in q or "dimming" in q or "1-10v" in q or "dali" in q or "casambi" in q or "touchdim" in q:
-        candidates = [v for v in tech_info.values() if any(dim in v["DIMMABILITY"].lower() for dim in ["dimmable", "1-10v", "dali", "casambi", "touchdim"])]
-        if not candidates:
-            return "No dimmable converters found."
-        return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])}), Dimming: {v['DIMMABILITY']}" for v in candidates])
+        type_match = re.search(r'(\d+\s*v|\d+\s*ma)', q)
+        type_query = type_match.group(1).replace(" ", "").lower() if type_match else None
+        results = []
+        for v in tech_info.values():
+            type_str = str(v.get("TYPE", "")).lower().replace(" ", "")
+            dim = v.get("DIMMABILITY", "").upper()
+            if ("DIM" in dim or "1-10V" in dim or "DALI" in dim or "CASAMBI" in dim or "TOUCHDIM" in dim) and (not type_query or type_query in type_str):
+                desc = v.get("CONVERTER DESCRIPTION", v.get("CONVERTER DESCRIPTION:", "N/A")).strip()
+                artnr = int(float(v.get("ARTNR", "N/A"))) if v.get("ARTNR") else "N/A"
+                results.append(f"{desc} (ARTNR: {artnr}), Dimming: {dim}")
+        if not results:
+            return f"No{' ' + type_query.upper() if type_query else ''} converters with dimming support found."
+        return "\n".join(results)
+
     # Strain relief
     if "strain relief" in q:
         candidates = [v for v in tech_info.values() if v["STRAIN RELIEF"].lower() == "yes"]
@@ -468,6 +508,24 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
     return "I do not know the answer to this question."
 
 
+# --- LLM fallback function ---
+def llm_fallback(question):
+    prompt = f"User: {question}\nAssistant:"
+    inputs = llm_tokenizer(prompt, return_tensors="pt", truncation=True, max_length=256)
+    outputs = llm_model.generate(
+        input_ids=inputs["input_ids"],
+        attention_mask=inputs["attention_mask"],
+        max_new_tokens=64,
+        do_sample=True,
+        temperature=0.7,
+        pad_token_id=llm_tokenizer.eos_token_id
+    )
+    completion = llm_tokenizer.decode(outputs[0], skip_special_tokens=True)
+    # Extract only the assistant's answer
+    if "Assistant:" in completion:
+        return completion.split("Assistant:")[-1].strip()
+    else:
+        return completion.strip()
 
 # --- Prompt and Graph ---
 
@@ -510,19 +568,20 @@ graph_builder.add_edge(START, "retrieve")
 graph_builder.add_edge("retrieve", "generate")
 graph = graph_builder.compile()
 
-def tal_langchain_chatbot(user_message, history):
-    lamp_name, converter_number = extract_converter_and_lamp(user_message)
-    if lamp_name and converter_number:
-        answer = get_lamp_quantity(converter_number, lamp_name, tech_info)
-    else:
-        answer = answer_technical_question(user_message, tech_info)
-        if not answer:
-            response = graph.invoke({"question": user_message})
-            answer = response["answer"]
-    history = history or []
+# --- Main chatbot function ---
+def tal_langchain_chatbot(user_message, history=None):
+    # 1. Try to answer from database/rules
+    answer = answer_technical_question(user_message, tech_info)
+    # 2. If no answer, use the LLM
+    if not answer or answer.lower() == "i do not know the answer to this question.":
+        answer = llm_fallback(user_message)
+    # 3. Update history and return
+    if history is None:
+        history = []
     history.append({"role": "user", "content": user_message})
     history.append({"role": "assistant", "content": answer})
     return history, history, ""
+
 
 # --- Gradio UI ---
 
