@@ -13,10 +13,10 @@ class ChatHistoryManager:
     
     async def store_interaction(self, session_id: str, user_query: str, response: str):
         interaction = {
-            "id": str(datetime.utcnow().timestamp()),
+            "id": str(datetime().timestamp()),
             "sessionId": session_id,
             "userQuery": user_query,
             "botResponse": response,
-            "timestamp": datetime.utcnow().isoformat()
+            "timestamp": datetime().isoformat()
         }
         await self.container.upsert_item(interaction)
