@@ -122,14 +122,11 @@ class CosmosLampHandler:
             ))
             print(f"Query returned {len(items)} items")
             items = items[:10] 
-            self.logger.debug(f"Raw items: {items}")
+            # self.logger.debug(f"Raw items: {items}")
 
             items = [PowerConverter(**item) for item in items] if items else []
 
-            self.logger.info(f"Query returned {len(items)} items after conversion")
-            self.logger.debug(f"Items: {items}")
-
-            
+            self.logger.info(f"Query returned {len(items)} items after conversion")            
 
             return str(items)
         except Exception as e:

@@ -68,9 +68,8 @@ class NL2SQLPlugin:
                 - lamps: dictionary with min/max values for lamp types for this converter
                 - lamps["lamp_name"].min (e.g., 1)
                 - lamps["lamp_name"].max (e.g., 10)
-                - nom_input_voltage (e.g, '198-264V')
                 - class (safety class)
-                - dimmability (e.g., 'MAINS DIM LC')
+                - dimmability (e.g. if not dimmable 'NOT DIMMABLE'. if supports dimming, 'DALI/TOUCHDIM','MAINS DIM LC' etc)
                 - listprice (e.g., 58)
                 - lifecycle (e.g., 'Active')
                 - size (e.g., '150x30x30')
@@ -81,6 +80,7 @@ class NL2SQLPlugin:
                 - efficiency_full_load (e.g., 0.9)
                 - name (e.g., 'Power Converter 350mA')
                 - unit (e.g., 'PC')
+                - strain_relief (e.g., "NO", "YES")
             Return ONLY SQL without explanations""")
         
         response = await chat_service.get_chat_message_content(
@@ -109,15 +109,15 @@ async def handle_query(user_input: str):
     Available functions:
     - generate_sql: Creates SQL queries (use only for complex queries or schema keywords)
     - query_converters: Executes SQL queries
-    - get_compatible_lamps: Simple ARTNR-based lamp queries
+    - get_compatible_lamps: Simple artnr-based lamp queries
     - get_converters_by_lamp_type: Simple lamp type searches
-    - get_lamp_limits: Simple ARTNR+lamp combinations
+    - get_lamp_limits: Simple artnr+lamp combinations
     
     Decision Flow:
     1. Use simple functions if query matches these patterns:
-       - "lamps for [ARTNR]" → get_compatible_lamps
+       - "lamps for [artnr]" → get_compatible_lamps
        - "converters for [lamp type]" → get_converters_by_lamp_type
-       - "min/max [lamp] for [ARTNR]" → get_lamp_limits
+       - "min/max [lamp] for [artnr]" → get_lamp_limits
     
     2. Use SQL generation ONLY when:
        - Query contains schema keywords: voltage, price, type, ip, efficiency, size, class, dimmability
@@ -133,7 +133,8 @@ async def handle_query(user_input: str):
     
     Examples:
     User: "Show IP67 converters under €100" → generate_sql
-    User: "What lamps work with 930560?" → get_compatible_lamps
+    User: "What lamps are compatible with 930560?" → get_compatible_lamps
+    User: "What converters are compatible with haloled lamps?" → get_converters_by_lamp_type
     User: "Voltage range for 930562" → generate_sql
     """
     

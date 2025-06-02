@@ -34,6 +34,7 @@ class ConverterPlugin:
             lamps = await self.db.get_compatible_lamps(artnr)
             self.logger.info(f"Used get_compatible_lamps with ARTNR: {artnr}")
             return f"Compatible lamps: {', '.join(lamps)}" if lamps else "No lamps found"
+            # return "\n".join([f"{c.model_dump()})" for c in lamps]) if lamps else "No lamps found"
         except Exception as e:
             return f"Error retrieving compatible lamps: {str(e)}"
         
@@ -52,7 +53,8 @@ class ConverterPlugin:
             self.logger.info(f"Used get_converters_by_lamp_type with lamp_type: {lamp_type}")
             if not converters:
                 return "No compatible converters found"
-            return "\n".join([f"{c.name} (ARTNR: {c.artnr})\nTYPE: {c.type}\nMANUAL: {c.pdf_link}" for c in converters])
+            # return "\n".join([f"{c.name} (ARTNR: {c.artnr})\nTYPE: {c.type}\nMANUAL: {c.pdf_link}" for c in converters])
+            return "\n".join([f"{c.model_dump()})" for c in converters]) if converters else "No converters found"
         except Exception as e:
             return f"Error retrieving converters: {str(e)}"
         

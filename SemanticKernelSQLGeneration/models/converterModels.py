@@ -1,18 +1,3 @@
-# # models/converterModels.py
-# from pydantic import BaseModel
-# from typing import Dict, Optional
-
-# class LampConnections(BaseModel):
-#     min: int
-#     max: int
-
-# class PowerConverter(BaseModel):
-#     ARTNR: int  # Partition key
-#     lamps: Optional[Dict[str, LampConnections]]
-#     name: Optional[str]
-#     IP: Optional[int]
-#     pdf_link: Optional[str] = None
-
 # models/converterModels.py
 from pydantic import BaseModel, ConfigDict, Field, field_validator, validator
 from typing import Dict, Optional
@@ -45,16 +30,10 @@ class PowerConverter(BaseModel):
     doc_id: Optional[str] = Field(None, alias="id")
     artnr: Optional[int] = Field(None, alias="artnr")
     ip_rating: Optional[int] = Field(None, alias="ip")
-    lamps: Optional[Dict[str, LampConnections]] = Field(default_factory=dict, alias="lamps")  # Map to lamps
+    lamps: Optional[Dict[str, LampConnections]] = Field(default_factory=dict, alias="lamps")  
     
-
-    @field_validator("lamps", mode="before")
-    def parse_lamps(cls, v):
-        return {k: LampConnections(**v[k]) for k in v}  # Force parsing
-    
-    type: Optional[str] = Field(None, alias="type")  # Map to Type
-    
-    name: Optional[str] = Field(None, alias="name")  # Map to Name
+    type: Optional[str] = Field(None, alias="type")  
+    name: Optional[str] = Field(None, alias="name")  
     efficiency: Optional[float] = Field(None, alias="efficiency_full_load")
     pdf_link: Optional[str] = Field(None, alias="pdf_link")
     converter_description: Optional[str] = Field(None, alias="converter_description")
@@ -69,6 +48,9 @@ class PowerConverter(BaseModel):
     ccr_amplitude: Optional[str] = Field(None, alias="ccr_amplitude")
     dimmability: Optional[str] = Field(None, alias="dimmability")
     dim_list_type: Optional[str] = Field(None, alias="dimlist_type")
+
+    strain_relief: Optional[str] = Field(None, alias="strain_relief")
+    gross_weight: Optional[float] = Field(None, alias="gross_weight")
 
     similarity_score: Optional[float] = Field(None, alias="SimilarityScore")  # For hybrid search results
     model_config = ConfigDict(
