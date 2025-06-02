@@ -1,0 +1,3623 @@
+{
+    "24V DC - 40025": {
+        "TYPE": "24V DC",
+        "ARTNR": 40025.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER 24V 10W IP20                                 ",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "NOT DIMMABLE",
+        "SIZE: L*B*H (mm)": "76*36*18",
+        "EFFICIENCY @full load": 0.6,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 254",
+        "OUTPUT VOLTAGE (V)": 24,
+        "lamps": {
+            "m LEDLINE medium power 9,6W": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "m LEDLINE high power 14,4W": {
+                "min": 0.66,
+                "max": 0.66,
+                "avg": 0.66
+            },
+            "m LEDLINE very high power 19,2W": {
+                "min": 0.5,
+                "max": 0.5,
+                "avg": 0.5
+            }
+        }
+    },
+    "24V DC - 40057": {
+        "TYPE": "24V DC",
+        "ARTNR": 40057.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER REMOTE 24V 20W IP20 ",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "NOT DIMMABLE",
+        "SIZE: L*B*H (mm)": "109*50*35",
+        "EFFICIENCY @full load": 0.83,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "195 - 254",
+        "OUTPUT VOLTAGE (V)": 24,
+        "lamps": {
+            "m LEDLINE medium power 9,6W": {
+                "min": 2.0,
+                "max": 2.0,
+                "avg": 2.0
+            },
+            "m LEDLINE high power 14,4W": {
+                "min": 1.33,
+                "max": 1.33,
+                "avg": 1.33
+            },
+            "m LEDLINE very high power 19,2W": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            }
+        }
+    },
+    "24V DC - 40063": {
+        "TYPE": "24V DC",
+        "ARTNR": 40063.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER 24V 20W IP67",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "NOT DIMMABLE",
+        "SIZE: L*B*H (mm)": "118*35*26",
+        "EFFICIENCY @full load": 0.83,
+        "IP": 67.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "90 - 264",
+        "OUTPUT VOLTAGE (V)": 24,
+        "lamps": {
+            "m LEDLINE medium power 9,6W": {
+                "min": 2.0,
+                "max": 2.0,
+                "avg": 2.0
+            },
+            "m LEDLINE high power 14,4W": {
+                "min": 1.33,
+                "max": 1.33,
+                "avg": 1.33
+            },
+            "m LEDLINE very high power 19,2W": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            }
+        }
+    },
+    "24V DC - 40080": {
+        "TYPE": "24V DC",
+        "ARTNR": 40080.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER REMOTE 24V 20W IP20 1-10V",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "1-10V",
+        "SIZE: L*B*H (mm)": "103*67*21",
+        "EFFICIENCY @full load": 0.88,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "100 - 264",
+        "OUTPUT VOLTAGE (V)": 24,
+        "lamps": {
+            "m LEDLINE medium power 9,6W": {
+                "min": 2.0,
+                "max": 2.0,
+                "avg": 2.0
+            },
+            "m LEDLINE high power 14,4W": {
+                "min": 1.33,
+                "max": 1.33,
+                "avg": 1.33
+            },
+            "m LEDLINE very high power 19,2W": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            }
+        }
+    },
+    "24V DC - 40070": {
+        "TYPE": "24V DC",
+        "ARTNR": 40070.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER 24V 35W IP67",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "NOT DIMMABLE",
+        "SIZE: L*B*H (mm)": "148*40*30",
+        "EFFICIENCY @full load": 0.85,
+        "IP": 67.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "90 - 264",
+        "OUTPUT VOLTAGE (V)": 24,
+        "lamps": {
+            "m LEDLINE medium power 9,6W": {
+                "min": 3.5,
+                "max": 3.5,
+                "avg": 3.5
+            },
+            "m LEDLINE high power 14,4W": {
+                "min": 2.33,
+                "max": 2.33,
+                "avg": 2.33
+            },
+            "m LEDLINE very high power 19,2W": {
+                "min": 1.75,
+                "max": 1.75,
+                "avg": 1.75
+            }
+        }
+    },
+    "24V DC - 40081": {
+        "TYPE": "24V DC",
+        "ARTNR": 40081.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER 24V 40W IP67 1-10V",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "1-10V",
+        "SIZE: L*B*H (mm)": "162,5*43*32",
+        "EFFICIENCY @full load": 0.87,
+        "IP": 67.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "90 - 305",
+        "OUTPUT VOLTAGE (V)": 24,
+        "lamps": {
+            "m LEDLINE medium power 9,6W": {
+                "min": 4.0,
+                "max": 4.0,
+                "avg": 4.0
+            },
+            "m LEDLINE high power 14,4W": {
+                "min": 2.66,
+                "max": 2.66,
+                "avg": 2.66
+            },
+            "m LEDLINE very high power 19,2W": {
+                "min": 2.0,
+                "max": 2.0,
+                "avg": 2.0
+            }
+        }
+    },
+    "24V DC - 40087": {
+        "TYPE": "24V DC",
+        "ARTNR": 40087.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER REMOTE 24V 50W IP20 DALI/TOUCHDIM",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "DALI/TOUCHDIM",
+        "SIZE: L*B*H (mm)": "346*32*22",
+        "EFFICIENCY @full load": 0.9,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": 24,
+        "lamps": {
+            "m LEDLINE medium power 9,6W": {
+                "min": 5.0,
+                "max": 5.0,
+                "avg": 5.0
+            },
+            "m LEDLINE high power 14,4W": {
+                "min": 3.33,
+                "max": 3.33,
+                "avg": 3.33
+            },
+            "m LEDLINE very high power 19,2W": {
+                "min": 2.5,
+                "max": 2.5,
+                "avg": 2.5
+            }
+        }
+    },
+    "24V DC - 40071": {
+        "TYPE": "24V DC",
+        "ARTNR": 40071.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER 24V 60W IP67",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "NOT DIMMABLE",
+        "SIZE: L*B*H (mm)": "162,5*42,5*32",
+        "EFFICIENCY @full load": 0.86,
+        "IP": 67.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "90 - 264",
+        "OUTPUT VOLTAGE (V)": 24,
+        "lamps": {
+            "m LEDLINE medium power 9,6W": {
+                "min": 6.0,
+                "max": 6.0,
+                "avg": 6.0
+            },
+            "m LEDLINE high power 14,4W": {
+                "min": 4.0,
+                "max": 4.0,
+                "avg": 4.0
+            },
+            "m LEDLINE very high power 19,2W": {
+                "min": 3.0,
+                "max": 3.0,
+                "avg": 3.0
+            }
+        }
+    },
+    "24V DC - 40082": {
+        "TYPE": "24V DC",
+        "ARTNR": 40082.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER 24V 60W IP20 1-10V",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "1-10V",
+        "SIZE: L*B*H (mm)": "162,5*43*32",
+        "EFFICIENCY @full load": 0.89,
+        "IP": 67.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "90 - 305",
+        "OUTPUT VOLTAGE (V)": 24,
+        "lamps": {
+            "m LEDLINE medium power 9,6W": {
+                "min": 6.0,
+                "max": 6.0,
+                "avg": 6.0
+            },
+            "m LEDLINE high power 14,4W": {
+                "min": 4.0,
+                "max": 4.0,
+                "avg": 4.0
+            },
+            "m LEDLINE very high power 19,2W": {
+                "min": 3.0,
+                "max": 3.0,
+                "avg": 3.0
+            }
+        }
+    },
+    "24V DC - 40088": {
+        "TYPE": "24V DC",
+        "ARTNR": 40088.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER REMOTE 24V 80W IP20 DALI/TOUCHDIM",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "DALI/TOUCHDIM",
+        "SIZE: L*B*H (mm)": "346*32*22",
+        "EFFICIENCY @full load": 0.9,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": 24,
+        "lamps": {
+            "m LEDLINE medium power 9,6W": {
+                "min": 8.0,
+                "max": 8.0,
+                "avg": 8.0
+            },
+            "m LEDLINE high power 14,4W": {
+                "min": 5.33,
+                "max": 5.33,
+                "avg": 5.33
+            },
+            "m LEDLINE very high power 19,2W": {
+                "min": 4.0,
+                "max": 4.0,
+                "avg": 4.0
+            }
+        }
+    },
+    "24V DC - 40083": {
+        "TYPE": "24V DC",
+        "ARTNR": 40083.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER 24V 90W IP67 1-10V",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "1-10V",
+        "SIZE: L*B*H (mm)": "161*61*36",
+        "EFFICIENCY @full load": 0.9,
+        "IP": 67.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "90 - 305",
+        "OUTPUT VOLTAGE (V)": 24,
+        "lamps": {
+            "m LEDLINE medium power 9,6W": {
+                "min": 9.0,
+                "max": 9.0,
+                "avg": 9.0
+            },
+            "m LEDLINE high power 14,4W": {
+                "min": 6.0,
+                "max": 6.0,
+                "avg": 6.0
+            },
+            "m LEDLINE very high power 19,2W": {
+                "min": 4.5,
+                "max": 4.5,
+                "avg": 4.5
+            }
+        }
+    },
+    "24V DC - 40072": {
+        "TYPE": "24V DC",
+        "ARTNR": 40072.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER 24V 100W IP67",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "NOT DIMMABLE",
+        "SIZE: L*B*H (mm)": "262*66*42",
+        "EFFICIENCY @full load": 0.92,
+        "IP": 67.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": 24,
+        "lamps": {
+            "m LEDLINE medium power 9,6W": {
+                "min": 10.0,
+                "max": 10.0,
+                "avg": 10.0
+            },
+            "m LEDLINE high power 14,4W": {
+                "min": 6.66,
+                "max": 6.66,
+                "avg": 6.66
+            },
+            "m LEDLINE very high power 19,2W": {
+                "min": 5.0,
+                "max": 5.0,
+                "avg": 5.0
+            }
+        }
+    },
+    "24V DC - 40084": {
+        "TYPE": "24V DC",
+        "ARTNR": 40084.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER 24V 120W IP67 1-10V",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "1-10V",
+        "SIZE: L*B*H (mm)": "220*68*38,8",
+        "EFFICIENCY @full load": 0.93,
+        "IP": 67.0,
+        "CLASS": 1.0,
+        "NOM. INPUT VOLTAGE (V)": "90 - 305",
+        "OUTPUT VOLTAGE (V)": 24,
+        "lamps": {
+            "m LEDLINE medium power 9,6W": {
+                "min": 12.0,
+                "max": 12.0,
+                "avg": 12.0
+            },
+            "m LEDLINE high power 14,4W": {
+                "min": 8.0,
+                "max": 8.0,
+                "avg": 8.0
+            },
+            "m LEDLINE very high power 19,2W": {
+                "min": 6.0,
+                "max": 6.0,
+                "avg": 6.0
+            }
+        }
+    },
+    "24V DC - 40073": {
+        "TYPE": "24V DC",
+        "ARTNR": 40073.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER 24V 150W IP67",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "NOT DIMMABLE",
+        "SIZE: L*B*H (mm)": "211*66*42",
+        "EFFICIENCY @full load": 0.92,
+        "IP": 67.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": 24,
+        "lamps": {
+            "m LEDLINE medium power 9,6W": {
+                "min": 15.0,
+                "max": 15.0,
+                "avg": 15.0
+            },
+            "m LEDLINE high power 14,4W": {
+                "min": 10.0,
+                "max": 10.0,
+                "avg": 10.0
+            },
+            "m LEDLINE very high power 19,2W": {
+                "min": 7.5,
+                "max": 7.5,
+                "avg": 7.5
+            }
+        }
+    },
+    "48V - 40067": {
+        "TYPE": "48V",
+        "ARTNR": 40067.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER REMOTE 48V 70W IP20",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "NOT DIMMABLE",
+        "SIZE: L*B*H (mm)": "210*60*36",
+        "EFFICIENCY @full load": 0.91,
+        "IP": 20.0,
+        "CLASS": 1.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": 48,
+        "lamps": {
+            "Thinksmall single on track": {
+                "min": 10.0,
+                "max": 10.0,
+                "avg": 10.0
+            },
+            "Thinksmall double on track": {
+                "min": 5.0,
+                "max": 5.0,
+                "avg": 5.0
+            },
+            "Haloled single on track": {
+                "min": 5.0,
+                "max": 5.0,
+                "avg": 5.0
+            },
+            "Haloled double on track": {
+                "min": 2.0,
+                "max": 2.0,
+                "avg": 2.0
+            }
+        }
+    },
+    "48V - 40049": {
+        "TYPE": "48V",
+        "ARTNR": 40049.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER REMOTE 48V 150W IP20",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "NOT DIMMABLE",
+        "SIZE: L*B*H (mm)": "105*90*59",
+        "EFFICIENCY @full load": 0.9,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "85 - 264",
+        "OUTPUT VOLTAGE (V)": 48,
+        "lamps": {
+            "Thinksmall single on track": {
+                "min": 22.0,
+                "max": 22.0,
+                "avg": 22.0
+            },
+            "Thinksmall double on track": {
+                "min": 11.0,
+                "max": 11.0,
+                "avg": 11.0
+            },
+            "Haloled single on track": {
+                "min": 12.0,
+                "max": 12.0,
+                "avg": 12.0
+            },
+            "Haloled double on track": {
+                "min": 6.0,
+                "max": 6.0,
+                "avg": 6.0
+            }
+        }
+    },
+    "48V - 40068": {
+        "TYPE": "48V",
+        "ARTNR": 40068.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER IN-TRACK 48V 100W (DALI THROUGH WIRE) IP20 BLACK",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "NOT DIMMABLE",
+        "SIZE: L*B*H (mm)": "298*16*19",
+        "EFFICIENCY @full load": 0.9,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "176 - 264",
+        "OUTPUT VOLTAGE (V)": 48,
+        "lamps": {
+            "Thinksmall single on track": {
+                "min": 14.0,
+                "max": 14.0,
+                "avg": 14.0
+            },
+            "Thinksmall double on track": {
+                "min": 7.0,
+                "max": 7.0,
+                "avg": 7.0
+            },
+            "Haloled single on track": {
+                "min": 8.0,
+                "max": 8.0,
+                "avg": 8.0
+            },
+            "Haloled double on track": {
+                "min": 4.0,
+                "max": 4.0,
+                "avg": 4.0
+            }
+        }
+    },
+    "48V - 40069": {
+        "TYPE": "48V",
+        "ARTNR": 40069.0,
+        "CONVERTER DESCRIPTION:": "LEDCONVERTER IN-TRACK 48V 100W (DALI THROUGH WIRE) IP20 WHITE",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "NOT DIMMABLE",
+        "SIZE: L*B*H (mm)": "298*16*19",
+        "EFFICIENCY @full load": 0.9,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "176 - 264",
+        "OUTPUT VOLTAGE (V)": 48,
+        "lamps": {
+            "Thinksmall single on track": {
+                "min": 14.0,
+                "max": 14.0,
+                "avg": 14.0
+            },
+            "Thinksmall double on track": {
+                "min": 7.0,
+                "max": 7.0,
+                "avg": 7.0
+            },
+            "Haloled single on track": {
+                "min": 8.0,
+                "max": 8.0,
+                "avg": 8.0
+            },
+            "Haloled double on track": {
+                "min": 4.0,
+                "max": 4.0,
+                "avg": 4.0
+            }
+        }
+    },
+    "180mA - 930544": {
+        "TYPE": "180mA",
+        "ARTNR": 930544.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 180mA 7,2W IP20 MAINS DIM C ",
+        "DIMLIST TYPE": "dimlist F",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "MAINS DIM C",
+        "CCR (AMPLITUDE)": "NO",
+        "SIZE: L*B*H (mm)": "99*39*23",
+        "EFFICIENCY @full load": 0.8,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "230 - 240",
+        "OUTPUT VOLTAGE (V)": "20 - 40",
+        "lamps": {
+            "Beaufort": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Single led XPE": {
+                "min": "7-12",
+                "max": "7-12",
+                "avg": "7-12"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "*MIX 6 monocolor": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "Cedrus quantum": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Beaufort²": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "B4": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            }
+        }
+    },
+    "180mA - 930546": {
+        "TYPE": "180mA",
+        "ARTNR": 930546.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 180mA 8W IP20 1-10V",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "1-10V",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "110*52*23,5",
+        "EFFICIENCY @full load": 0.85,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "110 - 240",
+        "OUTPUT VOLTAGE (V)": "6 - 42",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930546%20POWERLED%20CONVERTOR%20REMOTE%201-20W%20180mA%201-10V%20DIMM%20930546%20MANUAL.pdf",
+        "lamps": {
+            "Beaufort": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Thinksmall halosphere single": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "Thinksmall halosphere double": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Single led XPE": {
+                "min": "2-13",
+                "max": "2-13",
+                "avg": "2-13"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "*MIX 6 monocolor": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "Cedrus quantum": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "*MIX 6 halosphere": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "MIX 13 halosphere": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "ORBITAL monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL halosphere": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Beaufort²": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "B4": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            }
+        }
+    },
+    "180mA - 930565": {
+        "TYPE": "180mA",
+        "ARTNR": 930565.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 180mA 10W IP20 MAINS DIM LC/1-10V",
+        "DIMLIST TYPE": "dimlist S",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "MAINS DIM LC 10%/1-10V",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "101,5*51*29,5",
+        "EFFICIENCY @full load": 0.77,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": "28 - 56",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930565%20POWERLED%20CONVERT%20REMOTE%201x180mA%20DIMM%20LC%20%201-10V%20v1.pdf",
+        "lamps": {
+            "Beaufort": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Thinksmall halosphere single": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "Thinksmall halosphere double": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Thinksmall halosphere triple": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Single led XPE": {
+                "min": "9-17",
+                "max": "9-17",
+                "avg": "9-17"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "2-5",
+                "max": "2-5",
+                "avg": "2-5"
+            },
+            "*MIX 6 monocolor": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "Cedrus quantum": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "*MIX 6 halosphere": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "MIX 13 halosphere": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "ORBITAL monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL halosphere": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Beaufort²": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "B4": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "4-6",
+                "max": "4-6",
+                "avg": "4-6"
+            }
+        }
+    },
+    "180mA - 930545": {
+        "TYPE": "180mA",
+        "ARTNR": 930545.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 180mA 15W IP20",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "NOT DIMMABLE",
+        "SIZE: L*B*H (mm)": "115*34*19",
+        "EFFICIENCY @full load": 0.58,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "90 - 264",
+        "OUTPUT VOLTAGE (V)": "0 - 41,5",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930545%20POWERLED%20CONVERTOR%20REMOTE%202.5-15W%20180mA%20MANUAL.pdf",
+        "lamps": {
+            "Beaufort": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Single led XPE": {
+                "min": "1-12",
+                "max": "1-12",
+                "avg": "1-12"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "*MIX 6 monocolor": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "Cedrus quantum": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Beaufort²": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "B4": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            }
+        }
+    },
+    "180mA - 930588": {
+        "TYPE": "180mA",
+        "ARTNR": 930588.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 180mA 15W IP20 DALI/TOUCHDIM",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "DALI/TOUCHDIM",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "119*53*30",
+        "EFFICIENCY @full load": 0.88,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "20 - 54",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930588%20POWERLED%20REMOTE%20CONVERTER%20%2815W%29%20TOUCH%20DALI%20DIM%20180mA_v1.pdf",
+        "lamps": {
+            "Beaufort": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Thinksmall halosphere single": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "Thinksmall halosphere double": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Thinksmall halosphere triple": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Single led XPE": {
+                "min": "7-16",
+                "max": "7-16",
+                "avg": "7-16"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "2-4",
+                "max": "2-4",
+                "avg": "2-4"
+            },
+            "*MIX 6 monocolor": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "Cedrus quantum": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "*MIX 6 halosphere": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "MIX 13 halosphere": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "ORBITAL monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL halosphere": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Beaufort²": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "2-4",
+                "max": "2-4",
+                "avg": "2-4"
+            },
+            "B4": {
+                "min": "2-4",
+                "max": "2-4",
+                "avg": "2-4"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "3-5",
+                "max": "3-5",
+                "avg": "3-5"
+            }
+        }
+    },
+    "180mA - 930605": {
+        "TYPE": "180mA",
+        "ARTNR": 930605.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 180mA 18W IP20 MAINS DIM LC",
+        "DIMLIST TYPE": "dimlist Q",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "MAINS DIM LC",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "120*45*28",
+        "EFFICIENCY @full load": 0.87,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": "52 - 103",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930605%20POWERLED%20REMOTE%20CONVERTER%20180mA%2018W%20V2.pdf",
+        "lamps": {
+            "Beaufort": {
+                "min": 2.0,
+                "max": 2.0,
+                "avg": 2.0
+            },
+            "Thinksmall halosphere single": {
+                "min": "3-6",
+                "max": "3-6",
+                "avg": "3-6"
+            },
+            "Thinksmall halosphere double": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "Thinksmall halosphere triple": {
+                "min": 2.0,
+                "max": 2.0,
+                "avg": 2.0
+            },
+            "Single led XPE": {
+                "min": "17-31",
+                "max": "17-31",
+                "avg": "17-31"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "5-9",
+                "max": "5-9",
+                "avg": "5-9"
+            },
+            "*MIX 6 monocolor": {
+                "min": "3-5",
+                "max": "3-5",
+                "avg": "3-5"
+            },
+            "Cedrus quantum": {
+                "min": "3-5",
+                "max": "3-5",
+                "avg": "3-5"
+            },
+            "*MIX 6 halosphere": {
+                "min": "3-6",
+                "max": "3-6",
+                "avg": "3-6"
+            },
+            "MIX 13 monocolor": {
+                "min": 2.0,
+                "max": 2.0,
+                "avg": 2.0
+            },
+            "MIX 13 halosphere": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "ORBITAL monocolor": {
+                "min": 2.0,
+                "max": 2.0,
+                "avg": 2.0
+            },
+            "ORBITAL halosphere": {
+                "min": 2.0,
+                "max": 2.0,
+                "avg": 2.0
+            },
+            "Beaufort²": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "Haloled": {
+                "min": "5-9",
+                "max": "5-9",
+                "avg": "5-9"
+            },
+            "B4": {
+                "min": "5-9",
+                "max": "5-9",
+                "avg": "5-9"
+            },
+            "MIX 26 monocolor": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "*BOA WC": {
+                "min": "6-9",
+                "max": "6-9",
+                "avg": "6-9"
+            }
+        }
+    },
+    "180mA - 930606": {
+        "TYPE": "180mA",
+        "ARTNR": 930606.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 180mA 9W IP20 CASAMBI",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "CASAMBI",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "200*43*30",
+        "EFFICIENCY @full load": 0.82,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "15 - 40",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930606%20POWERLED%20REMOTE%20CONVERTER%208W%20180mA%20CASAMBI%20MANUAL_v1.pdf",
+        "lamps": {
+            "Beaufort": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Thinksmall halosphere single": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "Thinksmall halosphere double": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Single led XPE": {
+                "min": "5-12",
+                "max": "5-12",
+                "avg": "5-12"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "*MIX 6 monocolor": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "Cedrus quantum": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "*MIX 6 halosphere": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "MIX 13 halosphere": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "ORBITAL monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL halosphere": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Beaufort²": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "B4": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "2-4",
+                "max": "2-4",
+                "avg": "2-4"
+            }
+        }
+    },
+    "250mA - 930598": {
+        "TYPE": "250mA",
+        "ARTNR": 930598.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER 250mA 5W IP65 MAINS DIM LC",
+        "DIMLIST TYPE": "dimlist N",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "MAINS DIM LC",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "38*27*21",
+        "EFFICIENCY @full load": 0.73,
+        "IP": 65.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": "12 - 24",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930598%20POWERLED%20CONVERTOR%205W%20260mA%20MAINS%20DIMM%20v2.pdf",
+        "lamps": {
+            "Thinksmall halosphere single": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Single led XPE": {
+                "min": "4-7",
+                "max": "4-7",
+                "avg": "4-7"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*MIX 6 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Cedrus quantum": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*MIX 6 halosphere": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "B4": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            }
+        }
+    },
+    "260mA - 930603": {
+        "TYPE": "260mA",
+        "ARTNR": 930603.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER 260mA 12W IP65 MAINS DIM LC",
+        "DIMLIST TYPE": "dimlist T",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "MAINS DIM LC",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "dia56*25",
+        "EFFICIENCY @full load": 0.83,
+        "IP": 65.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": "23 - 46",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930603%20POWERLED%20CONVERTOR%2012W%20260mA%20MAINS%20DIMM%20v3.pdf",
+        "lamps": {
+            "Thinksmall halosphere single": {
+                "min": 2,
+                "max": 2,
+                "avg": 2
+            },
+            "Thinksmall halosphere double": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Single led XPE": {
+                "min": "8-14",
+                "max": "8-14",
+                "avg": "8-14"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "*MIX 6 monocolor": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "Cedrus quantum": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "*MIX 6 halosphere": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "MIX 13 halosphere": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "ORBITAL monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL halosphere": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Beaufort²": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "2-4",
+                "max": "2-4",
+                "avg": "2-4"
+            },
+            "B4": {
+                "min": "2-4",
+                "max": "2-4",
+                "avg": "2-4"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            }
+        }
+    },
+    "260mA - 930599": {
+        "TYPE": "260mA",
+        "ARTNR": 930599.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 260mA 12W IP20 1-10V",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "1-10V",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "110*52*23,5",
+        "EFFICIENCY @full load": 0.88,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": "6 - 42",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930599%20POWERLED%20CONVERTOR%2012W%20250mA%201-10V%20DIMM%20MANUAL%20v1.pdf",
+        "lamps": {
+            "Thinksmall halosphere single": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "Thinksmall halosphere double": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Single led XPE": {
+                "min": "2-13",
+                "max": "2-13",
+                "avg": "2-13"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "*MIX 6 monocolor": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "Cedrus quantum": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "*MIX 6 halosphere": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "MIX 13 halosphere": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "ORBITAL monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL halosphere": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Beaufort²": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "B4": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            }
+        }
+    },
+    "250mA - 930601": {
+        "TYPE": "250mA",
+        "ARTNR": 930601.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 250mA 13,5W IP20 DALI/TOUCHDIM",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "DALI/TOUCHDIM",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "119*53*30",
+        "EFFICIENCY @full load": 0.88,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "12 - 54",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930601%20POWERLED%20REMOTE%20CONVERTER%20%2815W%29%20TOUCH%20DALI%20DIM%20250mA_v1.pdf",
+        "lamps": {
+            "Thinksmall halosphere single": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "Thinksmall halosphere double": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Thinksmall halosphere triple": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Single led XPE": {
+                "min": "4-16",
+                "max": "4-16",
+                "avg": "4-16"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "2-4",
+                "max": "2-4",
+                "avg": "2-4"
+            },
+            "*MIX 6 monocolor": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "Cedrus quantum": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "*MIX 6 halosphere": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "MIX 13 halosphere": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "ORBITAL monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL halosphere": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Beaufort²": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "2-4",
+                "max": "2-4",
+                "avg": "2-4"
+            },
+            "B4": {
+                "min": "2-4",
+                "max": "2-4",
+                "avg": "2-4"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "2-5",
+                "max": "2-5",
+                "avg": "2-5"
+            }
+        }
+    },
+    "260mA - 930604": {
+        "TYPE": "260mA",
+        "ARTNR": 930604.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 260mA 20W IP20 MAINS DIM LC",
+        "DIMLIST TYPE": "dimlist T",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "MAINS DIM LC",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "120*45*28",
+        "EFFICIENCY @full load": 0.85,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": "38 - 77",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930604%20POWERLED%20REMOTE%20CONVERTER%20260mA%2020W%20v2.pdf",
+        "lamps": {
+            "Thinksmall halosphere single": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "Thinksmall halosphere double": {
+                "min": 2,
+                "max": 2,
+                "avg": 2
+            },
+            "Thinksmall halosphere triple": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Single led XPE": {
+                "min": "12-24",
+                "max": "12-24",
+                "avg": "12-24"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "4-7",
+                "max": "4-7",
+                "avg": "4-7"
+            },
+            "*MIX 6 monocolor": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "Cedrus quantum": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "*MIX 6 halosphere": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "MIX 13 halosphere": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "ORBITAL monocolor": {
+                "min": 2.0,
+                "max": 2.0,
+                "avg": 2.0
+            },
+            "ORBITAL halosphere": {
+                "min": 2.0,
+                "max": 2.0,
+                "avg": 2.0
+            },
+            "Beaufort²": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "Haloled": {
+                "min": "4-6",
+                "max": "4-6",
+                "avg": "4-6"
+            },
+            "B4": {
+                "min": "4-6",
+                "max": "4-6",
+                "avg": "4-6"
+            },
+            "MIX 26 monocolor": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "*BOA WC": {
+                "min": "5-8",
+                "max": "5-8",
+                "avg": "5-8"
+            }
+        }
+    },
+    "250mA - 930607": {
+        "TYPE": "250mA",
+        "ARTNR": 930607.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 250mA 10W IP20 CASAMBI",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "CASAMBI",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "200*43*30",
+        "EFFICIENCY @full load": 0.82,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "15 - 40",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930607%20POWERLED%20REMOTE%20CONVERTER%2010W%20250mA%20CASAMBI%20MANUAL_v1.pdf",
+        "lamps": {
+            "Thinksmall halosphere single": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "Thinksmall halosphere double": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Single led XPE": {
+                "min": "5-12",
+                "max": "5-12",
+                "avg": "5-12"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "*MIX 6 monocolor": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "Cedrus quantum": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "*MIX 6 halosphere": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "MIX 13 halosphere": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "ORBITAL monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL halosphere": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Beaufort²": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "B4": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "2-4",
+                "max": "2-4",
+                "avg": "2-4"
+            }
+        }
+    },
+    "350mA - 930512": {
+        "TYPE": "350mA",
+        "ARTNR": 930512.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER 350mA 4W IP65 MAINS DIM RC",
+        "DIMLIST TYPE": "dimlist H",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "MAINS DIM RC",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "38*27*21",
+        "EFFICIENCY @full load": 0.72,
+        "IP": 65.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": "6 - 12",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930512%20POWERLED%20CONVERTOR%204W%20MAINS%20DIMM_v3.pdf",
+        "lamps": {
+            "Single led XPE": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Haloled": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "B4": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            }
+        }
+    },
+    "350mA - 930591": {
+        "TYPE": "350mA",
+        "ARTNR": 930591.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 350mA 6W IP20 1-10V",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "1-10V",
+        "CCR (AMPLITUDE)": "NO",
+        "SIZE: L*B*H (mm)": "67*57*22",
+        "EFFICIENCY @full load": 0.76,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "2 - 18",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930591%20POWERLED%20CONVERTER%206W%20350mA%201-10V%20DIMM%20MANUAL_v1.pdf",
+        "lamps": {
+            "Single led XPE": {
+                "min": "1-5",
+                "max": "1-5",
+                "avg": "1-5"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Cedrus quantum": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Haloled": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "B4": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            }
+        }
+    },
+    "350mA - 930573": {
+        "TYPE": "350mA",
+        "ARTNR": 930573.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER 350mA 8W IP54",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "NOT DIMMABLE",
+        "SIZE: L*B*H (mm)": "54*32*21",
+        "EFFICIENCY @full load": 0.78,
+        "IP": 54.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "90 - 264",
+        "OUTPUT VOLTAGE (V)": "2 - 25",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930573%20POWERLED%20CONVERTER%208W%20350mA%20230V%20IP54.pdf",
+        "lamps": {
+            "Single led XPE": {
+                "min": "1-7",
+                "max": "1-7",
+                "avg": "1-7"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "*MIX 6 monocolor": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Cedrus quantum": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Haloled": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "B4": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "*BOA WC": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            }
+        }
+    },
+    "350mA - 930541": {
+        "TYPE": "350mA",
+        "ARTNR": 930541.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER 350mA 9W IP20",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "NOT DIMMABLE",
+        "SIZE: L*B*H (mm)": "65*30,7*21,5",
+        "EFFICIENCY @full load": 0.78,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": "3 - 25",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930541%20POWERLED%20CONVERTER%208W%20350mA%20230V%20IP20%20MANUAL_v2.pdf",
+        "lamps": {
+            "Single led XPE": {
+                "min": "1-7",
+                "max": "1-7",
+                "avg": "1-7"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "*MIX 6 monocolor": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Cedrus quantum": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Haloled": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "B4": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "*BOA WC": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            }
+        }
+    },
+    "350mA - 930595": {
+        "TYPE": "350mA",
+        "ARTNR": 930595.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER 350mA 12W IP65 MAINS DIM LC",
+        "DIMLIST TYPE": "dimlist G",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "MAINS DIM LC",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "dia56*25",
+        "EFFICIENCY @full load": 0.82,
+        "IP": 65.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": "18 - 35",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930595%20POWERLED%20CONVERTOR%2012W%20350mA%20MAINS%20DIMM_v3.pdf",
+        "lamps": {
+            "Single led XPE": {
+                "min": "6-10",
+                "max": "6-10",
+                "avg": "6-10"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "*MIX 6 monocolor": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Cedrus quantum": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*MIX 6 halosphere": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "MIX 13 halosphere": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Haloled": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "B4": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "*BOA WC": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            }
+        }
+    },
+    "350mA - 930561": {
+        "TYPE": "350mA",
+        "ARTNR": 930561.0,
+        "CONVERTER DESCRIPTION:": "TEV_POWERLED CONVERTER REMOTE 350/700mA 12W IP20 MAINS DIM RC",
+        "DIMLIST TYPE": "dimlist F",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "MAINS DIM C",
+        "CCR (AMPLITUDE)": "NO",
+        "SIZE: L*B*H (mm)": "99*39*23",
+        "EFFICIENCY @full load": 0.7,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "230 - 240",
+        "OUTPUT VOLTAGE (V)": "3 - 32",
+        "lamps": {
+            "Single led XPE": {
+                "min": "1-9",
+                "max": "1-9",
+                "avg": "1-9"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "*MIX 6 monocolor": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Cedrus quantum": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Haloled": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "B4": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "*BOA WC": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            }
+        }
+    },
+    "350mA - 930562": {
+        "TYPE": "350mA",
+        "ARTNR": 930562.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 350mA 13,5W IP20 MAINS DIM LC 10%",
+        "DIMLIST TYPE": "dimlist R",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "MAINS DIM LC 10%",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "109*53*25",
+        "EFFICIENCY @full load": 0.84,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "18 - 38",
+        "lamps": {
+            "Single led XPE": {
+                "min": "6-11",
+                "max": "6-11",
+                "avg": "6-11"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "*MIX 6 monocolor": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "Cedrus quantum": {
+                "min": 2,
+                "max": 2,
+                "avg": 2
+            },
+            "*MIX 6 halosphere": {
+                "min": 2,
+                "max": 2,
+                "avg": 2
+            },
+            "MIX 13 halosphere": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "ORBITAL monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL halosphere": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Beaufort²": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "B4": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            }
+        }
+    },
+    "350mA - 930560": {
+        "TYPE": "350mA",
+        "ARTNR": 930560.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 350mA 15W IP20 1-10V",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "1-10V",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "110*52*23,5",
+        "EFFICIENCY @full load": 0.88,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": "6 - 42",
+        "lamps": {
+            "Single led XPE": {
+                "min": "2-13",
+                "max": "2-13",
+                "avg": "2-13"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "*MIX 6 monocolor": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "Cedrus quantum": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "*MIX 6 halosphere": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "MIX 13 halosphere": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "ORBITAL monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL halosphere": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Beaufort²": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "B4": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            }
+        }
+    },
+    "350mA - 930581": {
+        "TYPE": "350mA",
+        "ARTNR": 930581.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 350mA 15W IP20 DALI/TOUCHDIM",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "DALI/TOUCHDIM",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "119*53*30",
+        "EFFICIENCY @full load": 0.88,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "9 - 51",
+        "lamps": {
+            "Single led XPE": {
+                "min": "3-15",
+                "max": "3-15",
+                "avg": "3-15"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            },
+            "*MIX 6 monocolor": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "Cedrus quantum": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "*MIX 6 halosphere": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "MIX 13 halosphere": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "ORBITAL monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL halosphere": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Beaufort²": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            },
+            "B4": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "1-5",
+                "max": "1-5",
+                "avg": "1-5"
+            }
+        }
+    },
+    "350mA - 930511": {
+        "TYPE": "350mA",
+        "ARTNR": 930511.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 350mA 18W IP20 MAINS DIM LC",
+        "DIMLIST TYPE": "dimlist A",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "MAINS DIM LC 10%",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "119*53*30",
+        "EFFICIENCY @full load": 0.84,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "27 - 54",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930511%20POWERLED%20CONVERTER%2018W%20-%20350mA%20MAINS%20DIM%20LC_v2.pdf",
+        "lamps": {
+            "Single led XPE": {
+                "min": "9-16",
+                "max": "9-16",
+                "avg": "9-16"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "*MIX 6 monocolor": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "Cedrus quantum": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "*MIX 6 halosphere": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "MIX 13 halosphere": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "ORBITAL monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL halosphere": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Beaufort²": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "B4": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "3-5",
+                "max": "3-5",
+                "avg": "3-5"
+            }
+        }
+    },
+    "350mA - 930622": {
+        "TYPE": "350mA",
+        "ARTNR": 930622.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 350mA 18W MAINS DIM LC",
+        "DIMLIST TYPE": "dimlist AC",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "MAINS DIM LC",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "95*50*22",
+        "EFFICIENCY @full load": 0.82,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "27 - 40",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930622%20POWERLED%20CONVERTER%2018W%20-%20350mA%20MAINS%20DIM%20LC.pdf",
+        "lamps": {
+            "Single led XPE": {
+                "min": "9-12",
+                "max": "9-12",
+                "avg": "9-12"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "3",
+                "max": "3",
+                "avg": "3"
+            },
+            "*MIX 6 monocolor": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "Cedrus quantum": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "*MIX 6 halosphere": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "MIX 13 halosphere": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "ORBITAL monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL halosphere": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Beaufort²": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "3",
+                "max": "3",
+                "avg": "3"
+            },
+            "B4": {
+                "min": "3",
+                "max": "3",
+                "avg": "3"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            }
+        }
+    },
+    "350mA - 930623": {
+        "TYPE": "350mA",
+        "ARTNR": 930623.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 350mA 18W IP20 DALI/TOUCHDIM",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "DALI/TOUCHDIM",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "160*42*30",
+        "EFFICIENCY @full load": 0.85,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": "9 - 52",
+        "lamps": {
+            "Single led XPE": {
+                "min": "3-15",
+                "max": "3-15",
+                "avg": "3-15"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            },
+            "*MIX 6 monocolor": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "Cedrus quantum": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "*MIX 6 halosphere": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "MIX 13 halosphere": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "ORBITAL monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL halosphere": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Beaufort²": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            },
+            "B4": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "1-5",
+                "max": "1-5",
+                "avg": "1-5"
+            }
+        }
+    },
+    "350mA - 930537": {
+        "TYPE": "350mA",
+        "ARTNR": 930537.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER 350mA 26W IP66",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "NOT DIMMABLE",
+        "SIZE: L*B*H (mm)": "80*78*28",
+        "EFFICIENCY @full load": 0.86,
+        "IP": 66.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "100 - 240",
+        "OUTPUT VOLTAGE (V)": "38 - 75",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930537%20POWERLED%20CONV.%20INVENTR%2026W%20350mA%20%2B%20WIRES.pdf",
+        "lamps": {
+            "Single led XPE": {
+                "min": "12-23",
+                "max": "12-23",
+                "avg": "12-23"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "4-6",
+                "max": "4-6",
+                "avg": "4-6"
+            },
+            "*MIX 6 monocolor": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "Cedrus quantum": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL monocolor": {
+                "min": 2.0,
+                "max": 2.0,
+                "avg": 2.0
+            },
+            "Beaufort²": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "Haloled": {
+                "min": "4-6",
+                "max": "4-6",
+                "avg": "4-6"
+            },
+            "B4": {
+                "min": "4-6",
+                "max": "4-6",
+                "avg": "4-6"
+            },
+            "MIX 26 monocolor": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "*BOA WC": {
+                "min": "4-8",
+                "max": "4-8",
+                "avg": "4-8"
+            }
+        }
+    },
+    "350mA - 930536": {
+        "TYPE": "350mA",
+        "ARTNR": 930536.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER 350mA 26W IP66 1-10V",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "1-10V",
+        "CCR (AMPLITUDE)": "NO",
+        "SIZE: L*B*H (mm)": "80*78*28",
+        "EFFICIENCY @full load": 0.86,
+        "IP": 66.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "100 - 240 ",
+        "OUTPUT VOLTAGE (V)": "38 - 75",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930536%20POWERLED%20CONV.%20INVENTR%2026W%20350mA%20%2B%20WIRES%201-10V%20DIMM%20MANUAL%20v1.pdf",
+        "lamps": {
+            "Single led XPE": {
+                "min": "12-23",
+                "max": "12-23",
+                "avg": "12-23"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "4-6",
+                "max": "4-6",
+                "avg": "4-6"
+            },
+            "*MIX 6 monocolor": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "Cedrus quantum": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL monocolor": {
+                "min": 2.0,
+                "max": 2.0,
+                "avg": 2.0
+            },
+            "Beaufort²": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "Haloled": {
+                "min": "4-6",
+                "max": "4-6",
+                "avg": "4-6"
+            },
+            "B4": {
+                "min": "4-6",
+                "max": "4-6",
+                "avg": "4-6"
+            },
+            "MIX 26 monocolor": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "*BOA WC": {
+                "min": "4-8",
+                "max": "4-8",
+                "avg": "4-8"
+            }
+        }
+    },
+    "350mA - 930608": {
+        "TYPE": "350mA",
+        "ARTNR": 930608.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 350mA 19W IP20 CASAMBI",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "CASAMBI",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "147*44*30",
+        "EFFICIENCY @full load": 0.9,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "10 - 54 ",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930608%20POWERLED%20REMOTE%20CONVERTER%2019W%20350mA%20CASAMBI%20MANUAL_v1.pdf",
+        "lamps": {
+            "Single led XPE": {
+                "min": "4-16",
+                "max": "4-16",
+                "avg": "4-16"
+            },
+            "Thinksmall/floorspot WC luxeon MX": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            },
+            "*MIX 6 monocolor": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "Cedrus quantum": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "*MIX 6 halosphere": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "MIX 13 monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "MIX 13 halosphere": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "ORBITAL monocolor": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "ORBITAL halosphere": {
+                "min": 1.0,
+                "max": 1.0,
+                "avg": 1.0
+            },
+            "Beaufort²": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "Haloled": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            },
+            "B4": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "1-5",
+                "max": "1-5",
+                "avg": "1-5"
+            }
+        }
+    },
+    "500mA - 930620": {
+        "TYPE": "500mA",
+        "ARTNR": 930620.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER 6,5W 500mA IP20 MAINS DIM RC",
+        "DIMLIST TYPE": "dimlist O",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "MAINS DIM RC",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "dia43*25",
+        "EFFICIENCY @full load": 0.72,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": "9 - 13",
+        "lamps": {
+            "Haloled": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "B4": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "*BOA WC": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            }
+        }
+    },
+    "500mA - 930596": {
+        "TYPE": "500mA",
+        "ARTNR": 930596.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER 500mA 12W IP65 MAINS DIM LC",
+        "DIMLIST TYPE": "dimlist M",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "MAINS DIM LC",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "dia56*25",
+        "EFFICIENCY @full load": 0.82,
+        "IP": 65.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": "12 - 24",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930596%20POWERLED%20CONVERTOR%2012W%20500mA%20MAINS%20DIMM%20v3.pdf",
+        "lamps": {
+            "Haloled": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "B4": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            },
+            "*BOA WC": {
+                "min": "2",
+                "max": "2",
+                "avg": "2"
+            }
+        }
+    },
+    "500mA - 930559": {
+        "TYPE": "500mA",
+        "ARTNR": 930559.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 500mA 16W IP20 MAINS DIM LC",
+        "DIMLIST TYPE": "dimlist J",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "MAINS DIM LC 10%",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "109*53*33",
+        "EFFICIENCY @full load": 0.84,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "18 - 36",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930559%20POWERLED%20CONVERTOR%2016W%20500%20mA%20MAINS%20DIMM%20LC%20v1.pdf",
+        "lamps": {
+            "Haloled": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "B4": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            }
+        }
+    },
+    "500mA - 930602": {
+        "TYPE": "500mA",
+        "ARTNR": 930602.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 500mA 21W IP20 MAINS DIM LC",
+        "DIMLIST TYPE": "dimlist V",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "MAINS DIM LC",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "110*52*22",
+        "EFFICIENCY @full load": 0.89,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": "16 - 42",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930602%20POWERLED%20CONVERTER%2021W%20500mA%20MAINS%20DIMM%20MANUAL.pdf",
+        "lamps": {
+            "Beaufort²": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Haloled": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "B4": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "2-4",
+                "max": "2-4",
+                "avg": "2-4"
+            }
+        }
+    },
+    "500mA - 930553": {
+        "TYPE": "500mA",
+        "ARTNR": 930553.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 500mA 22W IP20 1-10V",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "1-10V",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "110*52*23,5",
+        "EFFICIENCY @full load": 0.88,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": "6 - 42",
+        "lamps": {
+            "Beaufort²": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Haloled": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "B4": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            }
+        }
+    },
+    "500mA - 930585": {
+        "TYPE": "500mA",
+        "ARTNR": 930585.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 500mA 35W IP20 DALI/TOUCHDIM",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "DALI/TOUCHDIM",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "138*67*29,5",
+        "EFFICIENCY @full load": 0.86,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "30 - 54",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930585%20POWERLED%20REMOTE%20CONVERTER%20%2835W%29%20TOUCH%20DALI%20DIM%20500mA_v1.pdf",
+        "lamps": {
+            "Beaufort²": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Haloled": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "B4": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "4-5",
+                "max": "4-5",
+                "avg": "4-5"
+            }
+        }
+    },
+    "500mA - 930556": {
+        "TYPE": "500mA",
+        "ARTNR": 930556.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 500mA 2x 20W IP20 1-10V",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "1-10V",
+        "CCR (AMPLITUDE)": "NO",
+        "SIZE: L*B*H (mm)": "124*79*22",
+        "EFFICIENCY @full load": 0.89,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "110 - 240",
+        "OUTPUT VOLTAGE (V)": "1 - 100",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930556%20POWERLED%20CONVERTOR%20REMOTE%202x%201-20W%20500mA%201-10V%20DIMM.pdf",
+        "lamps": {
+            "Beaufort²": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "Haloled": {
+                "min": "1-8",
+                "max": "1-8",
+                "avg": "1-8"
+            },
+            "B4": {
+                "min": "1-8",
+                "max": "1-8",
+                "avg": "1-8"
+            },
+            "MIX 26 monocolor": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "*BOA WC": {
+                "min": "1-9",
+                "max": "1-9",
+                "avg": "1-9"
+            }
+        }
+    },
+    "500mA - 930557": {
+        "TYPE": "500mA",
+        "ARTNR": 930557.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 500mA 2x 20W IP20 DALI/TOUCHDIM/1-10V",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "DALI/TOUCHDIM/1-10V",
+        "CCR (AMPLITUDE)": "NO",
+        "SIZE: L*B*H (mm)": "124*79*22",
+        "EFFICIENCY @full load": 0.89,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "110 - 240",
+        "OUTPUT VOLTAGE (V)": "2 - 100",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930557%20POWERLED%20CONVERTOR%20REMOTE%202x%201-20W%20500mA%20DALI%20DIMM.pdf",
+        "lamps": {
+            "Beaufort²": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "Haloled": {
+                "min": "1-8",
+                "max": "1-8",
+                "avg": "1-8"
+            },
+            "B4": {
+                "min": "1-8",
+                "max": "1-8",
+                "avg": "1-8"
+            },
+            "MIX 26 monocolor": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "*BOA WC": {
+                "min": "1-9",
+                "max": "1-9",
+                "avg": "1-9"
+            }
+        }
+    },
+    "500mA - 930609": {
+        "TYPE": "500mA",
+        "ARTNR": 930609.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 500mA 27W IP20 CASAMBI",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "CASAMBI",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "147*44*30",
+        "EFFICIENCY @full load": 0.9,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "10 - 54 ",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930609%20POWERLED%20REMOTE%20CONVERTER%2027W%20500mA%20CASAMBI%20MANUAL_v1.pdf",
+        "lamps": {
+            "Beaufort²": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "Haloled": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            },
+            "B4": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "2-5",
+                "max": "2-5",
+                "avg": "2-5"
+            }
+        }
+    },
+    "700mA - 930592": {
+        "TYPE": "700mA",
+        "ARTNR": 930592.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 700mA 10W IP20 MAINS DIM LC",
+        "DIMLIST TYPE": "dimlist L",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "MAINS DIM LC",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "119*53*25",
+        "EFFICIENCY @full load": 0.79,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "7 - 14",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930592%20POWERLED%20CONVERTER%2010W%20700mA%20230V%20IP20%20MAINS%20DIM%20MANUAL_v1.pdf",
+        "lamps": {
+            "Haloled": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "B4": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "*BOA WC": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            }
+        }
+    },
+    "700mA - 930594": {
+        "TYPE": "700mA",
+        "ARTNR": 930594.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER 700mA 12W IP65 MAINS DIM LC",
+        "DIMLIST TYPE": "dimlist C",
+        "STRAIN RELIEF": "NO",
+        "LOCATION": "IN&OUTDOOR",
+        "DIMMABILITY": "MAINS DIM LC",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "48*50*24",
+        "EFFICIENCY @full load": 0.8,
+        "IP": 65.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": "9 - 18",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930594%20POWERLED%20CONVERTOR%2012W%20700mA%20MAINS%20DIMM%20v1.pdf",
+        "lamps": {
+            "Haloled": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "B4": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "*BOA WC": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            }
+        }
+    },
+    "700mA - 930561": {
+        "TYPE": "700mA",
+        "ARTNR": 930561.0,
+        "CONVERTER DESCRIPTION:": "TEV_POWERLED CONVERTER REMOTE 350/700mA 12W IP20 MAINS DIM C",
+        "DIMLIST TYPE": "dimlist F",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "MAINS DIM C",
+        "CCR (AMPLITUDE)": "NO",
+        "SIZE: L*B*H (mm)": "99*39*23",
+        "EFFICIENCY @full load": 0.7,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "230 - 240",
+        "OUTPUT VOLTAGE (V)": "3 - 17",
+        "lamps": {
+            "Haloled": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "B4": {
+                "min": 1,
+                "max": 1,
+                "avg": 1
+            },
+            "*BOA WC": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            }
+        }
+    },
+    "700mA - 930587": {
+        "TYPE": "700mA",
+        "ARTNR": 930587.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 700mA 15W IP20 DALI/TOUCHDIM",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "DALI/TOUCHDIM",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "119*53*30",
+        "EFFICIENCY @full load": 0.88,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "7,5 - 26",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930587%20POWERLED%20REMOTE%20CONVERTER%20%2815W%29%20TOUCH%20DALI%20DIM%20700mA_v1.pdf",
+        "lamps": {
+            "Haloled": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "B4": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            },
+            "*BOA WC": {
+                "min": "1-2",
+                "max": "1-2",
+                "avg": "1-2"
+            }
+        }
+    },
+    "700mA - 930589": {
+        "TYPE": "700mA",
+        "ARTNR": 930589.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 700mA 25W IP20 MAINS DIMM LC",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "MAINS DIM LC",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "145*51*29,5",
+        "EFFICIENCY @full load": 0.83,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "16 - 35",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930589%20POWERLED%20CONVERTER%20REMOTE%2025W%20700mA%20MAINS%20DIMM%20LC_v1.pdf",
+        "lamps": {
+            "Haloled": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "B4": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            },
+            "*BOA WC": {
+                "min": "2-3",
+                "max": "2-3",
+                "avg": "2-3"
+            }
+        }
+    },
+    "700mA - 930578": {
+        "TYPE": "700mA",
+        "ARTNR": 930578.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 700mA 30W IP20 1-10V",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "1-10V",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "110*52*23,5",
+        "EFFICIENCY @full load": 0.88,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "220 - 240",
+        "OUTPUT VOLTAGE (V)": "6 - 42",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930578%20POWERLED%20CONVERTOR%201-20W%20700mA%201-10V%20DIMM%20MANUAL%20v2.pdf",
+        "lamps": {
+            "Haloled": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "B4": {
+                "min": "1-3",
+                "max": "1-3",
+                "avg": "1-3"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            }
+        }
+    },
+    "700mA - 930590": {
+        "TYPE": "700mA",
+        "ARTNR": 930590.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 700mA 35W IP20 MAINS DIM LC",
+        "DIMLIST TYPE": "dimlist K",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "MAINS DIM LC",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "153*54*36",
+        "EFFICIENCY @full load": 0.87,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "195 - 264",
+        "OUTPUT VOLTAGE (V)": "27 - 50",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930590%20CONVERTER%20700mA%2035W%2027_50Vf%20PC%20LC%20AM_PWM%20SELV%20IP20_v2.pdf",
+        "lamps": {
+            "Haloled": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "B4": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "3-5",
+                "max": "3-5",
+                "avg": "3-5"
+            }
+        }
+    },
+    "700mA - 930621": {
+        "TYPE": "700mA",
+        "ARTNR": 930621.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 30W 700mA MAINS DIMM LC",
+        "DIMLIST TYPE": "dimlist AB",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "MAINS DIM LC",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "119*53*30",
+        "EFFICIENCY @full load": 0.84,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "27 - 40",
+        "lamps": {
+            "Haloled": {
+                "min": "3",
+                "max": "3",
+                "avg": "3"
+            },
+            "B4": {
+                "min": "3",
+                "max": "3",
+                "avg": "3"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "3-4",
+                "max": "3-4",
+                "avg": "3-4"
+            }
+        }
+    },
+    "700mA - 930582": {
+        "TYPE": "700mA",
+        "ARTNR": 930582.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 700mA 35W IP20 DALI/TOUCHDIM",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "DALI/TOUCHDIM",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "138*67*29,5",
+        "EFFICIENCY @full load": 0.86,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "22 - 54",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930582%20POWERLED%20REMOTE%20CONVERTER%20%2835W%29%20TOUCH%20DALI%20DIM%20700mA_v2.pdf",
+        "lamps": {
+            "Haloled": {
+                "min": "2-4",
+                "max": "2-4",
+                "avg": "2-4"
+            },
+            "B4": {
+                "min": "2-4",
+                "max": "2-4",
+                "avg": "2-4"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "2-5",
+                "max": "2-5",
+                "avg": "2-5"
+            }
+        }
+    },
+    "700mA - 930618": {
+        "TYPE": "700mA",
+        "ARTNR": 930618.0,
+        "CONVERTER DESCRIPTION:": "POWERLED CONVERTER REMOTE 700mA 36W IP20 CASAMBi",
+        "STRAIN RELIEF": "YES",
+        "LOCATION": "INDOOR",
+        "DIMMABILITY": "CASAMBI",
+        "CCR (AMPLITUDE)": "YES",
+        "SIZE: L*B*H (mm)": "147*44*30",
+        "EFFICIENCY @full load": 0.9,
+        "IP": 20.0,
+        "CLASS": 2.0,
+        "NOM. INPUT VOLTAGE (V)": "198 - 264",
+        "OUTPUT VOLTAGE (V)": "10 - 51",
+        "pdf_link": "https://www.tal.be/sites/default/files/2025-02/930618%20POWERLED%20REMOTE%20CONVERTER%2036W%20700mA%20CASAMBI%20MANUAL_v1.pdf",
+        "lamps": {
+            "Haloled": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            },
+            "B4": {
+                "min": "1-4",
+                "max": "1-4",
+                "avg": "1-4"
+            },
+            "MIX 26 monocolor": {
+                "min": "1",
+                "max": "1",
+                "avg": "1"
+            },
+            "*BOA WC": {
+                "min": "2-5",
+                "max": "2-5",
+                "avg": "2-5"
+            }
+        }
+    }
+}
