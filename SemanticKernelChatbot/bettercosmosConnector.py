@@ -41,6 +41,7 @@ class CosmosLampHandler:
     async def get_compatible_lamps(self, artnr: int) -> List[str]:
         """Get compatible lamps for a converter with fuzzy matching"""
         try:
+            print(f"Getting compatible lamps for ARTNR: {artnr}")
             parameters = [{"name": "@artnr", "value": artnr}]
             query = "SELECT * FROM c WHERE c.ARTNR = @artnr"
             
@@ -62,6 +63,7 @@ class CosmosLampHandler:
     async def get_converters_by_lamp_type(self, lamp_type: str, threshold: int = 75) -> List[PowerConverter]:
         """Get converters with fuzzy-matched lamp types"""
         try:
+            print(f"Searching for converters with lamp type: {lamp_type} (threshold: {threshold})")
             # Case-insensitive search with fuzzy matching
             query = """
             SELECT
@@ -89,6 +91,7 @@ class CosmosLampHandler:
     async def get_lamp_limits(self, artnr: int, lamp_type: str) -> Dict[str, int]:
         """Get lamp limits with typo tolerance"""
         try:
+            print(f"Getting lamp limits for ARTNR: {artnr}, Lamp Type: {lamp_type}")
             parameters = [{"name": "@artnr", "value": artnr}]
             query = """
             SELECT c.lamps FROM c 
@@ -128,6 +131,7 @@ class CosmosLampHandler:
         """Hybrid search using raw Cosmos DB vector search"""
         try:
             # Generate embedding
+            print(f"Performing hybrid search for query: {query} (ARTNR: {artnr})")
             query_vector = await self._generate_embedding(query)
             
             sql_query = """
