@@ -151,7 +151,6 @@ async def handle_query(user_input: str):
     1. When performing SELECT ALL queries always use SELECT *. Never use SELECT c.* or SELECT c
     2. For questions about lamp compatibility, ALWAYS use SELECT * FROM c WHERE IS_DEFINED(c.lamps["lamp_name"])
     3. For questions about lamps that can be used with a converter, ALWAYS use SELECT c.lamps FROM c WHERE c.artnr = @artnr
-    4. For questions about ALWAYS input or output voltage, query for strings like e.g SELECT * FROM c WHERE c.output_voltage = '15 - 40'
     5. For questions about lamp limits, query for the lamps dictionary and return min/max values
 
     """
