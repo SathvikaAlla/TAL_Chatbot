@@ -35,21 +35,7 @@ class LampChatService:
         self.kernel.add_plugin(LampCompatibilityPlugin(), "LampExpert")
     
     async def get_response(self, query: str) -> str:
-        # prompt = """
-        #     [System Message]
-        #     You are a lamp compatibility expert for TAL BV.
-        #     Help user by giving concise and detailed answers about lamp compatibility with power converters. 
-        #     You MUST use these functions when appropriate:
-        #         - get_compatible_lamps for converter ARTNR questions
-        #         - get_converters_by_lamp_type for lamp type queries
-        #         - get_lamp_limits for min/max lamp counts
-        #         - hybrid_search when you recognize a query with different keywords
-        #     When answering about compatible lamps list lamps in bullet points
-        #     When answering about converters, list the artnr, name, type, and pdf_link  
 
-        #     [User Query]
-        #     {{$query}}
-        #     """
         prompt = """
             [System Message]
             **Role**: You are a TAL BV lamp/converter compatibility expert with hybrid search capabilities.
