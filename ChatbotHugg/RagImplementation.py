@@ -51,6 +51,14 @@ def parse_float(s):
         return float(str(s).replace(',', '.').strip())
     except Exception:
         return float('inf')
+    
+def parse_price(val):
+    if isinstance(val, float) or isinstance(val, int):
+        return float(val)
+    try:
+        return float(str(val).replace(',', '.'))
+    except Exception:
+        return float('inf')
 
 def normalize_artnr(artnr):
     try:
@@ -356,7 +364,12 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
         elif "price below" in q:
             price_match = re.search(r'€(\d+)', question)
             price = float(price_match.group(1)) if price_match else 65
-            candidates = [v for v in tech_info.values() if "24v" in v["TYPE"].lower() and str(v["Listprice"]) != "N/A" and float(str(v["Listprice"].replace(',', '.'))) < price]
+            candidates = [
+            v for v in tech_info.values()
+            if "24v" in v["TYPE"].lower()
+            and str(v["Listprice"]) != "N/A"
+            and parse_price(v["Listprice"]) < price
+        ]            
             return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])}), price: {v['Listprice']}" for v in candidates])
     # Product info
     if "weight" in q:
@@ -600,64 +613,109 @@ custom_css = """
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
 }
+
 #chatbot-panel {
     position: fixed;
     bottom: 100px;
     right: 30px;
     z-index: 10000;
-    width: 380px;
-    height: 560px;
+    width: 600px;       /* Increased width */
+    height: 700px;      /* Increased height */
     background-color: #ffffff;
     border-radius: 20px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.25);
-    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     font-family: 'Arial', sans-serif;
 }
+
 #chatbot-panel.hide {
     display: none !important;
 }
+
 #chat-header {
     background-color: #ED1C24;
     color: white;
-    padding: 16px;
+    padding: 20px;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 22px;
     display: flex;
     align-items: center;
     gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
 }
+
 #chat-header img {
     border-radius: 50%;
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
 }
+
 .gr-chatbot {
     flex: 1;
     overflow-y: auto;
-    padding: 12px;
-    background-color: #f8f8f8;
-    border: none;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-sizing: border-box;
 }
+
 .gr-textbox {
-    padding: 10px;
-    border_top: 1px solid #eee;
+    padding: 16px 20px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid #eee;
+    box-sizing: border-box;
 }
+
 .gr-textbox textarea {
+    flex: 1;
+    resize: none;
+    padding: 12px;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    box-sizing: border-box;
+    height: 48px;
+    line-height: 1.5;
 }
+
+.gr-textbox button {
+    background-color: #ED1C24;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.gr-textbox button:hover {
+    background-color: #c4161c;
+}
+
 footer {
     display: none !important;
 }
+
 """
 
 def toggle_visibility(current_state):

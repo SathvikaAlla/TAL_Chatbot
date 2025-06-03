@@ -801,4 +801,4 @@ with gr.Blocks(title="TAL Converter JSON Editor") as demo:
         )
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(share=True)

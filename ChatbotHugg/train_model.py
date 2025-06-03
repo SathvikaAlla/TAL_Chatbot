@@ -35,7 +35,6 @@ training_args = TrainingArguments(
     logging_steps=100,
     fp16=False,
     save_total_limit=2,
-    # report_to="none",  # <-- Add this line to disable all integrations (MLflow, WandB, etc.)
 )
 
 
