@@ -3479,5 +3479,49 @@
                 "max": "5"
             }
         }
+    },
+    "990mA - 999000": {
+        "TYPE": "",
+        "ARTNR": null,
+        "CONVERTER DESCRIPTION:": "",
+        "STRAIN RELIEF": "",
+        "LOCATION": "",
+        "DIMMABILITY": "",
+        "CCR (AMPLITUDE)": "",
+        "SIZE: L*B*H (mm)": "",
+        "EFFICIENCY @full load": null,
+        "IP": null,
+        "CLASS": null,
+        "NOM. INPUT VOLTAGE (V)": "",
+        "OUTPUT VOLTAGE (V)": "",
+        "Barcode": "",
+        "Name": "",
+        "Listprice": null,
+        "Unit": "",
+        "LifeCycle": "",
+        "pdf_link": "",
+        "lamps": {}
+    },
+    "390mA - 999999": {
+        "TYPE": "",
+        "ARTNR": null,
+        "CONVERTER DESCRIPTION:": "",
+        "STRAIN RELIEF": "",
+        "LOCATION": "",
+        "DIMMABILITY": "",
+        "CCR (AMPLITUDE)": "",
+        "SIZE: L*B*H (mm)": "",
+        "EFFICIENCY @full load": null,
+        "IP": null,
+        "CLASS": null,
+        "NOM. INPUT VOLTAGE (V)": "",
+        "OUTPUT VOLTAGE (V)": "",
+        "Barcode": "",
+        "Name": "",
+        "Listprice": null,
+        "Unit": "",
+        "LifeCycle": "",
+        "pdf_link": "",
+        "lamps": {}
     }
 }
