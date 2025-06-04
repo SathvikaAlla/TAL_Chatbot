@@ -1,10 +1,8 @@
 # cosmosConnector.py
-from jsonschema import ValidationError
 from models.converterModels import PowerConverter
 import os
 from azure.cosmos import CosmosClient
 from typing import List, Optional, Dict
-from langchain_openai import AzureOpenAIEmbeddings
 from rapidfuzz import fuzz
 import logging
 import os

@@ -128,7 +128,7 @@ async def handle_query(user_input: str):
     SQL Guidelines (if needed):
     1. Always use SELECT * instead of field lists
     2. For exact matches use: WHERE c.[field] = value
-    3. For ranges use: WHERE c.[field].min >= X AND c.[field].max <= Y
+    3. For EXACT ranges ALWAYS use: SELECT * FROM c WHERE c.[field].min = X AND c.[field].max = Y and NEVER >= <=
     4. Limit results with SELECT TOP 10
     
     Examples:

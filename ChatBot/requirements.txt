@@ -16,3 +16,4 @@ langchain-pinecone
 jq
 langchain-openai
 langchain_deepseek
+semantic-kernel

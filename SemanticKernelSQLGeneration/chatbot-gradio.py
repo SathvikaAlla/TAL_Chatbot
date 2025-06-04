@@ -131,7 +131,7 @@ async def handle_query(user_input: str):
     1. Always use SELECT * instead of field lists
     2. For exact matches use: WHERE c.[field] = value
     3. For ranges use: WHERE c.[field].min >= X AND c.[field].max <= Y
-    4. Limit results with SELECT TOP 10
+    4. Do not use AS and cast key names
     
     Examples:
     User: "Show IP67 converters under €100" → generate_sql
@@ -291,16 +291,13 @@ with gr.Blocks(css=custom_css) as demo:
     async def respond(message, chat_history):
         response = await handle_query(message)
         # Convert existing history to OpenAI format if it's in tuples
-        history = []
-        for user_msg, bot_msg in chat_history:
-            history.append({"role": "user", "content": user_msg})
-            history.append({"role": "assistant", "content": bot_msg})
+        
         # Add new messages
-        history.append({"role": "user", "content": message})
-        history.append({"role": "assistant", "content": response})
-        return "", history
+        chat_history.append({"role": "user", "content": message})
+        chat_history.append({"role": "assistant", "content": response})
+        return "", chat_history
 
     msg.submit(respond, [msg, chatbot], [msg, chatbot])
     toggle_btn.click(toggle_panel, outputs=chat_panel)
 
-demo.launch()
+demo.launch(share=True)
