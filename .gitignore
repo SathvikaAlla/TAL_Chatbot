@@ -5,3 +5,6 @@ mlruns
 *.pkl
 *.h5
 *.db
+results.zip
+train_data.jsonl
+val_data.jsonl
