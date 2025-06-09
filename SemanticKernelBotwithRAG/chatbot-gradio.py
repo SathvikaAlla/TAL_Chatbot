@@ -95,6 +95,13 @@ class NL2SQLPlugin:
                 - name (e.g., 'Power Converter 350mA')
                 - unit (e.g., 'PC')
                 - strain_relief (e.g., "NO", "YES")
+            SQL Guidelines (if needed):
+                - Always use SELECT * and never individual fields
+                - Always refer to fields in WHERE clause using c.<field_name>
+                - For exact matches use: WHERE c.[field] = value
+                - For ranges use: WHERE c.[field].min = X AND c.[field].max = Y
+                - Check for dimmability support by using either !="NOT DIMMABLE" or ="NOT DIMMABLE"
+                - Do not use AS and cast key names
             Return ONLY SQL without explanations""")
         
         response = await chat_service.get_chat_message_content(
@@ -127,25 +134,24 @@ async def handle_query(user_input: str):
     - get_compatible_lamps: Simple artnr-based lamp queries
     - get_converters_by_lamp_type: Simple lamp type searches
     - get_lamp_limits: Simple artnr+lamp combinations
+    - RAG_search: questions about dimmability or current (if query contains mains c, dali, 350mA, dali drivers, dimming)
     
     Decision Flow:
-    1. Use simple functions if query matches these patterns:
+    1. Identify synonyms :
+        output voltage = voltage forward = forward voltage = Vf
+        Driver = ledconverter = converter = power supply = gear
+        lamps = luminares
+
+    2. Use simple functions if query matches these patterns:
        - "lamps for [artnr]" → get_compatible_lamps
        - "converters for [lamp type]" → get_converters_by_lamp_type
        - "min/max [lamp] for [artnr]" → get_lamp_limits
     
-    2. Use SQL generation ONLY when:
-       - Query contains schema keywords: voltage, price, type, ip, efficiency, size, class, dimmability
+    3. Use SQL generation ONLY when:
+       - Query contains schema keywords: voltage, price, type, ip, efficiency, size, class
        - Combining multiple conditions (AND/OR/NOT)
        - Needs complex filtering/sorting
        - Requesting technical specifications
-    
-    SQL Guidelines (if needed):
-    1. Always use SELECT * instead of field lists
-    2. For exact matches use: WHERE c.[field] = value
-    3. For ranges use: WHERE c.[field].min = X AND c.[field].max = Y
-    4. Check for dimmability support by using either !="NOT DIMMABLE" or ="NOT DIMMABLE"
-    5. Do not use AS and cast key names
     
     Examples:
     User: "Show IP67 converters under €100" → generate_sql
