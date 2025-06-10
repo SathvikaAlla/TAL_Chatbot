@@ -17,6 +17,32 @@ from transformers import GPT2LMHeadModel, GPT2Tokenizer
 llm_model = GPT2LMHeadModel.from_pretrained("/Users/alessiacolumban/TAL_Chatbot/results")
 llm_tokenizer = GPT2Tokenizer.from_pretrained("/Users/alessiacolumban/TAL_Chatbot/results")
 llm_tokenizer.pad_token = llm_tokenizer.eos_token
+import json
+from typing import List, Dict
+
+class TALConverterRAG:
+    def __init__(self, json_path: str):
+        with open(json_path, 'r') as f:
+            self.tech_data = json.load(f)
+        
+    def retrieve_context(self, query: str, top_k: int = 3) -> List[Dict]:
+        query = query.lower()
+        results = []
+        for key, value in self.tech_data.items():
+            if (query in value["CONVERTER DESCRIPTION:"].lower() or
+                query in value["DIMMABILITY"].lower() or
+                query in value["Name"].lower()):
+                results.append(value)
+        return sorted(results, key=lambda x: x["ARTNR"])[:top_k]
+
+    def format_context(self, context: List[Dict]) -> str:
+        return "\n\n".join([
+            f"Converter {item['ARTNR']}: {item['CONVERTER DESCRIPTION:']}\n"
+            f"- Dimming: {item['DIMMABILITY']}\n"
+            f"- Power: {item.get('POWER', 'N/A')}W\n"
+            f"- IP Rating: IP{item['IP']}"
+            for item in context
+        ])
 
 
 # --- Configuration ---
@@ -727,18 +753,40 @@ graph_builder.add_edge("retrieve", "generate")
 graph = graph_builder.compile()
 
 # --- Main chatbot function ---
-def tal_langchain_chatbot(user_message, history=None):
-    # 1. Try to answer from database/rules
-    answer = answer_technical_question(user_message, tech_info)
-    # 2. If no answer, use the LLM
-    if not answer or answer.lower() == "i do not know the answer to this question.":
-        answer = llm_fallback(user_message)
-    # 3. Update history and return
-    if history is None:
-        history = []
-    history.append({"role": "user", "content": user_message})
-    history.append({"role": "assistant", "content": answer})
-    return history, history, ""
+# def tal_langchain_chatbot(user_message, history=None):
+#     # 1. Try to answer from database/rules
+#     answer = answer_technical_question(user_message, tech_info)
+#     # 2. If no answer, use the LLM
+#     if not answer or answer.lower() == "i do not know the answer to this question.":
+#         answer = llm_fallback(user_message)
+#     # 3. Update history and return
+#     if history is None:
+#         history = []
+#     history.append({"role": "user", "content": user_message})
+#     history.append({"role": "assistant", "content": answer})
+#     return history, history, ""
+from ollama import Client
+
+def ask_tal_converter(question: str):
+    # Initialize RAG
+    rag = TALConverterRAG("converters_with_links_and_pricelist.json")
+    
+    # Retrieve context
+    context = rag.retrieve_context(question)
+    formatted_context = rag.format_context(context)
+    
+    # Build prompt
+    client = Client(host='http://localhost:11434')
+    response = client.generate(
+        model='tal-converter-bot',
+        prompt=f"""
+        Context:
+        {formatted_context}
+        
+        Question: {question}
+        """
+    )
+    return response['response']
 
 
 # --- Gradio UI ---
