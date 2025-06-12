@@ -10,6 +10,8 @@ from langchain_core.prompts import ChatPromptTemplate
 from typing import List, TypedDict
 from langgraph.graph import StateGraph, START
 from dotenv import load_dotenv
+from ollama import Client
+
 
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
@@ -91,6 +93,10 @@ def normalize_artnr(artnr):
         return str(int(float(artnr)))
     except Exception:
         return str(artnr)
+    
+def normalize(s):
+    return s.lower().replace(" ", "").replace(",", "").replace(".", "").strip()
+
 
 def normalize_ip(ip):
     if isinstance(ip, (int, float)):
@@ -123,6 +129,30 @@ def get_converter_voltage_info(artnr, tech_info):
                 "article_number": value.get("ARTNR", "N/A")
             }
     return {"error": f"No converter/driver found with ARTNR {artnr}"}
+import re
+
+def recommend_converter_for_lamp_query(user_message: str, tech_info: dict) -> str:
+    """
+    Answers queries like 'what converter for haloled lamp', 'which converters for Haloled lamps', etc.
+    Returns a markdown table of matching converters or a not-found message.
+    """
+    # Match variations like "what converter for haloled lamp(s)", "which converters for haloled lamps"
+    match = re.search(
+        r"(?:what|which)\s+converters?\s*(?:should\s*i\s*use)?\s*(?:for|with)?\s*['\"“”]?(?P<lamp>[a-zA-Z0-9 ,.\-]+?)(?:\s*lamps?|\s*strips?|\s*ledline)?[?\.!]*$",
+        user_message, re.IGNORECASE
+    )
+    if not match:
+        return None  # Let the main logic continue if no match
+
+    lamp_query = match.group("lamp").strip()
+    # Use your existing recommend_converters_for_lamp function
+    result = recommend_converters_for_lamp(lamp_query, tech_info)
+    if result and "couldn't find" not in result.lower():
+        return result
+    else:
+        return f"## No Converters Found\n\n**Sorry, I couldn't find a converter for '{lamp_query}'.**"
+
+    
 
 
 def extract_converter_and_lamp(user_message: str):
@@ -278,6 +308,10 @@ def extract_converter_and_lamp(user_message: str):
 
 def answer_technical_question(question: str, tech_info: dict) -> str:
     q = question.lower()
+
+    converter_lamp_result = recommend_converter_for_lamp_query(question, tech_info)
+    if converter_lamp_result:
+        return converter_lamp_result
 
     # Recommend lamps for a given converter
     if "recommend lamps for converter" in q or "what lamp can I use for" in q or "which lamps for converter" in q or "lamps for" in q:
@@ -689,6 +723,34 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
         if lamp_name and converter_number:
             return get_lamp_quantity(converter_number, lamp_name, tech_info)
 
+    # what converters for lamp
+    if "what converters for lamp" in q or "which converters for lamp" in q or "converters for lamp" in q:
+        lamp_match = re.search(r'for\s*["“”\']?([a-zA-Z0-9 ,.\-]+w)[\s"”\']*', q)
+        if lamp_match:
+            lamp_query = lamp_match.group(1).strip()
+            result = recommend_converters_for_lamp(lamp_query, tech_info)
+            if result and "couldn't find" not in result:
+                return result
+    
+    # List all 24V output drivers/converters
+    if ("list" in q or "show" in q) and ("driver" in q or "converter" in q) and "24v" in q:
+        candidates = [
+            v for v in tech_info.values()
+            if "24v" in str(v.get("OUTPUT VOLTAGE", "")).lower() or "24v" in str(v.get("TYPE", "")).lower()
+        ]
+        if not candidates:
+            return "No 24V output drivers found."
+        header = "| Description | ARTNR | Output Voltage | Dimmability | IP |"
+        rows = [
+            f"| {v.get('CONVERTER DESCRIPTION', 'N/A')} | {v.get('ARTNR', 'N/A')} | {v.get('OUTPUT VOLTAGE', 'N/A')} | {v.get('DIMMABILITY', 'N/A')} | {v.get('IP', 'N/A')} |"
+            for v in candidates
+        ]
+        return f"## List of 24V Output Drivers\n\n{header}\n|---|---|---|---|---|\n" + "\n".join(rows)
+    
+    
+
+
+
     # Default fallback
     return "I do not know the answer to this question."
 
@@ -753,40 +815,25 @@ graph_builder.add_edge("retrieve", "generate")
 graph = graph_builder.compile()
 
 # --- Main chatbot function ---
-# def tal_langchain_chatbot(user_message, history=None):
-#     # 1. Try to answer from database/rules
-#     answer = answer_technical_question(user_message, tech_info)
-#     # 2. If no answer, use the LLM
-#     if not answer or answer.lower() == "i do not know the answer to this question.":
-#         answer = llm_fallback(user_message)
-#     # 3. Update history and return
-#     if history is None:
-#         history = []
-#     history.append({"role": "user", "content": user_message})
-#     history.append({"role": "assistant", "content": answer})
-#     return history, history, ""
-from ollama import Client
 
-def ask_tal_converter(question: str):
-    # Initialize RAG
-    rag = TALConverterRAG("converters_with_links_and_pricelist.json")
-    
-    # Retrieve context
-    context = rag.retrieve_context(question)
-    formatted_context = rag.format_context(context)
-    
-    # Build prompt
+def ollama_base_fallback(question: str):
     client = Client(host='http://localhost:11434')
     response = client.generate(
-        model='tal-converter-bot',
-        prompt=f"""
-        Context:
-        {formatted_context}
-        
-        Question: {question}
-        """
+        model='llama3',  # Use your preferred base model
+        prompt=f"User: {question}\nAssistant:"
     )
-    return response['response']
+    return response['response'].strip()
+
+def tal_langchain_chatbot(user_message, history=None):
+    answer = answer_technical_question(user_message, tech_info)
+    if not answer or answer.lower() == "i do not know the answer to this question.":
+        answer = ollama_base_fallback(user_message)
+    if history is None:
+        history = []
+    history.append({"role": "user", "content": user_message})
+    history.append({"role": "assistant", "content": answer})
+    return history, history, ""
+
 
 
 # --- Gradio UI ---
@@ -967,4 +1014,4 @@ with gr.Blocks(css=custom_css) as demo:
     )
 
 if __name__ == "__main__":
-    demo.launch(share= True)
+    demo.launch()

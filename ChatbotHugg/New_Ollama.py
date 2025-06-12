@@ -10,6 +10,8 @@ from typing import List, TypedDict
 from langgraph.graph import StateGraph, START
 from dotenv import load_dotenv
 import time
+from fuzzywuzzy import fuzz
+
 
 # --- Configuration ---
 load_dotenv()
@@ -69,16 +71,40 @@ def get_product_by_artnr(artnr, tech_info):
             return value
     return None
 
+def format_table(header, rows):
+    table = header + "\n" + "|---" * (header.count("|") - 1) + "|\n"
+    table += "\n".join(rows)
+    return table
+
+def format_answer(title, body, footer=None):
+    answer = f"## {title}\n\n{body}"
+    if footer:
+        answer += f"\n\n{footer}"
+    return answer
+
+
 def get_technical_fit_info(product_data: dict) -> dict:
     return {
         key: {
             "TYPE": value.get("TYPE", "N/A"),
             "ARTNR": value.get("ARTNR", "N/A"),
             "CONVERTER DESCRIPTION": value.get("CONVERTER DESCRIPTION:", "N/A"),
+            "STRAIN RELIEF": value.get("STRAIN RELIEF", "N/A"),
+            "LOCATION": value.get("LOCATION", "N/A"),
             "DIMMABILITY": value.get("DIMMABILITY", "N/A"),
+            "EFFICIENCY": value.get("EFFICIENCY @full load", "N/A"),
+            "OUTPUT VOLTAGE": value.get("OUTPUT VOLTAGE (V)", "N/A"),
+            "INPUT VOLTAGE": value.get("NOM. INPUT VOLTAGE (V)", "N/A"),
+            "SIZE": value.get("SIZE: L*B*H (mm)", "N/A"),
+            "WEIGHT": value.get("Gross Weight", "N/A"),
+            "Listprice": value.get("Listprice", "N/A"),
+            "lamps": value.get("lamps", {}),
+            "PDF_LINK": value.get("pdf_link", "N/A"),
             "IP": value.get("IP", "N/A"),
-            "POWER": value.get("POWER", "N/A"),
-            "LAMPS": value.get("lamps", {})
+            "CLASS": value.get("CLASS", "N/A"),
+            "LifeCycle": value.get("LifeCycle", "N/A"),
+            "Name": value.get("Name", "N/A"),
+        
         }
         for key, value in product_data.items()
     }
@@ -131,6 +157,20 @@ def get_compatible_converters(lamp_name: str, tech_info: dict) -> list:
         name = str(v.get("Name", "")).lower()
         # Match lamp name in any relevant field
         if lamp_lower in compatible_luminaires or lamp_lower in description or lamp_lower in name:
+            results.append(v)
+    return results
+
+def get_compatible_converters(lamp_name: str, tech_info: dict) -> list:
+    results = []
+    lamp_lower = lamp_name.lower()
+    for v in tech_info.values():
+        # Check compatibility fields with fuzzy matching
+        compatible_luminaires = str(v.get("COMPATIBLE_LUMINAIRES", "")).lower()
+        description = str(v.get("CONVERTER DESCRIPTION", "")).lower()
+        
+        # Fuzzy match threshold (adjust as needed)
+        if (fuzz.partial_ratio(lamp_lower, compatible_luminaires) > 70 or
+            fuzz.partial_ratio(lamp_lower, description) > 70):
             results.append(v)
     return results
 
@@ -352,23 +392,68 @@ def format_converter_table(converters):
 
 def answer_technical_question(question: str, tech_info: dict) -> str:
     q = question.lower()
-
     # --- Synonym normalization ---
     synonym_map = {
-        # Converter/driver synonyms
         "driver": "converter",
         "ledconverter": "converter",
         "led converter": "converter",
         "power supply": "converter",
         "gear": "converter",
-        # Lamp/luminaire synonyms
         "lamp": "luminaire",
         "lamps": "luminaires",
         "luminaire": "luminaire",
-        "luminaires": "luminaires"
+        "luminaires": "luminaires",
+        "pricelist": "price",
     }
     for syn, canonical in synonym_map.items():
         q = re.sub(rf"\b{syn}\b", canonical, q)
+
+    # --- Price query handling ---
+    if any(word in q for word in ["price", "list price", "cost"]):
+        artnr_match = re.search(r'\b(\d{6})\b', q)
+        type_match = re.search(r'\b(type|model)\s*:\s*([a-z0-9\s-]+)', q, re.IGNORECASE)
+        if artnr_match:
+            artnr = artnr_match.group(1)
+            product = get_product_by_artnr(artnr, tech_info)
+            if product:
+                price = product.get("Listprice", "N/A")
+                if price == "N/A":
+                    return f"No price information available for converter with ARTNR {normalize_artnr(artnr)}."
+                return f"The price for the converter with ARTNR {normalize_artnr(artnr)} is: €{price:.2f}"
+            else:
+                return f"No converter found with ARTNR {normalize_artnr(artnr)}."
+        elif type_match:
+            type_query = type_match.group(2).strip().lower()
+            converters = [v for v in tech_info.values() if type_query in str(v.get("TYPE", "")).lower()]
+            if converters:
+                prices = [f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])}): €{v.get('Listprice', 'N/A')}" for v in converters]
+                return "\n".join(prices)
+            else:
+                return f"No converters found for type: {type_query}"
+        else:
+            return "Please provide a valid ARTNR (6 digits) or converter type."
+
+    # --- IP rating query handling ---
+    if "ip rating" in q or "ip protection" in q:
+        artnr_match = re.search(r'\b(\d{6})\b', q)
+        type_match = re.search(r'\b(type|model)\s*:\s*([a-z0-9\s-]+)', q, re.IGNORECASE)
+        if artnr_match:
+            artnr = artnr_match.group(1)
+            product = get_product_by_artnr(artnr, tech_info)
+            if product:
+                ip_rating = product.get("IP", "N/A")
+                return f"The IP rating for the converter with ARTNR {normalize_artnr(artnr)} is: IP{int(ip_rating)}"
+            else:
+                return f"No converter found with ARTNR {normalize_artnr(artnr)}."
+        elif type_match:
+            type_query = type_match.group(2).strip().lower()
+            converters = [v for v in tech_info.values() if type_query in str(v.get("TYPE", "")).lower()]
+            if converters:
+                ip_ratings = [f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])}): IP{int(v.get('IP', 'N/A'))}" for v in converters]
+                return "\n".join(ip_ratings)
+            else:
+                return f"No converters found for type: {type_query}"
+
     # Try to extract lamp/luminaire name
     lamp_match = re.search(r"(?:for|compatible with|work with|for)\s+([a-z0-9\s-]+)", q)
     if lamp_match:
@@ -595,13 +680,6 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
             response = get_voltage_ranges(artnr, tech_info)
             return response if response else ""
         
-    # In answer_technical_question:
-    if "price" in q or "ip rating" in q:
-        artnr_match = re.search(r'\b(\d{6})\b', q)
-        if artnr_match:
-            attribute = "price" if "price" in q else "ip"
-            return get_product_attribute(artnr_match.group(1), tech_info, attribute)
-
     # Comparison
     if "compare" in q:
         numbers = re.findall(r'\d+', question)
@@ -728,6 +806,7 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
             v = get_product_by_artnr(numbers[0], tech_info)
             if v and v["INPUT VOLTAGE"] != "N/A":
                 return f"Input voltage range of {v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])}): {v['INPUT VOLTAGE']}"
+            
 
     # Output voltage (moved after lamp recommendation to avoid precedence issues)
     if "output voltage" in q or "forward voltage" in q:
@@ -738,47 +817,47 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
                 return f"Output voltage range of {v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])}): {v['OUTPUT VOLTAGE']}"
 
     # All 24V converters
-    if "show me all 24v converters" in q or "show all 24v drivers" in q:
+    if "show me all 24v converters" in q or "show 24v drivers" in q or "list all 24v converters" in q:
         candidates = [v for v in tech_info.values() if "24v" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
     # All 48V converters
-    if "show me all 48v converters" in q:
+    if "show me all 48v converters" in q or "show all 48v drivers" in q or "list all 48v converters" in q:
         candidates = [v for v in tech_info.values() if "48v" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
     # All 180mA converters
-    if "show me all 180ma converters" in q:
+    if "show me all 180ma converters" in q or "show all 180ma drivers" in q or "list all 180ma converters" in q:    
         candidates = [v for v in tech_info.values() if "180ma" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
     # All 250mA converters
-    if "show me all 250ma converters" in q:
+    if "show me all 250ma converters" in q or "show all 250ma drivers" in q or "list all 250ma converters" in q:
         candidates = [v for v in tech_info.values() if "250ma" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
     # All 260mA converters
-    if "show me all 260ma converters" in q:
+    if "show me all 260ma converters" in q or "show all 260ma drivers" in q or "list all 260ma converters" in q:
         candidates = [v for v in tech_info.values() if "260ma" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
     # All 350mA converters
-    if "show me all 350ma converters" in q:
+    if "show me all 350ma converters" in q or "show all 350ma drivers" in q or "list all 350ma converters" in q:
         candidates = [v for v in tech_info.values() if "350ma" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
     # All 500mA converters
-    if "show me all 500ma converters" in q:
+    if "show me all 500ma converters" in q or "show all 500ma drivers" in q or "list all 500ma converters" in q:
         candidates = [v for v in tech_info.values() if "500ma" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
     # All 700mA converters
-    if "show me all 700ma converters" in q:
+    if "show me all 700ma converters" in q or "show all 700ma drivers" in q or "list all 700ma converters" in q:
         candidates = [v for v in tech_info.values() if "700ma" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
     # All 24V DC converters
-    if "show me all 24v dc converters" in q:
+    if "show me all 24v dc converters" in q or "show all 24v dc drivers" in q or "list all 24v dc converters" in q:
         candidates = [v for v in tech_info.values() if "24v dc" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
@@ -934,6 +1013,23 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
                 table += f"\n| {desc} | {artnr} | {power} | {output} | {dim} |"
             return header + table
         
+    if ("list" in q or "show" in q) and ("driver" in q or "converter" in q) and "24v" in q:
+        candidates = [
+            v for v in tech_info.values()
+            if "24v" in str(v.get("OUTPUT VOLTAGE", "")).lower() or "24v" in str(v.get("TYPE", "")).lower()
+        ]
+        if not candidates:
+            return "No 24V output drivers found."
+        header = "| Description | ARTNR | Output Voltage | Dimmability | IP |"
+        rows = [
+            f"| {v.get('CONVERTER DESCRIPTION', 'N/A')} | {v.get('ARTNR', 'N/A')} | {v.get('OUTPUT VOLTAGE', 'N/A')} | {v.get('DIMMABILITY', 'N/A')} | {v.get('IP', 'N/A')} |"
+            for v in candidates
+        ]
+        body = format_table(header, rows)
+        return format_answer("List of 24V Output Drivers", body, "Need more details? Ask for a datasheet or comparison.")
+
+
+
 
     # Default fallback
     return "I do not know the answer to this question."
@@ -964,7 +1060,8 @@ def tal_langchain_chatbot(user_message: str, history: list) -> tuple:
     return new_history, new_history, ""
 
 
-# --- Gradio UI ---
+
+
 # --- Gradio UI ---
 
 custom_css = """
@@ -1143,4 +1240,4 @@ with gr.Blocks(css=custom_css) as demo:
     )
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(share = True)
