@@ -27,5 +27,45 @@
         "updated_at": "2025-06-12T12:34:37.634818",
         "deleted_at": "2025-06-12T12:34:55.056966",
         "price_history": []
+    },
+    "100mA - 999888": {
+        "created_at": "2025-06-12T13:27:14.092919",
+        "updated_at": "2025-06-12T13:27:14.092919",
+        "deleted_at": null,
+        "price_history": []
+    },
+    "100mA - 999887": {
+        "created_at": "2025-06-12T13:28:19.572517",
+        "updated_at": "2025-06-12T13:28:19.572517",
+        "deleted_at": null,
+        "price_history": []
+    },
+    "350mA - 988888": {
+        "created_at": "2025-06-12T13:51:12.880219",
+        "updated_at": "2025-06-12T13:51:12.880219",
+        "deleted_at": null,
+        "price_history": [],
+        "cosmos_id": "404a9d22-7970-4a69-b10b-0d7ef9c06d46"
+    },
+    "100mA - 100000": {
+        "created_at": "2025-06-12T13:56:49.891518",
+        "updated_at": "2025-06-12T13:56:49.891518",
+        "deleted_at": null,
+        "price_history": [],
+        "cosmos_id": "f9f79f1e-ec30-43d2-b90a-ce4d3daa3246"
+    },
+    "150mA - 930600": {
+        "created_at": "2025-06-12T14:07:00.453855",
+        "updated_at": "2025-06-12T14:07:00.453855",
+        "deleted_at": null,
+        "price_history": [],
+        "cosmos_id": "b7f36222-0677-4a35-ae64-eb2dab39c3d6"
+    },
+    "700ma-930900": {
+        "created_at": "2025-06-12T14:08:12.572541",
+        "updated_at": "2025-06-12T14:08:12.572541",
+        "deleted_at": null,
+        "price_history": [],
+        "cosmos_id": "f3c805f9-5618-40a4-b247-3c641ed862c3"
     }
 }
