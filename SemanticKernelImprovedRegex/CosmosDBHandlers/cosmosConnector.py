@@ -2,16 +2,15 @@
 from jsonschema import ValidationError
 from langchain_openai import AzureOpenAIEmbeddings
 from models.converterModels import PowerConverter
-from models.converterVectorStoreModels import PowerConverterVector
 import os
-from azure.cosmos import CosmosClient
+from azure.cosmos import CosmosClient, exceptions
 from typing import List, Optional, Dict
 import logging
 import os
 from dotenv import load_dotenv
 from semantic_kernel.functions import kernel_function
 from rapidfuzz import process, fuzz
-
+from cosmosChatHistoryHandler import ChatMemoryHandler
 load_dotenv()
 # Initialize logging
 logger = logging.getLogger(__name__)
@@ -23,17 +22,18 @@ class CosmosLampHandler:
             os.getenv("AZURE_COSMOS_DB_ENDPOINT"),
             os.getenv("AZURE_COSMOS_DB_KEY")
         )
+        self.chat_memory_handler = ChatMemoryHandler()
         self.database = self.client.get_database_client("TAL_DB")
         self.container = self.database.get_container_client("Converters_with_embeddings")
-        # self.logger = logging.Logger("test")
-        self.logger = logger
+        self.logger = logging.Logger("test")
+        # self.logger = logger
         self.embedding_model = AzureOpenAIEmbeddings(
             azure_endpoint=os.environ["OPENAI_API_ENDPOINT"],
             azure_deployment=os.environ["OPENAI_EMBEDDINGS_MODEL_DEPLOYMENT"],
             api_key=os.environ["AZURE_OPENAI_KEY"]
         )
     
-    def _fuzzy_match_lamp(self, query: str, targets: list[str], threshold=75) -> list:
+    def _fuzzy_match_lamp(self, query: str, targets: list[str], threshold=60) -> list:
         """Advanced partial matching"""
         from rapidfuzz import process, fuzz
         
@@ -53,6 +53,7 @@ class CosmosLampHandler:
             name.lower()
             .replace(",", ".")
             .replace("-", " ")
+            .replace("/", " ")
             .translate(str.maketrans("", "", "()"))
             .strip()
         )
@@ -160,17 +161,17 @@ class CosmosLampHandler:
 
             if not results:
                 return {}
-
+            
             lamps = results[0]["lamps"]
+            lamp_keys = list(lamps.keys())
 
-            # Fuzzy match lamp type
-            best_match = max(
-                lamps.keys(),
-                key=lambda x: fuzz.ratio(x.lower(), lamp_type.lower())
-            )
+            # Fuzzy match with normalization
+            matches = self._fuzzy_match_lamp(self._normalize_lamp_name(lamp_type), lamp_keys, threshold=60)
+            if not matches:
+                raise ValueError(f"No matching lamp type found for '{lamp_type}'")
 
-            if fuzz.ratio(best_match.lower(), lamp_type.lower()) < 65:
-                raise ValueError("No matching lamp type found")
+            # Get best match from original keys using match index
+            best_match = lamp_keys[matches[0][2]]
 
             return {
                 "min": int(lamps[best_match]["min"]),
@@ -183,7 +184,7 @@ class CosmosLampHandler:
     
     async def get_converters_by_dimming(
         self,
-        dimming_type: Optional[str] = None,
+        dimming_type: str,
         voltage_current: Optional[str] = None,
         lamp_type: Optional[str] = None,
         threshold: int = 75
@@ -235,7 +236,7 @@ class CosmosLampHandler:
     
     
 
-    async def query_converters(self, query: str) -> List[PowerConverter]:
+    async def query_converters(self, query: str, user_input:str) -> List[PowerConverter]:
         try:
             print(f"Executing query: {query}")
             items = list(self.container.query_items(
@@ -247,16 +248,28 @@ class CosmosLampHandler:
 
             items = [PowerConverter(**item) for item in items] if items else []
 
-            self.logger.info(f"Query returned {len(items)} items after conversion")            
+            self.logger.info(f"Query returned {len(items)} items after conversion")
+
+            if len(items)==0:
+                self.chat_memory_handler.log_sql_query(user_input, query, "null")
+
+            else:
+                self.chat_memory_handler.log_sql_query(user_input, query, "success")
 
             return str(items)
+        
+        except exceptions.CosmosHttpResponseError as ex:
+            print(f"Cosmos DB error: {ex}")
+            self.logger.error(f"Bad request SQL failed: {str(e)}")
+            self.chat_memory_handler.log_sql_query(user_input, query, "error")
+            return [] 
         
         except Exception as e:
             self.logger.info(f"Query failed: {str(e)}")
             return f"Query failed: {str(e)}"
         
     
-    async def get_converters_by_voltage(
+    async def get_converters_by_voltage_current(
         self,
         artnr: Optional[int] = None,
         current: Optional[str]=None,
@@ -321,14 +334,17 @@ if __name__ == "__main__":
         # lamps = await handler.get_compatible_lamps(930573)
         # print("Compatible lamps:", lamps)
 
-        converters = await handler.get_converters_by_dimming(voltage_current="350ma",lamp_type="haloled")
-        for result in converters:
-            print(f"\t{result.name} (ARTNR: {result.artnr})")
-            print(f"\tLamp types: {', '.join(result.lamps.keys())}\n")
+        # converters = await handler.get_converters_by_dimming(voltage_current="350ma",lamp_type="haloled")
+        # for result in converters:
+        #     print(f"\t{result.name} (ARTNR: {result.artnr})")
+        #     print(f"\tLamp types: {', '.join(result.lamps.keys())}\n")
 
-        # limits = await handler.get_lamp_limits(930573, "boa wc")
-        # print("Lamp limits:", limits)
+        
 
+        conv = await handler.get_converters_by_lamp_type("boa")
+        print([c.artnr for c in conv])
+        limits = await handler.get_lamp_limits(930544, "boa")  
+        print("Lamp limits:", limits)
         # hybrid_results = await handler.hybrid_search("give me converters for boa wc which cost less than 50 ")
         # print("Hybrid search results:")
         # for result in hybrid_results:

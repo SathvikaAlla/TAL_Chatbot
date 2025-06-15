@@ -1,6 +1,6 @@
 #converterPlugin.py
 from typing import Annotated, Optional
-from cosmosConnector import CosmosLampHandler
+from CosmosDBHandlers.cosmosConnector import CosmosLampHandler
 from semantic_kernel.functions import kernel_function
 
 class ConverterPlugin:
@@ -13,9 +13,12 @@ class ConverterPlugin:
         name="query_converters",
         description="Execute SQL query against Cosmos DB converters collection"
     )
-    async def query_converters(self, query: str) -> str:
+    async def query_converters(
+        self, 
+        user_input:Annotated[str,"Natural Language question the user asked"],
+        query: Annotated[str,"SQL generated from NL2SQL plugin"]) -> str:
         try:
-            items = await self.db.query_converters(query)
+            items = await self.db.query_converters(query, user_input)
             self.logger.info(f"Executed query: {query}")
             if not items:
                 return "No items found for the given query."
@@ -75,7 +78,7 @@ class ConverterPlugin:
     )
     async def get_converters_by_dimming(
         self,
-        dimming_type: Annotated[str |None, "Dimming type mentioned like dali, mains, 1-10v"],
+        dimming_type: Annotated[str, "Dimming type mentioned like dali, mains, 1-10v"],
         voltage_current: Annotated[str | None,"Voltage or current specification like 350mA, 24V DC"] = None,
         lamp_type: Annotated[str | None, "Lamp model (e.g., Haloled, B4)"] = None,
         threshold: int = 75) -> str:
@@ -117,21 +120,21 @@ class ConverterPlugin:
 
     @kernel_function(
         name="get_converters_by_voltage",
-        description="Get converters that have the mentioned input/output voltage range"
+        description="Get converters that have the mentioned input/output voltage range or current"
     )
-    async def get_converters_by_voltage(
+    async def get_converters_by_voltage_current(
         self,
         artnr: Annotated[int, ""] = None,
         current: Annotated[str, "Current like 350mA, 700mA"]=None,
-        input_voltage: Annotated[str, "Input voltage range like '198-464'"] = None,
+        input_voltage: Annotated[str, "Input voltage range like '198-464' NEVER ip"] = None,
         output_voltage: Annotated[str, "Output voltage range like '24', '2-25'"] = None
     ) -> str:
         try:
-            converters = await self.db.get_converters_by_voltage(artnr=artnr,
+            converters = await self.db.get_converters_by_voltage_current(artnr=artnr,
                                                                 current=current,
                                                                 input_voltage=input_voltage,
                                                                 output_voltage=output_voltage)
-            self.logger.info(f"""Used get_converters_by_voltage with input_voltage: {input_voltage}
+            self.logger.info(f"""Used get_converters_by_voltage_current with input_voltage: {input_voltage}
                                                                      output_voltage: {output_voltage}
                                                                      current: {current}
                                                                      artnr: {artnr}""")

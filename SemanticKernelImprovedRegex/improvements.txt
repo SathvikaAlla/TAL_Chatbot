@@ -20,3 +20,5 @@ caching
 improved scoring based [artial matchig for lamp search]
 
 chat memory/ caching for query generation
+
+fix generate query logging for errors/badrequests
