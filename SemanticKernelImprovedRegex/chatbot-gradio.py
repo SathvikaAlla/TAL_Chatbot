@@ -64,7 +64,7 @@ class NL2SQLPlugin:
         chat_history.add_user_message(f"""Convert to Cosmos DB SQL: {question}
         Collection: converters (alias 'c')
         Fields:
-            - c.type (e.g., '350mA') - for queries related to current (mA) always refer to c.type 
+            - c.type (e.g., '350mA','180mA','700mA','24V DC','48V') - for queries related to current (mA) always refer to c.type 
             - c.artnr (numeric (int) article number e.g., 930546)
             - c.output_voltage_v: dictionary with min/max values for output voltage
             - c.output_voltage_v.min (e.g., 15)
@@ -78,7 +78,6 @@ class NL2SQLPlugin:
             - c.class (safety class)
             - c.dimmability (e.g. if not dimmable 'NOT DIMMABLE'. if supports dimming, 'DALI/TOUCHDIM','MAINS DIM LC', '1-10V','CASAMBI' etc)
             - c.listprice (e.g., 58)
-            - c.lifecycle (e.g., 'Active')
             - c.size (e.g., '150x30x30')
             - c.dimlist_type (e.g., 'DALI')
             - c.pdf_link (link to product PDF)
@@ -107,7 +106,6 @@ class NL2SQLPlugin:
             "name": "POWERLED REMOTE CONVERTER (18.2W) TOUCH DALI DIM 350mA",
             "listprice": 47,
             "unit": "PC",
-            "lifecycle": "A",
             "pdf_link": "...",
             "lamps": {{
                 "Single led XPE": {{"min": 3, "max": 15}},
@@ -132,6 +130,7 @@ class NL2SQLPlugin:
             - Always use SELECT * and never individual fields
             - When current like 350mA is detected, always query the c.type field
             - Always refer to fields in SELECT or WHERE clause using c.<field_name>
+            - Do NOT use LIMIT. Instead use TOP <value> in SELECT statement like SELECT TOP 1 instead of LIMIT 1
             - For exact matches use: WHERE c.[field] = value
             - For ranges use: WHERE c.[field].min = X AND c.[field].max = Y
             - Check for dimmability support by using either != "NOT DIMMABLE" or = "NOT DIMMABLE"
@@ -201,12 +200,13 @@ async def handle_query(user_input: str):
     3. Use simple functions if query matches these patterns:
     - "lamps for [artnr]" → get_compatible_lamps
     - "converters for [lamp type]" → get_converters_by_lamp_type
-    - "min/max [lamp] for [artnr]" → get_lamp_limits
+    - "min/max [lamp] for [artnr]", "most [lamp]/ least [lamp]" → get_lamp_limits
     - "drivers on 24V output" → get_converters_by_voltage_current
     - "drivers on 350ma"  → get_converters_by_voltage_current
     
     4. Use SQL generation ONLY when:
     - Query contains schema keywords: price, type, ip, efficiency, size, class, strain relief, lifecycle,
+    - Avoid using SQL generation for lamp related questions
     - Combining multiple conditions (AND/OR/NOT)
     - Needs complex filtering/sorting
     - Requesting technical specifications for a specific converter like "dimming type of converter [artnr]", "size of [artnr]"
@@ -236,19 +236,22 @@ async def handle_query(user_input: str):
     User: "Dimming type of 930581"  → generate_sql
     User: "List of dali drivers on 24V output?" → get_converters_by_dimming"
     User: 'List of 24V drivers for ledline medium power → get_converters_by_dimming(dimming_type=None, lamp_type="ledline medium power",voltage_current="24V")(or) get_converters_by_lamp_type(lamp_type="ledline medium power") → inspect returned converters '
+    User: 'Which converter supports the most haloled lamps' → get_converters_by_lamp_type(lamp_type="haloled) → get_lamp_limits for each converter returned
     """
     try:
         result = await kernel.invoke_prompt(
             prompt=prompt,
             settings=settings
         )
-        
+
+        func_name = result.model_dump()["metadata"]["messages"]["messages"][2]["items"][0]["name"]
+        print(func_name)
         log_func = kernel.get_function("ChatMemoryPlugin", "log_interaction")
         await log_func.invoke(
             kernel=kernel,
             session_id=session_id,
             question=user_input,
-            function_used="handle_query",
+            function_used=func_name,
             answer=str(result)
         )
         

@@ -51,12 +51,12 @@ class ChatMemoryHandler():
             api_key=os.environ["AZURE_OPENAI_KEY"]
         )
 
-        self.database = self.cosmos_client.create_database_if_not_exists("TAL_ChatDB")
+        self.database = self.cosmos_client.create_database_if_not_exists("TAL_ChatData")
 
         # Container for chat history
         self.chat_container = self.database.create_container_if_not_exists(
             id="ChatHistory",
-            partition_key=PartitionKey(path="/sessionId"),
+            partition_key=PartitionKey(path="/functionUsed"),
             indexing_policy=self.indexing_policy,
             vector_embedding_policy=self.vector_embedding_policy
         )
@@ -64,7 +64,7 @@ class ChatMemoryHandler():
         # Container for SQL queries
         self.sql_container = self.database.create_container_if_not_exists(
             id="GeneratedQueries", 
-            partition_key=PartitionKey(path="/queryType")
+            partition_key=PartitionKey(path="/state")
         )
     
     async def _generate_embedding(self, query: str) -> List[float]:

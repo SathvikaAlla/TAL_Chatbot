@@ -124,19 +124,22 @@ class ConverterPlugin:
     )
     async def get_converters_by_voltage_current(
         self,
-        artnr: Annotated[int, ""] = None,
-        current: Annotated[str, "Current like 350mA, 700mA"]=None,
-        input_voltage: Annotated[str, "Input voltage range like '198-464' NEVER ip"] = None,
-        output_voltage: Annotated[str, "Output voltage range like '24', '2-25'"] = None
+        artnr: Annotated[int | None, ""] = None,
+        current: Annotated[str | None, "Current like 350mA, 700mA"]=None,
+        input_voltage: Annotated[str | None, "Input voltage range like '198-464' NEVER ip, null if no voltage"] = None,
+        output_voltage: Annotated[str | None, "Output voltage range like '24', '2-25' null if no voltage"] = None,
+        lamp_type:  Annotated[str | None, "Lamp model (e.g., Haloled, B4)"] = None,
     ) -> str:
         try:
             converters = await self.db.get_converters_by_voltage_current(artnr=artnr,
                                                                 current=current,
                                                                 input_voltage=input_voltage,
-                                                                output_voltage=output_voltage)
+                                                                output_voltage=output_voltage,
+                                                                lamp_type=lamp_type)
             self.logger.info(f"""Used get_converters_by_voltage_current with input_voltage: {input_voltage}
                                                                      output_voltage: {output_voltage}
                                                                      current: {current}
+                                                                     lamp_type: {lamp_type}
                                                                      artnr: {artnr}""")
             if not converters:
                 return "No relavent converters found"

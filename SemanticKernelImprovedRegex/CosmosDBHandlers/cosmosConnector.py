@@ -10,7 +10,7 @@ import os
 from dotenv import load_dotenv
 from semantic_kernel.functions import kernel_function
 from rapidfuzz import process, fuzz
-from cosmosChatHistoryHandler import ChatMemoryHandler
+from CosmosDBHandlers.cosmosChatHistoryHandler import ChatMemoryHandler
 load_dotenv()
 # Initialize logging
 logger = logging.getLogger(__name__)
@@ -251,21 +251,21 @@ class CosmosLampHandler:
             self.logger.info(f"Query returned {len(items)} items after conversion")
 
             if len(items)==0:
-                self.chat_memory_handler.log_sql_query(user_input, query, "null")
+                await self.chat_memory_handler.log_sql_query(user_input, query, "null")
 
             else:
-                self.chat_memory_handler.log_sql_query(user_input, query, "success")
+                await self.chat_memory_handler.log_sql_query(user_input, query, "success")
 
             return str(items)
         
         except exceptions.CosmosHttpResponseError as ex:
+            await self.chat_memory_handler.log_sql_query(user_input, query, "error")
             print(f"Cosmos DB error: {ex}")
             self.logger.error(f"Bad request SQL failed: {str(e)}")
-            self.chat_memory_handler.log_sql_query(user_input, query, "error")
             return [] 
         
         except Exception as e:
-            self.logger.info(f"Query failed: {str(e)}")
+            self.logger.info(f"Query failed: {str(e)}") 
             return f"Query failed: {str(e)}"
         
     
@@ -274,7 +274,8 @@ class CosmosLampHandler:
         artnr: Optional[int] = None,
         current: Optional[str]=None,
         input_voltage: Optional[str] = None,
-        output_voltage: Optional[str] = None
+        output_voltage: Optional[str] = None,
+        lamp_type: Optional[str] = None
     ) -> List[PowerConverter]:
         """Query converters by voltage ranges"""
         try:
@@ -287,7 +288,8 @@ class CosmosLampHandler:
             # Parse voltage ranges
             input_min, input_max = self._parse_voltage(input_voltage) if input_voltage else (None, None)
             output_min, output_max = self._parse_voltage(output_voltage) if output_voltage else (None, None)
-            
+            normalized_lamp_type = self._normalize_lamp_name(lamp_type) if lamp_type else None
+
             # Build query
             query_parts = []
             if input_min and input_max:
@@ -295,7 +297,7 @@ class CosmosLampHandler:
                 self.logger.info(f"c.nom_input_voltage_v.min <= {input_max} AND c.nom_input_voltage_v.max >= {input_min}")
             if output_min and output_max:
                 query_parts.append(f"c.output_voltage_v.min <= {output_max} AND c.output_voltage_v.max >= {output_min}")
-                self.logger.info(f"c.nom_input_voltage_v.min <= {input_max} AND c.nom_input_voltage_v.max >= {input_min}")
+                self.logger.info(f"c.nom_input_voltage_v.min <= {output_max} AND c.nom_input_voltage_v.max >= {output_min}")
             if current:
                  query_parts.append(f"c.type LIKE '%{current}%'")
 
@@ -307,7 +309,21 @@ class CosmosLampHandler:
                 enable_cross_partition_query=True
             ))
             
-            return [PowerConverter(**item) for item in results]
+            converters = []
+            for item in results:
+                if normalized_lamp_type:
+                    item_lamps = item.get("lamps", {})
+                    if not item_lamps:  # Skip if no lamps data
+                        continue
+                        
+                    lamp_matches = self._fuzzy_match_lamp(normalized_lamp_type, item_lamps.keys())
+                    if not lamp_matches:  
+                        continue
+                
+                converters.append(PowerConverter(**item))
+            
+            self.logger.info(f"Found {len(converters)} matching converters")
+            return converters
         
         except Exception as e:
             self.logger.error(f"Voltage query failed: {str(e)}")
