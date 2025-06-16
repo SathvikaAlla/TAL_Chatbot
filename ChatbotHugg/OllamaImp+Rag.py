@@ -941,26 +941,6 @@ custom_css = """
 .gr-textbox button:hover {
     background-color: #c4161c;
 }
-/* Make SVG white */
-.svg-white {
-    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) hue-rotate(0deg) brightness(1.1) contrast(1);
-}
-
-/* Make SVG bigger and thicker */
-.thick-big-svg {
-    width: 48px;   /* Adjust size as needed */
-    height: 48px;
-    display: inline-block;
-}
-
-/* Simulate thicker lines for SVGs that don't have stroke-width set */
-.thick-big-svg {
-    /* Optional: add a drop-shadow to simulate thickness */
-    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) hue-rotate(0deg) brightness(1.1) contrast(1)
-            drop-shadow(0 0 1px white)
-            drop-shadow(0 0 2px white);
-}
-
 
 footer {
     display: none !important;
@@ -971,31 +951,26 @@ def toggle_visibility(current_state):
     new_state = not current_state
     return new_state, gr.update(visible=new_state)
 
-with gr.Blocks(css=custom_css, theme=gr.themes.Default()) as demo:
+
+with gr.Blocks(css=custom_css) as demo:
     visibility_state = gr.State(False)
     history = gr.State([])
 
     chatbot_toggle = gr.Button("💬", elem_id="chatbot-toggle-btn")
     with gr.Column(visible=False, elem_id="chatbot-panel") as chatbot_panel:
-        gr.HTML("""
-        <div id='chat-header'>
-            <img src="https://www.svgrepo.com/download/490283/pixar-lamp.svg" class="svg-white thick-big-svg" />
-            Lofty the TAL Bot
-        </div>
-        """)
-
-
+        gr.HTML("""<div id='chat-header'>...</div>""")
         chat = gr.Chatbot(label="Chat", elem_id="chat-window", type="messages")
-        msg = gr.Textbox(placeholder="Type your message here...", show_label=False)
+        msg = gr.Textbox(placeholder="Type your message...", show_label=False, elem_id="chat-input")
         send = gr.Button("Send")
+        
         send.click(
-            fn=tal_langchain_chatbot, 
-            inputs=[msg, history], 
+            fn=tal_langchain_chatbot,
+            inputs=[msg, history],
             outputs=[chat, history, msg]
         )
         msg.submit(
-            fn=tal_langchain_chatbot, 
-            inputs=[msg, history], 
+            fn=tal_langchain_chatbot,
+            inputs=[msg, history],
             outputs=[chat, history, msg]
         )
 
