@@ -31,4 +31,5 @@ Used get_converters_by_voltage_current with input_voltage: 198-464
                                                                      current: 
                                                                      artnr: 0
 
-sessionid-chatid is the same change it
+sessionid-chatid is the same change it AGAIN
+fix faqs that repeat in function

@@ -1,3 +1,4 @@
+import asyncio
 import logging
 import uuid
 from semantic_kernel import Kernel
@@ -161,24 +162,22 @@ kernel.add_plugin(ConverterPlugin(logger=logger), "CosmosDBPlugin")
 kernel.add_plugin(ChatMemoryPlugin(logger=logger), "ChatMemoryPlugin")
 kernel.add_plugin(NL2SQLPlugin(), "NL2SQLPlugin")
 
-def initialize_session():
-    return str(uuid.uuid4())
-
 # Updated query handler using function calling
-async def handle_query(user_input: str, session_state):
-    session_id = session_state
+async def handle_query(user_input: str, session_state:str):
+    
     
     settings = AzureChatPromptExecutionSettings(
             function_choice_behavior=FunctionChoiceBehavior.Auto(auto_invoke=True)        
         )
     
-    ARTNR_PATTERN = r'\b\d{6}\b'
+    ARTNR_PATTERN = r'\b(?:\d{5}|\d{6})\b'
     
     prompt = f"""
     You are a product catalog customer service chatbot for TAL BV. Answer questions about converters, their specifications and lamps. Process this user query:
     {user_input}
 
     artnr Pattern: {ARTNR_PATTERN}
+    artnrs are usually numbers like 40057 or 930565
     
     Available functions:
     - generate_sql: Creates SQL queries (use only for complex queries or schema keywords)
@@ -248,10 +247,11 @@ async def handle_query(user_input: str, session_state):
         )
 
         func_name = result.model_dump()["metadata"]["messages"]["messages"][2]["items"][0]["name"]
+        print(func_name)
         log_func = kernel.get_function("ChatMemoryPlugin", "log_interaction")
         await log_func.invoke(
             kernel=kernel,
-            session_id=session_id,
+            session_id=session_state,
             question=user_input,
             function_used=func_name,
             answer=str(result)
@@ -264,76 +264,65 @@ async def handle_query(user_input: str, session_state):
         error_func = kernel.get_function("ChatMemoryPlugin", "log_interaction")
         await error_func.invoke(
             kernel=kernel,
-            session_id=session_id,
+            session_id=session_state,
             question=user_input,
             function_used="error",
             answer=str(e)
         )
         raise
 
-# # Example usage
-# async def main():
-#     # cm = ChatMemoryPlugin(logger)
-#     # await cm.get_semantic_faqs()
+import gradio as gr
 
-#    while True:
-#         try:
-#             query = input("User: ")
-#             if query.lower() in ["exit", "quit"]:
-#                 break
+# Create a custom theme based on your brand colors
+custom_theme = gr.themes.Base(
+    primary_hue="red",
+    secondary_hue="amber",
+    font=[gr.themes.GoogleFont('Inter'), 'ui-sans-serif', 'system-ui', 'sans-serif'],
+    font_mono=[gr.themes.GoogleFont('Roboto Mono'), 'ui-monospace', 'Consolas', 'monospace'],
+)
 
-#             response = await handle_query(query)
-#             print(response)
-            
-#         except KeyboardInterrupt:
-#             break
-
-
-# if __name__ == "__main__":
-#     import asyncio
-#     asyncio.run(main())
-
-# --- Gradio UI ---
-
-custom_css = """
+# Minimal CSS for positioning only (avoiding styling)
+minimal_css = """
 #chatbot-toggle-btn {
     position: fixed;
     bottom: 30px;
     right: 30px;
     z-index: 10001;
-    background-color: #ED1C24;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 56px;
-    height: 56px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
 }
 
 #chatbot-panel {
     position: fixed;
-    bottom: 10vw;
+    bottom: 5vh;  
     right: 2vw;
     z-index: 10000;
     width: 95vw;
     max-width: 600px;
     height: 90vh;
     max-height: 700px;
-    background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    font-family: 'Arial', sans-serif;
 }
+
+#chat-header {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+.gr-chatbot {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+#chat-header img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    filter: brightness(0) invert(1);
+}
+#chatbot-toggle-btn {
+        right: 30px;
+        bottom: 30px;
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+    }
 
 @media (max-width: 600px) {
     #chatbot-panel {
@@ -341,141 +330,131 @@ custom_css = """
         height: 100vh;
         right: 0;
         bottom: 0;
-        border-radius: 0;
     }
-    #chatbot-toggle-btn {
-        right: 10px;
-        bottom: 10px;
-        width: 48px;
-        height: 48px;
-        font-size: 24px;
-    }
-}
-
-#chatbot-panel.hide {
-    display: none !important;
-}
-
-#chat-header {
-    background-color: #ED1C24;
-    color: white;
-    padding: 20px;
-    font-weight: bold;
-    font-size: 22px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-#chat-header img {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-}
-
-.gr-chatbot {
-    flex: 1;
-    overflow-y: auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    box-sizing: border-box;
-}
-
-.gr-textbox {
-    padding: 16px 20px;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border-top: 1px solid #eee;
-    box-sizing: border-box;
-}
-
-.gr-textbox textarea {
-    flex: 1;
-    resize: none;
-    padding: 12px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 16px;
-    box-sizing: border-box;
-    height: 48px;
-    line-height: 1.5;
-}
-
-.gr-textbox button {
-    background-color: #ED1C24;
-    border: none;
-    color: white;
-    border-radius: 8px;
-    padding: 12px 20px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    font-size: 16px;
-}
-
-.gr-textbox button:hover {
-    background-color: #c4161c;
-}
-
-footer {
-    display: none !important;
-}
 
 """
-
 panel_visible = False
 
+async def get_chatbot_examples():
+    """Fetch FAQs and format them as Gradio chatbot examples"""
+    try:
+        # Get your chat memory plugin instance
+        get_faqs_func = kernel.get_function("ChatMemoryPlugin", "get_semantic_faqs")
+        
+        # Call the function to get FAQs
+        result = await get_faqs_func.invoke(kernel=kernel, limit=6, threshold=0.1)
+        faqs = result.value if hasattr(result, 'value') else result
+        
+        # Format as Gradio examples
+        examples = []
+        for faq in faqs:
+            examples.append({
+                "text": faq,
+                "display_text": faq
+            })
+        
+        return examples
+    except Exception as e:
+        logger.error(f"Failed to load FAQ examples: {str(e)}")
+        return []
+    
+def get_examples_sync():
+    try:
+        loop = asyncio.get_event_loop()
+        return loop.run_until_complete(get_chatbot_examples())
+    except:
+        # If no event loop, create one
+        return asyncio.run(get_chatbot_examples())
+    
 def toggle_panel():
     global panel_visible
     panel_visible = not panel_visible
     return gr.Column(visible=panel_visible)
 
-with gr.Blocks(css=custom_css) as demo:
-    session_state = gr.State(value=initialize_session())
+# Apply the custom theme to your Blocks
+with gr.Blocks(theme=custom_theme, css=minimal_css) as demo:
+    faqs = gr.State(get_examples_sync())
 
-    # Toggle button (floating action button)
-    toggle_btn = gr.Button("💬", elem_id="chatbot-toggle-btn")
+    session_id = gr.State(str(uuid.uuid4()))
 
-    # Chat panel (initially hidden)
+    # Toggle button
+    toggle_btn = gr.Button(
+        "💬", 
+        elem_id="chatbot-toggle-btn",
+        variant="primary",
+        size="sm"
+    )
+
+    # Chat panel
     chat_panel = gr.Column(visible=panel_visible, elem_id="chatbot-panel")
+    
     with chat_panel:
-        # Chat header
-        with gr.Row(elem_id="chat-header"):
-            gr.HTML("""
-                <div id='chat-header'>
-                    <img src="https://www.svgrepo.com/download/490283/pixar-lamp.svg" />
-                    Lofty the TAL Bot
-                </div>
-            """)
-        # Chatbot and input
-        chatbot = gr.Chatbot(elem_id="gr-chatbot", type="messages")
-        msg = gr.Textbox(placeholder="Type your question here...", elem_id="gr-textbox")
-        send = gr.Button("Send")
-        # clear = gr.ClearButton([msg, chatbot])
-
-
-    # Function to handle messages
-    async def respond(message, chat_history, session_state):
-        response = await handle_query(message, session_state)
+        # Header - Remove the gr.Row wrapper and place directly in the column
+        gr.HTML("""
+            <div style='
+                background-color: var(--button-primary-background-fill);
+                color: var(--button-primary-text-color);
+                padding: 20px;
+                font-weight: bold;
+                font-size: 30px;
+                display: flex;
+                align-items: center;
+                width: 100%;
+                box-sizing: border-box;
+                border-radius: var(--radius-lg);'>
+                <img src="https://www.svgrepo.com/download/490283/pixar-lamp.svg" 
+                    style="width: 50px; height: 50px; border-radius: 50%; margin-right: 15px; filter: brightness(0) invert(1);" />
+                Lofty the TAL Bot
+            </div>
+        """)
         
-        # Add new messages
+        # Chatbot with theme styling
+        chatbot = gr.Chatbot(
+            type="messages",
+            height=400,
+            show_copy_button=True,
+            container=False,
+            resizable=True,
+            examples=faqs.value
+        )
+        
+        # Input with theme styling
+        with gr.Row():
+            msg = gr.Textbox(
+                placeholder="Type your question here...",
+                container=False,
+                scale=4
+            )
+
+            send = gr.Button(
+                "Send", 
+                variant="primary",
+                scale=1
+            )
+
+    def handle_example_select(evt: gr.SelectData):
+        """Handle when user clicks on an example"""
+        examples = faqs.value
+        if evt.index < len(examples):
+            selected_example = examples[evt.index]
+            return selected_example.get("text", "")
+        return ""
+
+    # Connect the example_select event to populate the textbox
+    chatbot.example_select(
+        fn=handle_example_select,
+        outputs=msg
+    )
+
+    # Your existing event handlers
+    async def respond(message, chat_history):
+        response = await handle_query(message, session_id.value)
         chat_history.append({"role": "user", "content": message})
         chat_history.append({"role": "assistant", "content": response})
         return "", chat_history
-    
-    send.click(respond, [msg, chatbot, session_state], [msg,chatbot])
-    msg.submit(respond, [msg, chatbot, session_state], [msg, chatbot])
+
+    send.click(respond, [msg, chatbot], [msg, chatbot])
+    msg.submit(respond, [msg, chatbot], [msg, chatbot])
     toggle_btn.click(toggle_panel, outputs=chat_panel)
 
 demo.launch()
