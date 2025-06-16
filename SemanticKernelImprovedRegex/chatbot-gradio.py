@@ -161,9 +161,12 @@ kernel.add_plugin(ConverterPlugin(logger=logger), "CosmosDBPlugin")
 kernel.add_plugin(ChatMemoryPlugin(logger=logger), "ChatMemoryPlugin")
 kernel.add_plugin(NL2SQLPlugin(), "NL2SQLPlugin")
 
+def initialize_session():
+    return str(uuid.uuid4())
+
 # Updated query handler using function calling
-async def handle_query(user_input: str):
-    session_id = str(uuid.uuid4()) 
+async def handle_query(user_input: str, session_state):
+    session_id = session_state
     
     settings = AzureChatPromptExecutionSettings(
             function_choice_behavior=FunctionChoiceBehavior.Auto(auto_invoke=True)        
@@ -245,7 +248,6 @@ async def handle_query(user_input: str):
         )
 
         func_name = result.model_dump()["metadata"]["messages"]["messages"][2]["items"][0]["name"]
-        print(func_name)
         log_func = kernel.get_function("ChatMemoryPlugin", "log_interaction")
         await log_func.invoke(
             kernel=kernel,
@@ -440,6 +442,8 @@ def toggle_panel():
     return gr.Column(visible=panel_visible)
 
 with gr.Blocks(css=custom_css) as demo:
+    session_state = gr.State(value=initialize_session())
+
     # Toggle button (floating action button)
     toggle_btn = gr.Button("💬", elem_id="chatbot-toggle-btn")
 
@@ -462,16 +466,16 @@ with gr.Blocks(css=custom_css) as demo:
 
 
     # Function to handle messages
-    async def respond(message, chat_history):
-        response = await handle_query(message)
-        # Convert existing history to OpenAI format if it's in tuples
+    async def respond(message, chat_history, session_state):
+        response = await handle_query(message, session_state)
         
         # Add new messages
         chat_history.append({"role": "user", "content": message})
         chat_history.append({"role": "assistant", "content": response})
         return "", chat_history
-    send.click(respond, [msg, chatbot], [msg,chatbot])
-    msg.submit(respond, [msg, chatbot], [msg, chatbot])
+    
+    send.click(respond, [msg, chatbot, session_state], [msg,chatbot])
+    msg.submit(respond, [msg, chatbot, session_state], [msg, chatbot])
     toggle_btn.click(toggle_panel, outputs=chat_panel)
 
 demo.launch()
