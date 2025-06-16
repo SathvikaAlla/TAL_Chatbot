@@ -67,5 +67,12 @@
         "deleted_at": null,
         "price_history": [],
         "cosmos_id": "f3c805f9-5618-40a4-b247-3c641ed862c3"
+    },
+    "350mA - 777777": {
+        "created_at": "2025-06-16T12:17:33.128527",
+        "updated_at": "2025-06-16T12:17:33.128527",
+        "deleted_at": null,
+        "price_history": [],
+        "cosmos_id": "6c9890b5-e71e-41d5-941e-19b4c2831e9d"
     }
 }

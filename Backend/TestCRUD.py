@@ -438,9 +438,13 @@ with gr.Blocks(title="TAL Converter JSON Editor") as demo:
     gr.Markdown("# TAL Converter JSON Editor")
 
     with gr.Tab("Add Converter"):
-        converter_id = gr.Textbox(label="Converter ID (e.g. 350mA - 930537)")
+        gr.HTML("<label style='font-weight:bold; color:red;'>Converter ID (e.g. 350mA - 930537) *</label>")
+        converter_id = gr.Textbox(show_label=False)
+
+        gr.HTML("<label style='font-weight:bold; color:red;'>Article Number *</label>")
+        artnr = gr.Textbox(show_label=False)
         type_ = gr.Textbox(label="Type")
-        artnr = gr.Textbox(label="Article Number")
+        # artnr = gr.Textbox(label="Article Number !*required field")
         converter_description = gr.Textbox(label="Converter Description")
         dimlist_type = gr.Textbox(label="Dimlist Type")
         strain_relief = gr.Textbox(label="Strain Relief")
@@ -485,7 +489,8 @@ with gr.Blocks(title="TAL Converter JSON Editor") as demo:
         )
 
     with gr.Tab("Update Converter"):
-        converter_id_u = gr.Textbox(label="Converter ID (e.g. 350mA - 930537)")
+        gr.HTML("<label style='font-weight:bold; color:red;'>Converter ID (e.g. 350mA - 930537) *</label>")
+        converter_id_u = gr.Textbox(show_label=False)
         type_u = gr.Textbox(label="Type")
         artnr_u = gr.Textbox(label="Article Number")
         converter_description_u = gr.Textbox(label="Converter Description")
@@ -532,7 +537,8 @@ with gr.Blocks(title="TAL Converter JSON Editor") as demo:
         )
 
     with gr.Tab("Delete Converter"):
-        converter_id_d = gr.Textbox(label="Converter ID (e.g. 350mA - 930537)")
+        gr.HTML("<label style='font-weight:bold; color:red;'>Converter ID (e.g. 350mA - 930537) *</label>")
+        converter_id_d = gr.Textbox(show_label=False)
         delete_btn = gr.Button("Delete Converter")
         delete_output = gr.Textbox(label="Result")
         delete_btn.click(
@@ -546,7 +552,8 @@ with gr.Blocks(title="TAL Converter JSON Editor") as demo:
         )
 
     with gr.Tab("Add/Update Lamp"):
-        converter_id_l = gr.Textbox(label="Converter ID (e.g. 350mA - 930537)")
+        gr.HTML("<label style='font-weight:bold; color:red;'>Converter ID (e.g. 350mA - 930537) *</label>")
+        converter_id_l = gr.Textbox(show_label=False)
         lamp_name = gr.Textbox(label="Lamp Name")
         min_val = gr.Textbox(label="Min")
         max_val = gr.Textbox(label="Max")

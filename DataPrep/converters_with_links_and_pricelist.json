@@ -3546,5 +3546,29 @@
         "LifeCycle": "",
         "pdf_link": "",
         "lamps": {}
+    },
+    "350mA - 777777": {
+        "TYPE": "",
+        "ARTNR": 777777.0,
+        "CONVERTER DESCRIPTION:": "",
+        "dimlist_type": "",
+        "STRAIN RELIEF": "",
+        "LOCATION": "",
+        "DIMMABILITY": "",
+        "CCR (AMPLITUDE)": "",
+        "SIZE: L*B*H (mm)": "",
+        "EFFICIENCY @full load": 0,
+        "IP": 0,
+        "CLASS": 0,
+        "NOM. INPUT VOLTAGE (V)": "",
+        "OUTPUT VOLTAGE (V)": "",
+        "Barcode": "",
+        "Name": "",
+        "Listprice": 0,
+        "Unit": "",
+        "gross_weight": 0,
+        "LifeCycle": "",
+        "pdf_link": "",
+        "lamps": {}
     }
 }

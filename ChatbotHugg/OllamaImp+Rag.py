@@ -3,15 +3,15 @@ import json
 import re
 import gradio as gr
 import ollama
+from transformers import pipeline, AutoTokenizer
 from langchain_core.documents import Document
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
+from langchain_core.prompts import ChatPromptTemplate
 from typing import List, TypedDict
 from langgraph.graph import StateGraph, START
 from dotenv import load_dotenv
 import time
-from fuzzywuzzy import fuzz
-
 
 # --- Configuration ---
 load_dotenv()
@@ -41,21 +41,6 @@ def parse_float(s):
     except Exception:
         return float('inf')
 
-def normalize_artnr(artnr):
-    try:
-        return str(int(float(artnr)))
-    except Exception:
-        return str(artnr)
-    
-def normalize_ip(ip):
-    if isinstance(ip, (int, float)):
-        return f"IP{int(ip)}"
-    elif isinstance(ip, str):
-        ip_part = ip.replace("IP", "").split(".")[0]
-        return f"IP{ip_part}"
-    else:
-        return "N/A"
-    
 def parse_price(val):
     if isinstance(val, float) or isinstance(val, int):
         return float(val)
@@ -64,6 +49,21 @@ def parse_price(val):
     except Exception:
         return float('inf')
 
+def normalize_artnr(artnr):
+    try:
+        return str(int(float(artnr)))
+    except Exception:
+        return str(artnr)
+
+def normalize_ip(ip):
+    if isinstance(ip, (int, float)):
+        return f"IP{int(ip)}"
+    elif isinstance(ip, str):
+        ip_part = ip.replace("IP", "").split(".")[0]
+        return f"IP{ip_part}"
+    else:
+        return "N/A"
+
 def get_product_by_artnr(artnr, tech_info):
     artnr_str = normalize_artnr(artnr)
     for value in tech_info.values():
@@ -71,176 +71,41 @@ def get_product_by_artnr(artnr, tech_info):
             return value
     return None
 
-def format_table(header, rows):
-    table = header + "\n" + "|---" * (header.count("|") - 1) + "|\n"
-    table += "\n".join(rows)
-    return table
+def get_converter_voltage_info(artnr, tech_info):
+    artnr_str = normalize_artnr(artnr)
+    for value in tech_info.values():
+        if normalize_artnr(value.get("ARTNR", "")) == artnr_str:
+            return {
+                "output_voltage": value.get("OUTPUT VOLTAGE", value.get("OUTPUT VOLTAGE (V)", "N/A")),
+                "forward_voltage_range": (
+                    f"{value.get('OUTPUT VOLTAGE', value.get('OUTPUT VOLTAGE (V)', 'N/A'))}V ±10%"
+                    if value.get("OUTPUT VOLTAGE", value.get("OUTPUT VOLTAGE (V)", None)) not in ["N/A", None]
+                    else "N/A"
+                ),
+                "converter_description": value.get("CONVERTER DESCRIPTION", value.get("CONVERTER DESCRIPTION:", "N/A")),
+                "article_number": value.get("ARTNR", "N/A")
+            }
+    return {"error": f"No converter/driver found with ARTNR {artnr}"}
 
-def format_answer(title, body, footer=None):
-    answer = f"## {title}\n\n{body}"
-    if footer:
-        answer += f"\n\n{footer}"
-    return answer
-
-
-def get_technical_fit_info(product_data: dict) -> dict:
-    return {
-        key: {
-            "TYPE": value.get("TYPE", "N/A"),
-            "ARTNR": value.get("ARTNR", "N/A"),
-            "CONVERTER DESCRIPTION": value.get("CONVERTER DESCRIPTION:", "N/A"),
-            "STRAIN RELIEF": value.get("STRAIN RELIEF", "N/A"),
-            "LOCATION": value.get("LOCATION", "N/A"),
-            "DIMMABILITY": value.get("DIMMABILITY", "N/A"),
-            "EFFICIENCY": value.get("EFFICIENCY @full load", "N/A"),
-            "OUTPUT VOLTAGE": value.get("OUTPUT VOLTAGE (V)", "N/A"),
-            "INPUT VOLTAGE": value.get("NOM. INPUT VOLTAGE (V)", "N/A"),
-            "SIZE": value.get("SIZE: L*B*H (mm)", "N/A"),
-            "WEIGHT": value.get("Gross Weight", "N/A"),
-            "Listprice": value.get("Listprice", "N/A"),
-            "lamps": value.get("lamps", {}),
-            "PDF_LINK": value.get("pdf_link", "N/A"),
-            "IP": value.get("IP", "N/A"),
-            "CLASS": value.get("CLASS", "N/A"),
-            "LifeCycle": value.get("LifeCycle", "N/A"),
-            "Name": value.get("Name", "N/A"),
-        
-        }
-        for key, value in product_data.items()
-    }
-
-tech_info = get_technical_fit_info(product_data)
-
-# --- RAG Components ---
-def retrieve_context(query: str, top_k: int = 3) -> List[Document]:
-    retriever = vector_store.as_retriever(search_kwargs={"k": top_k})
-    return retriever.invoke(query)
-
-def format_context(docs: List[Document]) -> str:
-    return "\n\n".join([
-        f"Converter {doc.metadata['source']}:\n{doc.page_content}"
-        for doc in docs
-    ])
-
-
-# --- Ollama Integration ---
-def llm_fallback(question: str, context: str = "") -> str:
-    system_prompt = (
-        "You are a technical assistant for TAL LED converters. "
-        "Answer using ONLY the provided context. If unsure, say 'I don't know'.\n\n"
-        f"Context:\n{context}\n"
-    )
+# Reccomend lamps for a given converter
+def recommend_lamps_for_converter(converter_number: str, tech_info: dict) -> str:
+    v = get_product_by_artnr(converter_number, tech_info)
+    if not v:
+        return f"**Sorry, converter `{converter_number}` not found.**"
     
-    try:
-        response = ollama.chat(
-            model="tal-converter-bot",
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": question}
-            ],
-            options={"temperature": 0.3, "num_predict": 128}
-        )
-        return response['message']['content'].strip()
-    except Exception as e:
-        return f"Error: {str(e)}"
-
-
-# --- Technical Question Handling ---
-def get_compatible_converters(lamp_name: str, tech_info: dict) -> list:
-    """Returns all converters compatible with the specified lamp/luminaire name."""
-    results = []
-    lamp_lower = lamp_name.lower()
-    for v in tech_info.values():
-        # Check compatibility fields (adjust as needed for your data)
-        compatible_luminaires = str(v.get("COMPATIBLE LUMINAIRES", "")).lower()
-        description = str(v.get("CONVERTER DESCRIPTION", "")).lower()
-        name = str(v.get("Name", "")).lower()
-        # Match lamp name in any relevant field
-        if lamp_lower in compatible_luminaires or lamp_lower in description or lamp_lower in name:
-            results.append(v)
-    return results
-
-def get_compatible_converters(lamp_name: str, tech_info: dict) -> list:
-    results = []
-    lamp_lower = lamp_name.lower()
-    for v in tech_info.values():
-        # Check compatibility fields with fuzzy matching
-        compatible_luminaires = str(v.get("COMPATIBLE_LUMINAIRES", "")).lower()
-        description = str(v.get("CONVERTER DESCRIPTION", "")).lower()
-        
-        # Fuzzy match threshold (adjust as needed)
-        if (fuzz.partial_ratio(lamp_lower, compatible_luminaires) > 70 or
-            fuzz.partial_ratio(lamp_lower, description) > 70):
-            results.append(v)
-    return results
-
-def get_voltage_info(artnr: str, tech_info: dict) -> str:
-    converter = get_product_by_artnr(artnr, tech_info)
-    if not converter:
-        return ""
+    lamps = v.get("lamps", {})
+    if not lamps:
+        return f"**No lamps found for converter `{converter_number}`.**"
     
-    output_voltage = converter.get("OUTPUT VOLTAGE", "N/A")
-    vf = converter.get("Vf", output_voltage)  # Vf alias
+    rows = []
+    for lamp_name, lamp_data in lamps.items():
+        min_val = lamp_data.get("min", "N/A")
+        max_val = lamp_data.get("max", "N/A")
+        lamp_name_clean = lamp_name.replace(",", ".")
+        rows.append(f"| {lamp_name_clean} | {min_val}–{max_val} |")
     
-    return (
-        f"**Voltage info for {artnr}:**\n"
-        f"- Forward Voltage (Vf): {vf}\n"
-        f"- Output Voltage Range: {output_voltage}"
-    )
-
-def get_drivers_by_features(tech_info: dict, 
-                          voltage: str = None, 
-                          dimming: str = None,
-                          current: str = None) -> list:
-    results = []
-    for v in tech_info.values():
-        voltage_match = not voltage or voltage in str(v.get("TYPE", "")).lower()
-        dimming_match = not dimming or dimming.lower() in str(v.get("DIMMABILITY", "")).lower()
-        current_match = not current or current in str(v.get("TYPE", "")).lower()
-        if voltage_match and dimming_match and current_match:
-            results.append(v)
-    return results
-
-def get_current_based_converters(tech_info: dict, current: str, dimming: str = None) -> str:
-    converters = [
-        v for v in tech_info.values()
-        if current in str(v.get("TYPE", "")).lower() and 
-        (not dimming or dimming.lower() in str(v.get("DIMMABILITY", "")).lower())
-    ]
-    if not converters:
-        return ""
-    table = f"| Converter | ARTNR | Dimming |\n|---|---|---|"
-    for v in converters:
-        table += f"\n| {v['CONVERTER DESCRIPTION']} | {v['ARTNR']} | {v['DIMMABILITY']} |"
-    return table
-
-def get_product_attribute(artnr: str, tech_info: dict, attribute: str) -> str:
-    converter = get_product_by_artnr(artnr, tech_info)
-    if not converter:
-        return ""
-    value = converter.get(attribute.upper(), "N/A")
-    return f"**{attribute.title()} for {artnr}:** {value}"
-
-def get_voltage_ranges(artnr, tech_info):
-    """Returns input and output voltage ranges for a given ARTNR"""
-    converter = get_product_by_artnr(artnr, tech_info)
-    if not converter:
-        return ""
-    
-    input_voltage = converter.get("INPUT VOLTAGE", "N/A")
-    output_voltage = converter.get("OUTPUT VOLTAGE", "N/A")
-    
-    # Format with proper units
-    if "vac" in str(input_voltage).lower() or "v~" in str(input_voltage).lower():
-        input_str = f"{input_voltage} AC"
-    else:
-        input_str = f"{input_voltage} DC" if input_voltage != "N/A" else "N/A"
-    
-    return (
-        f"**Voltage ranges for {artnr}:**\n"
-        f"- Input: {input_str}\n"
-        f"- Output: {output_voltage} DC"
-    )
+    header = "| Lamp Type | Supported Quantity (lamps) |\n|---|---|"
+    return f"**Recommended lamps for converter `{converter_number}`:**\n\n{header}\n" + "\n".join(rows)
 
 def get_recommended_converter_any(user_message, tech_info):
     match = re.search(r'(\d+)\s*x\s*([\w\d\s\-,.*]+)', user_message, re.IGNORECASE)
@@ -264,25 +129,6 @@ def get_recommended_converter_any(user_message, tech_info):
             for v, lamp, max_lamps in candidates
         ])
 
-# Reccomend lamps for a given converter
-def recommend_lamps_for_converter(converter_number: str, tech_info: dict) -> str:
-    v = get_product_by_artnr(converter_number, tech_info)
-    if not v:
-        return f"**Sorry, converter `{converter_number}` not found.**"
-    
-    lamps = v.get("lamps", {})
-    if not lamps:
-        return f"**No lamps found for converter `{converter_number}`.**"
-    
-    rows = []
-    for lamp_name, lamp_data in lamps.items():
-        min_val = lamp_data.get("min", "N/A")
-        max_val = lamp_data.get("max", "N/A")
-        lamp_name_clean = lamp_name.replace(",", ".")
-        rows.append(f"| {lamp_name_clean} | {min_val}–{max_val} |")
-    
-    header = "| Lamp Type | Supported Quantity (lamps) |\n|---|---|"
-    return f"**Recommended lamps for converter `{converter_number}`:**\n\n{header}\n" + "\n".join(rows)
 def recommend_converters_for_lamp(lamp_query, tech_info):
     def normalize(s):
         return s.lower().replace(",", "").replace(".", "").strip()
@@ -314,31 +160,6 @@ def recommend_converters_for_lamp(lamp_query, tech_info):
         f"*Note: Values represent the supported length range in meters for LED strips.*"
     )
 
-def extract_converter_and_lamp(user_message: str):
-    match = re.search(r"how many (\w+) lamps?.*converter (\d+)", user_message.lower())
-    if match:
-        lamp_name = match.group(1)
-        converter_number = match.group(2)
-        return lamp_name, converter_number
-    return None, None
-
-def get_converters_by_ip_and_dimmability(tech_info, ip_number=None, dimmability=None):
-    """
-    Returns a list of converters matching the given IP rating (e.g., 67 for IP67)
-    and dimmability string (e.g., '1-10V', 'DALI', 'TouchDim', etc).
-    If ip_number or dimmability is None, that filter is ignored.
-    """
-    results = []
-    for v in tech_info.values():
-        # Normalize IP
-        ip_val = str(v.get("IP", v.get("IP RATING", ""))).lower().replace(" ", "")
-        ip_match = (ip_number is None) or (f"ip{ip_number}" in ip_val)
-        # Normalize Dimmability
-        dim_val = str(v.get("DIMMABILITY", "")).lower().replace(" ", "")
-        dim_match = (dimmability is None) or (dimmability.lower().replace(" ", "") in dim_val)
-        if ip_match and dim_match:
-            results.append(v)
-    return results
 def get_lamp_quantity(converter_number: str, lamp_name: str, tech_info: dict) -> str:
     v = get_product_by_artnr(converter_number, tech_info)
     if not v:
@@ -374,111 +195,95 @@ def get_lamp_quantity(converter_number: str, lamp_name: str, tech_info: dict) ->
         f"*Note: Values represent the supported number of lamps.*"
     )
 
+def extract_converter_and_lamp(user_message: str):
+    match = re.search(r"how many (\w+) lamps?.*converter (\d+)", user_message.lower())
+    if match:
+        lamp_name = match.group(1)
+        converter_number = match.group(2)
+        return lamp_name, converter_number
+    return None, None
 
-def format_converter_table(converters):
-    if not converters:
-        return "No matching converters found."
-    header = "| Converter | ARTNR | Power | Dimming | IP |\n|---|---|---|---|---|"
-    rows = []
-    for v in converters:
-        desc = v.get("CONVERTER DESCRIPTION", "N/A").strip()
-        artnr = v.get("ARTNR", "N/A")
-        power = v.get("POWER", "N/A")
-        dim = v.get("DIMMABILITY", "N/A")
-        ip = v.get("IP", v.get("IP RATING", "N/A"))
-        rows.append(f"| {desc} | {artnr} | {power} | {dim} | {ip} |")
-    return header + "\n" + "\n".join(rows)
+def get_technical_fit_info(product_data: dict) -> dict:
+    results = {}
+    for key, value in product_data.items():
+        results[key] = {
+            "TYPE": value.get("TYPE", "N/A"),
+            "ARTNR": value.get("ARTNR", "N/A"),
+            "CONVERTER DESCRIPTION": value.get("CONVERTER DESCRIPTION:", "N/A"),
+            "STRAIN RELIEF": value.get("STRAIN RELIEF", "N/A"),
+            "LOCATION": value.get("LOCATION", "N/A"),
+            "DIMMABILITY": value.get("DIMMABILITY", "N/A"),
+            "EFFICIENCY": value.get("EFFICIENCY @full load", "N/A"),
+            "OUTPUT VOLTAGE": value.get("OUTPUT VOLTAGE (V)", "N/A"),
+            "INPUT VOLTAGE": value.get("NOM. INPUT VOLTAGE (V)", "N/A"),
+            "SIZE": value.get("SIZE: L*B*H (mm)", "N/A"),
+            "WEIGHT": value.get("Gross Weight", "N/A"),
+            "Listprice": value.get("Listprice", "N/A"),
+            "lamps": value.get("lamps", {}),
+            "PDF_LINK": value.get("pdf_link", "N/A"),
+            "IP": value.get("IP", "N/A"),
+            "CLASS": value.get("CLASS", "N/A"),
+            "LifeCycle": value.get("LifeCycle", "N/A"),
+            "Name": value.get("Name", "N/A"),
+        }
+    return results
 
+tech_info = get_technical_fit_info(product_data)
 
+# --- Ollama Integration ---
+def llm_fallback(user_message, history=None):
+    model_name = "tal-converter-bot"
+    temperature = 0.3
+    num_predict = 128
+
+    try:
+        messages = [{"role": "system", "content": "Technical assistant for TAL LED converters"}]
+        if history:
+            for msg in history[-6:]:  # Keep last 3 exchanges
+                if isinstance(msg, dict):
+                    messages.append({
+                        "role": msg["role"],
+                        "content": msg["content"]
+                    })
+        
+        messages.append({"role": "user", "content": str(user_message)})
+        
+        response = ollama.chat(
+            model=model_name,
+            messages=messages,
+            options={
+                "temperature": temperature,
+                "num_predict": num_predict,
+                "timeout": 30  # Add timeout to prevent hanging
+            }
+        )
+        return response['message']['content'].strip()
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+# --- Main Chatbot Function ---
+def tal_langchain_chatbot(user_message, history=None):
+    # Ensure input is string
+    if isinstance(user_message, list):
+        user_message = user_message[-1] if user_message else ""
+    
+    # 1. Try to answer from database/rules
+    answer = answer_technical_question(str(user_message), tech_info)
+    
+    # 2. If no answer, use Ollama
+    if not answer or "i do not know" in answer.lower():
+        answer = llm_fallback(user_message, history)
+    
+    # 3. Update history and return
+    if history is None:
+        history = []
+    history.append({"role": "user", "content": user_message})
+    history.append({"role": "assistant", "content": answer})
+    return history, history, ""
+
+# --- Technical Question Handling ---
 def answer_technical_question(question: str, tech_info: dict) -> str:
     q = question.lower()
-    # --- Synonym normalization ---
-    synonym_map = {
-        "driver": "converter",
-        "ledconverter": "converter",
-        "led converter": "converter",
-        "power supply": "converter",
-        "gear": "converter",
-        "lamp": "luminaire",
-        "lamps": "luminaires",
-        "luminaire": "luminaire",
-        "luminaires": "luminaires",
-        "pricelist": "price",
-    }
-    for syn, canonical in synonym_map.items():
-        q = re.sub(rf"\b{syn}\b", canonical, q)
-
-    # --- Price query handling ---
-    if any(word in q for word in ["price", "list price", "cost"]):
-        artnr_match = re.search(r'\b(\d{6})\b', q)
-        type_match = re.search(r'\b(type|model)\s*:\s*([a-z0-9\s-]+)', q, re.IGNORECASE)
-        if artnr_match:
-            artnr = artnr_match.group(1)
-            product = get_product_by_artnr(artnr, tech_info)
-            if product:
-                price = product.get("Listprice", "N/A")
-                if price == "N/A":
-                    return f"No price information available for converter with ARTNR {normalize_artnr(artnr)}."
-                return f"The price for the converter with ARTNR {normalize_artnr(artnr)} is: €{price:.2f}"
-            else:
-                return f"No converter found with ARTNR {normalize_artnr(artnr)}."
-        elif type_match:
-            type_query = type_match.group(2).strip().lower()
-            converters = [v for v in tech_info.values() if type_query in str(v.get("TYPE", "")).lower()]
-            if converters:
-                prices = [f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])}): €{v.get('Listprice', 'N/A')}" for v in converters]
-                return "\n".join(prices)
-            else:
-                return f"No converters found for type: {type_query}"
-        else:
-            return "Please provide a valid ARTNR (6 digits) or converter type."
-
-    # --- IP rating query handling ---
-    if "ip rating" in q or "ip protection" in q:
-        artnr_match = re.search(r'\b(\d{6})\b', q)
-        type_match = re.search(r'\b(type|model)\s*:\s*([a-z0-9\s-]+)', q, re.IGNORECASE)
-        if artnr_match:
-            artnr = artnr_match.group(1)
-            product = get_product_by_artnr(artnr, tech_info)
-            if product:
-                ip_rating = product.get("IP", "N/A")
-                return f"The IP rating for the converter with ARTNR {normalize_artnr(artnr)} is: IP{int(ip_rating)}"
-            else:
-                return f"No converter found with ARTNR {normalize_artnr(artnr)}."
-        elif type_match:
-            type_query = type_match.group(2).strip().lower()
-            converters = [v for v in tech_info.values() if type_query in str(v.get("TYPE", "")).lower()]
-            if converters:
-                ip_ratings = [f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])}): IP{int(v.get('IP', 'N/A'))}" for v in converters]
-                return "\n".join(ip_ratings)
-            else:
-                return f"No converters found for type: {type_query}"
-
-    # Try to extract lamp/luminaire name
-    lamp_match = re.search(r"(?:for|compatible with|work with|for)\s+([a-z0-9\s-]+)", q)
-    if lamp_match:
-        lamp_name = lamp_match.group(1).strip()
-        converters = get_compatible_converters(lamp_name, tech_info)
-        if converters:
-            # Format as context
-            context = "\n".join([
-                f"{v.get('CONVERTER DESCRIPTION', 'N/A')} (ARTNR: {v.get('ARTNR', 'N/A')}), Power: {v.get('POWER', 'N/A')}, Output: {v.get('OUTPUT VOLTAGE', 'N/A')}, Dimming: {v.get('DIMMABILITY', 'N/A')}"
-                for v in converters
-            ])
-            return (
-                f"## Converters compatible with {lamp_name.title()}:\n\n"
-                f"{context}"
-            )
-        else:
-            # No match: pass lamp name and question to fallback
-            return ""  # This triggers your fallback (Ollama with RAG)
-
-    # Extract IP number (e.g., '67' from 'IP67')
-    ip_match = re.search(r'ip\s*(\d{2})', q)  # matches IP20, IP65, IP67, etc.
-    # Extract dimmability type (e.g., '1-10V', 'dali', etc.)
-    dim_match = re.search(r'(1-10v|dali|touchdim|casambi|mains\s*dim)', q)
-    ip_number = ip_match.group(1) if ip_match else None
-    dimmability = dim_match.group(1) if dim_match else None
 
     # Recommend lamps for a given converter
     if "recommend lamps for converter" in q or "what lamp can I use for" in q or "which lamps for converter" in q or "lamps for" in q:
@@ -616,21 +421,45 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
         response.append("\n**Key:**\n- 🟢 Dimmable\n- 🔴 Not Dimmable")
         return "\n".join(response)
     
-        # Check if either IP or dimmability filters were extracted
-    if ip_number or dimmability:
-        converters = get_converters_by_ip_and_dimmability(tech_info, ip_number, dimmability)
-        if converters:
-            return format_converter_table(converters)
-        else:
+    # Handle IP67 + 1-10V dimming queries
+    if "ip67" in q and "1-10v" in q:
+        candidates = [
+            v for v in tech_info.values() 
+            if "ip67" in str(v.get("IP RATING", "")).lower() 
+            and "1-10v" in str(v.get("DIMMABILITY", "")).lower()
+        ]
+
+        if not candidates:
             return ""  # Trigger Ollama fallback
 
-    # In answer_technical_question:
-    if "voltage range" in q or "vf" in q:
-        artnr_match = re.search(r'\b(\d{6})\b', q)
-        if artnr_match:
-            artnr = artnr_match.group(1)
-            return get_voltage_info(artnr, tech_info)
+        # Format response
+        response = [
+            "## IP67-Rated Converters with 1-10V Dimming\n\n"
+            f"**Found {len(candidates)} suitable models:**\n\n"
+            "| Converter | ARTNR | Power | Dimming | IP Rating |\n"
+            "|-----------|-------|-------|---------|-----------|"
+        ]
         
+        # Sort by power ascending
+        for converter in sorted(candidates, key=lambda x: parse_float(str(x.get("POWER", "0")))):
+            desc = converter["CONVERTER DESCRIPTION"].strip()
+            artnr = converter["ARTNR"]
+            power = f"{parse_float(converter.get('POWER', 0))}W"
+            dimming = converter["DIMMABILITY"].split(',')[0].strip()
+            
+            response.append(f"| {desc} | {artnr} | {power} | {dimming} | IP67 |")
+
+        # Add technical considerations
+        response.extend([
+            "\n\n**Key Selection Factors:**",
+            "- ️⚡ **Power Matching**: Ensure total LED load ≤ converter's rated power (add 20% safety margin)",
+            "- 🔄 **Dimming Compatibility**: Verify LED fixtures support 1-10V protocol",
+            "- 🛡️ **Installation**: Use waterproof connectors for IP67 integrity",
+            "- 📏 **Size Constraints**: Check dimensions for your housing"
+        ])
+        
+        return '\n'.join(response)
+
     # Strain relief
     if "strain relief" in q:
         candidates = [v for v in tech_info.values() if str(v.get("STRAIN RELIEF", "")).lower() == "yes"]
@@ -663,23 +492,7 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
             input_voltage = v.get("INPUT VOLTAGE", "N/A")
             result.append(f"{description}: {input_voltage}")
         return "\n".join(result)
-    
-    # Output voltage range for each converter
-    if "output voltage range for each converter" in q or ("output voltage range" in q and "each" in q):
-        result = []
-        for v in tech_info.values():
-            description = v.get("CONVERTER DESCRIPTION", "N/A").strip()
-            output_voltage = v.get("OUTPUT VOLTAGE", "N/A")
-            result.append(f"{description}: {output_voltage}")
-        return "\n".join(result)
-    
-    if "voltage range" in q:
-        artnr_match = re.search(r'\b(\d{6})\b', q)  # Match 6-digit ARTNR
-        if artnr_match:
-            artnr = artnr_match.group(1)
-            response = get_voltage_ranges(artnr, tech_info)
-            return response if response else ""
-        
+
     # Comparison
     if "compare" in q:
         numbers = re.findall(r'\d+', question)
@@ -800,13 +613,12 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
             if v and v["WEIGHT"] != "N/A":
                 return f"Weight of {v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])}): {v['WEIGHT']} kg"
 
-    if "input voltage" in q or "Vf" in q or "forward voltage" in q or "vf" in q:
+    if "input voltage" in q:
         numbers = re.findall(r'\d+', question)
         if numbers:
             v = get_product_by_artnr(numbers[0], tech_info)
             if v and v["INPUT VOLTAGE"] != "N/A":
                 return f"Input voltage range of {v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])}): {v['INPUT VOLTAGE']}"
-            
 
     # Output voltage (moved after lamp recommendation to avoid precedence issues)
     if "output voltage" in q or "forward voltage" in q:
@@ -817,47 +629,47 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
                 return f"Output voltage range of {v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])}): {v['OUTPUT VOLTAGE']}"
 
     # All 24V converters
-    if "show me all 24v converters" in q or "show 24v drivers" in q or "list all 24v converters" in q:
+    if "show me all 24v converters" in q:
         candidates = [v for v in tech_info.values() if "24v" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
     # All 48V converters
-    if "show me all 48v converters" in q or "show all 48v drivers" in q or "list all 48v converters" in q:
+    if "show me all 48v converters" in q:
         candidates = [v for v in tech_info.values() if "48v" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
     # All 180mA converters
-    if "show me all 180ma converters" in q or "show all 180ma drivers" in q or "list all 180ma converters" in q:    
+    if "show me all 180ma converters" in q:
         candidates = [v for v in tech_info.values() if "180ma" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
     # All 250mA converters
-    if "show me all 250ma converters" in q or "show all 250ma drivers" in q or "list all 250ma converters" in q:
+    if "show me all 250ma converters" in q:
         candidates = [v for v in tech_info.values() if "250ma" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
     # All 260mA converters
-    if "show me all 260ma converters" in q or "show all 260ma drivers" in q or "list all 260ma converters" in q:
+    if "show me all 260ma converters" in q:
         candidates = [v for v in tech_info.values() if "260ma" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
     # All 350mA converters
-    if "show me all 350ma converters" in q or "show all 350ma drivers" in q or "list all 350ma converters" in q:
+    if "show me all 350ma converters" in q:
         candidates = [v for v in tech_info.values() if "350ma" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
     # All 500mA converters
-    if "show me all 500ma converters" in q or "show all 500ma drivers" in q or "list all 500ma converters" in q:
+    if "show me all 500ma converters" in q:
         candidates = [v for v in tech_info.values() if "500ma" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
     # All 700mA converters
-    if "show me all 700ma converters" in q or "show all 700ma drivers" in q or "list all 700ma converters" in q:
+    if "show me all 700ma converters" in q:
         candidates = [v for v in tech_info.values() if "700ma" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
     # All 24V DC converters
-    if "show me all 24v dc converters" in q or "show all 24v dc drivers" in q or "list all 24v dc converters" in q:
+    if "show me all 24v dc converters" in q:
         candidates = [v for v in tech_info.values() if "24v dc" in v["TYPE"].lower()]
         return "\n".join([f"{v['CONVERTER DESCRIPTION']} (ARTNR: {normalize_artnr(v['ARTNR'])})" for v in candidates])
 
@@ -992,78 +804,11 @@ def answer_technical_question(question: str, tech_info: dict) -> str:
         lamp_name, converter_number = extract_converter_and_lamp(q)
         if lamp_name and converter_number:
             return get_lamp_quantity(converter_number, lamp_name, tech_info)
-    
-    
-    # what converters for lamp
-# --- Lamp compatibility handler ---
-    lamp_match = re.search(r'(?:for|compatible with|work with)\s+([a-z0-9\s-]+)', q)
-    if lamp_match:
-        lamp_name = lamp_match.group(1).strip()
-        converters = get_compatible_converters(lamp_name, tech_info)
-        
-        if converters:
-            header = f"## Converters compatible with {lamp_name.title()}\n\n"
-            table = "| Converter | ARTNR | Power | Output | Dimming |\n|---|---|---|---|---|"
-            for v in converters:
-                desc = v.get("CONVERTER DESCRIPTION", "N/A").strip()
-                artnr = v.get("ARTNR", "N/A")
-                power = v.get("POWER", "N/A")
-                output = v.get("OUTPUT VOLTAGE", "N/A")
-                dim = v.get("DIMMABILITY", "N/A")
-                table += f"\n| {desc} | {artnr} | {power} | {output} | {dim} |"
-            return header + table
-        
-    if ("list" in q or "show" in q) and ("driver" in q or "converter" in q) and "24v" in q:
-        candidates = [
-            v for v in tech_info.values()
-            if "24v" in str(v.get("OUTPUT VOLTAGE", "")).lower() or "24v" in str(v.get("TYPE", "")).lower()
-        ]
-        if not candidates:
-            return "No 24V output drivers found."
-        header = "| Description | ARTNR | Output Voltage | Dimmability | IP |"
-        rows = [
-            f"| {v.get('CONVERTER DESCRIPTION', 'N/A')} | {v.get('ARTNR', 'N/A')} | {v.get('OUTPUT VOLTAGE', 'N/A')} | {v.get('DIMMABILITY', 'N/A')} | {v.get('IP', 'N/A')} |"
-            for v in candidates
-        ]
-        body = format_table(header, rows)
-        return format_answer("List of 24V Output Drivers", body, "Need more details? Ask for a datasheet or comparison.")
-
-
-
 
     # Default fallback
-    return "I do not know the answer to this question."
-
-
-# --- Main Chatbot Function ---
-def tal_langchain_chatbot(user_message: str, history: list) -> tuple:
-    # Ensure input is string
-    if isinstance(user_message, list):
-        user_message = user_message[-1] if user_message else ""
-
-    # 1. Try to answer from structured data
-    answer = answer_technical_question(str(user_message), tech_info)
-    
-    # 2. If no answer, use RAG + Ollama
-    if not answer or "i don't know" in answer.lower():
-        # Retrieve relevant context
-        context_docs = retrieve_context(user_message)
-        formatted_context = format_context(context_docs)
-        
-        # Get Ollama response with context
-        answer = llm_fallback(user_message, formatted_context)
-
-    # 3. Update history
-    new_history = history.copy()
-    new_history.append({"role": "user", "content": user_message})
-    new_history.append({"role": "assistant", "content": answer})
-    return new_history, new_history, ""
-
-
-
+    return ""  # Triggers Ollama fallback
 
 # --- Gradio UI ---
-
 custom_css = """
 #chatbot-toggle-btn {
     position: fixed;
@@ -1088,8 +833,8 @@ custom_css = """
 
 #chatbot-panel {
     position: fixed;
-    bottom: 100px;
-    right: 30px;
+    bottom: 10vw;
+    right: 2vw;
     z-index: 10000;
     width: 95vw;
     max-width: 600px;
@@ -1202,34 +947,30 @@ footer {
 }
 
 """
-
 def toggle_visibility(current_state):
     new_state = not current_state
     return new_state, gr.update(visible=new_state)
 
-with gr.Blocks(css=custom_css, theme=gr.themes.Default()) as demo:
+
+with gr.Blocks(css=custom_css) as demo:
     visibility_state = gr.State(False)
     history = gr.State([])
 
     chatbot_toggle = gr.Button("💬", elem_id="chatbot-toggle-btn")
     with gr.Column(visible=False, elem_id="chatbot-panel") as chatbot_panel:
-        gr.HTML("""
-        <div id='chat-header'>
-            <img src="https://www.svgrepo.com/download/490283/pixar-lamp.svg" />
-            Lofty the TAL Bot
-        </div>
-        """)
+        gr.HTML("""<div id='chat-header'>...</div>""")
         chat = gr.Chatbot(label="Chat", elem_id="chat-window", type="messages")
-        msg = gr.Textbox(placeholder="Type your message here...", show_label=False)
+        msg = gr.Textbox(placeholder="Type your message...", show_label=False, elem_id="chat-input")
         send = gr.Button("Send")
+        
         send.click(
-            fn=tal_langchain_chatbot, 
-            inputs=[msg, history], 
+            fn=tal_langchain_chatbot,
+            inputs=[msg, history],
             outputs=[chat, history, msg]
         )
         msg.submit(
-            fn=tal_langchain_chatbot, 
-            inputs=[msg, history], 
+            fn=tal_langchain_chatbot,
+            inputs=[msg, history],
             outputs=[chat, history, msg]
         )
 
@@ -1240,4 +981,4 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Default()) as demo:
     )
 
 if __name__ == "__main__":
-    demo.launch(share = True)
+    demo.launch()
