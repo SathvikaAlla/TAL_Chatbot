@@ -1,0 +1,8 @@
+python-dotenv
+gradio
+langchain-openai
+langchain-core
+langchain-community
+azure-cosmos
+langgraph
+transformers

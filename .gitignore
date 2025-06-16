@@ -1,2 +1,16 @@
-*.env
+<<<<<<< HEAD
+
+=======
+.env
+DataPrep/TAL 11 CATALOGUE 2024-2025.pdf
+results
+mlruns
+*.pkl
+*.h5
+*.db
+results.zip
+train_data.jsonl
+val_data.jsonl
 *.conda
+>>>>>>> clean_branch_alessia
+
