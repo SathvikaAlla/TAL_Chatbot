@@ -8,3 +8,4 @@ mlruns
 results.zip
 train_data.jsonl
 val_data.jsonl
+*.conda

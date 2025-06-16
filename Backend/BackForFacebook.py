@@ -4,7 +4,9 @@ import httpx
 
 app = FastAPI()
 
+# you make the token yourself
 VERIFY_TOKEN = "secret_token1233"
+# you should receive one code like this
 PAGE_ACCESS_TOKEN = "EAAOcjMbynsMBO6yPEiIrIGE40FxILBIOg5WRSwyCZAbvTJaZBS7nQYJ3pBUqyNv5Nwgl4VrazV7BC3A4KELoBeWxbvODadJrxMvr5bKPbusyu1HIrqZAf0SFFr7iMYNowZC7Mt2jic8I4gNnS5JwJaLRvFu20enZCxwUCvDdsoxxnMWwXudwTfhV7sHBiZBoUPADIyiMOZANpTTD9rZAoQH3yZAnBLUO8SoAZBkJUZD"  # Your Facebook Page Access Token
 
 
