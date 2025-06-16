@@ -30,3 +30,5 @@ Used get_converters_by_voltage_current with input_voltage: 198-464
                                                                      output_voltage: 24
                                                                      current: 
                                                                      artnr: 0
+
+sessionid-chatid is the same change it
