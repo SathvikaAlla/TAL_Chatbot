@@ -1,0 +1,4 @@
+semantic-kernel
+azure-cosmos
+rapidfuzz
+langchain-openai

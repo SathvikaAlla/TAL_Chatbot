@@ -1,0 +1,3 @@
+semantic-kernel
+azure-cosmos
+rapidfuzz
