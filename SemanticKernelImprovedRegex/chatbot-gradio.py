@@ -290,6 +290,17 @@ minimal_css = """
     z-index: 10001;
 }
 
+#theme-toggle-btn {
+    position: fixed !important;
+    top: 20px;
+    right: 20px;
+    z-index: 10002;
+    border-radius: 50% !important;
+    width: 50px !important;
+    height: 50px !important;
+    min-width: 50px !important;
+}
+
 #chatbot-panel {
     position: fixed;
     bottom: 5vh;  
@@ -302,12 +313,16 @@ minimal_css = """
 }
 
 #chat-header {
-    width: 100% !important;
-    box-sizing: border-box !important;
+    width: calc(100% + 20px);
+    box-sizing: border-box;
+    margin: 0 -10px;
+    margin-bottom: -7px !important;
 }
+
 .gr-chatbot {
-    width: 100% !important;
-    box-sizing: border-box !important;
+    margin-top: -7px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 #chat-header img {
@@ -316,6 +331,7 @@ minimal_css = """
     height: 50px;
     filter: brightness(0) invert(1);
 }
+
 #chatbot-toggle-btn {
         right: 30px;
         bottom: 30px;
@@ -332,7 +348,45 @@ minimal_css = """
         bottom: 0;
     }
 
+    #theme-toggle-btn {
+        top: 15px;
+        right: 15px;
+        width: 45px !important;
+        height: 45px !important;
+    }
+
 """
+def format_faq_question(question):
+    """Format FAQ questions with proper capitalization and punctuation"""
+    # Remove extra whitespace
+    question = question.strip()
+    
+    # Capitalize first letter
+    if question:
+        question = question[0].upper() + question[1:]
+    
+    # Handle specific terms that should be capitalized
+    replacements = {
+        'ma ': 'mA ',  # milliamps
+        'haloled': 'Haloled',
+        'boa ': 'BOA ',
+        'eur': 'EUR',
+        'v ': 'V ',  # volts
+        'dali': 'DALI',
+        'ip': 'IP'
+    }
+    
+    for old, new in replacements.items():
+        question = question.replace(old, new)
+    
+    # Add question mark if it's a question and doesn't end with punctuation
+    question_words = ['what', 'which', 'how', 'where', 'when', 'why', 'can', 'do', 'does']
+    if any(question.lower().startswith(word) for word in question_words):
+        if not question.endswith(('?', '.', '!')):
+            question += '?'
+    
+    return question
+
 panel_visible = False
 
 async def get_chatbot_examples():
@@ -348,6 +402,7 @@ async def get_chatbot_examples():
         # Format as Gradio examples
         examples = []
         for faq in faqs:
+            faq = format_faq_question(faq)
             examples.append({
                 "text": faq,
                 "display_text": faq
@@ -384,6 +439,14 @@ with gr.Blocks(theme=custom_theme, css=minimal_css) as demo:
         variant="primary",
         size="sm"
     )
+    
+    theme_toggle = gr.Button(
+                "🌙",
+                elem_id="theme-toggle-btn",
+                variant="secondary",
+                scale=0,
+                min_width=50
+    )
 
     # Chat panel
     chat_panel = gr.Column(visible=panel_visible, elem_id="chatbot-panel")
@@ -391,23 +454,22 @@ with gr.Blocks(theme=custom_theme, css=minimal_css) as demo:
     with chat_panel:
         # Header - Remove the gr.Row wrapper and place directly in the column
         gr.HTML("""
-            <div style='
+            <div id='chat-header' style='
                 background-color: var(--button-primary-background-fill);
                 color: var(--button-primary-text-color);
-                padding: 20px;
+                padding: 30px;
                 font-weight: bold;
                 font-size: 30px;
                 display: flex;
                 align-items: center;
-                width: 100%;
                 box-sizing: border-box;
-                border-radius: var(--radius-lg);'>
+                border-radius: var(--radius-md);'>
                 <img src="https://www.svgrepo.com/download/490283/pixar-lamp.svg" 
                     style="width: 50px; height: 50px; border-radius: 50%; margin-right: 15px; filter: brightness(0) invert(1);" />
                 Lofty the TAL Bot
             </div>
         """)
-        
+
         # Chatbot with theme styling
         chatbot = gr.Chatbot(
             type="messages",
@@ -431,6 +493,65 @@ with gr.Blocks(theme=custom_theme, css=minimal_css) as demo:
                 variant="primary",
                 scale=1
             )
+    def toggle_theme():
+        # This uses Gradio's built-in JavaScript functionality
+        return gr.update(), gr.update()
+
+    theme_toggle.click(
+        fn=None,
+        js="""
+        () => {
+            // Toggle dark mode using Gradio's built-in functionality
+            const isDark = document.body.classList.contains('dark');
+            if (isDark) {
+                document.body.classList.remove('dark');
+                // Update button text
+                const buttons = document.querySelectorAll('button');
+                buttons.forEach(btn => {
+                    if (btn.textContent.trim() === '☀️') {
+                        btn.textContent = '🌙';
+                    }
+                });
+                localStorage.setItem('gradio-theme', 'light');
+            } else {
+                document.body.classList.add('dark');
+                // Update button text
+                const buttons = document.querySelectorAll('button');
+                buttons.forEach(btn => {
+                    if (btn.textContent.trim() === '🌙') {
+                        btn.textContent = '☀️';
+                    }
+                });
+                localStorage.setItem('gradio-theme', 'dark');
+            }
+        }
+        """
+    )
+
+    # Initialize theme on load
+    demo.load(
+        fn=None,
+        js="""
+        () => {
+            // Check saved theme preference
+            const savedTheme = localStorage.getItem('gradio-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.body.classList.add('dark');
+                // Update button text
+                setTimeout(() => {
+                    const buttons = document.querySelectorAll('button');
+                    buttons.forEach(btn => {
+                        if (btn.textContent.trim() === '🌙') {
+                            btn.textContent = '☀️';
+                        }
+                    });
+                }, 100);
+            }
+        }
+        """
+    )
 
     def handle_example_select(evt: gr.SelectData):
         """Handle when user clicks on an example"""

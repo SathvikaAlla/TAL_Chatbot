@@ -35,10 +35,14 @@ class ChatMemoryPlugin:
     async def get_semantic_faqs(self, limit:int=6, threshold: float = 0.1) -> List[str]:
         """Retrieve FAQs using vector embeddings for semantic similarity"""
         try:
-            faqs_dict = await self.chat_memory_handler.get_semantic_faqs(limit=limit, threshold=threshold)
+            faqs_dict = await self.chat_memory_handler.get_semantic_faqs(limit=limit+5, threshold=threshold)
             faqs = [faq["representative_question"] for faq in faqs_dict]
-            self.logger.info(faqs)
-            return faqs
+            
+            # Remove duplicates while preserving order
+            unique_faqs = list(dict.fromkeys(faqs))
+            
+            self.logger.info(unique_faqs)
+            return unique_faqs[:limit]
         except Exception as e:
             self.logger.error(f"Semantic FAQ retrieval failed: {str(e)}")
             return []
