@@ -134,7 +134,7 @@ class NL2SQLPlugin:
             - Do NOT use LIMIT. Instead use TOP <value> in SELECT statement like SELECT TOP 1 instead of LIMIT 1
             - For exact matches use: WHERE c.[field] = value
             - For ranges use: WHERE c.[field].min = X AND c.[field].max = Y
-            - Check for dimmability support by using either != "NOT DIMMABLE" or = "NOT DIMMABLE"
+            - Do NOT use subqueries
             - Do not use AS and cast key names
             - For lamp compatibility: Use WHERE IS_DEFINED(c.lamps["lamp_name"]) to check if a specific lamp is supported, or WHERE IS_DEFINED(c.lamps) for any lamp support.
                                     
@@ -145,8 +145,9 @@ class NL2SQLPlugin:
             - Find converters that support a specific lamp type (e.g., "B4") : SELECT * FROM c WHERE IS_DEFINED(c.lamps["B4"])
             - Find converters that support any lamp (check for lamp compatibility) : SELECT * FROM c WHERE IS_DEFINED(c.lamps)
             - Find converters with a specific IP rating (e.g., 67): SELECT * FROM c WHERE c.ip = 67
-            - List of 350mA converters compatible with Haloled: SELECT * FROM c WHERE IS_DEFINED(c.lamps["Haloled"]) ANlist oD c.type="350mA"
+            - List of 350mA converters compatible with Haloled: SELECT * FROM c WHERE IS_DEFINED(c.lamps["Haloled"]) AND c.type="350mA"
             - List 700mA drivers: SELECT * FROM c WHERE c.type="700mA"
+            - Most efficient ip20 driver: SELECT TOP 1 FROM c WHERE c.ip=20 ORDER BY c.efficiency_full_load DESC
         Return ONLY SQL without explanations""")
                 
         response = await chat_service.get_chat_message_content(
