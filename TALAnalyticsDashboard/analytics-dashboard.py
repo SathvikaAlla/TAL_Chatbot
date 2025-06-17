@@ -287,21 +287,55 @@ async def update_timeline(days):
     return timeline_chart
 
 
+# @sync_wrapper
+# async def get_faqs():
+#     """Get semantic FAQs"""
+#     faqs = await dashboard.handler.get_semantic_faqs(limit=10)
+    
+#     if faqs:
+#         faq_data = []
+#         for faq in faqs:
+#             faq_data.append({
+#                 'Question': faq['representative_question'][:100] + '...' if len(faq['representative_question']) > 100 else faq['representative_question'],
+#                 'Similar Questions Count': len(faq['similar_questions']),
+#                 'Total Occurrences': faq['total_occurrences']
+#             })
+        
+#         return pd.DataFrame(faq_data)
+#     else:
+#         return pd.DataFrame({'Message': ['No FAQ data available']})
 @sync_wrapper
 async def get_faqs():
-    """Get semantic FAQs"""
-    faqs = await dashboard.handler.get_semantic_faqs(limit=10)
+    """Get semantic FAQs with duplicate removal"""
+    # Request more items than needed to account for duplicates
+    faqs = await dashboard.handler.get_semantic_faqs(limit=15)  # Request more than the 10 we want
     
     if faqs:
-        faq_data = []
-        for faq in faqs:
-            faq_data.append({
-                'Question': faq['representative_question'][:100] + '...' if len(faq['representative_question']) > 100 else faq['representative_question'],
-                'Similar Questions Count': len(faq['similar_questions']),
-                'Total Occurrences': faq['total_occurrences']
-            })
+        # Extract representative questions
+        questions = [faq['representative_question'] for faq in faqs]
         
-        return pd.DataFrame(faq_data)
+        # Remove duplicates while preserving order
+        unique_questions = list(dict.fromkeys(questions))
+        
+        # Rebuild FAQ data with unique questions only
+        unique_faqs = []
+        seen_questions = set()
+        
+        for faq in faqs:
+            question = faq['representative_question']
+            if question not in seen_questions:
+                seen_questions.add(question)
+                unique_faqs.append({
+                    'Question': question[:100] + '...' if len(question) > 100 else question,
+                    'Similar Questions Count': len(faq['similar_questions']),
+                    'Total Occurrences': faq['total_occurrences']
+                })
+                
+                # Stop once we have 10 unique items
+                if len(unique_faqs) >= 10:
+                    break
+        
+        return pd.DataFrame(unique_faqs)
     else:
         return pd.DataFrame({'Message': ['No FAQ data available']})
 

@@ -134,7 +134,7 @@ class NL2SQLPlugin:
             - Do NOT use LIMIT. Instead use TOP <value> in SELECT statement like SELECT TOP 1 instead of LIMIT 1
             - For exact matches use: WHERE c.[field] = value
             - For ranges use: WHERE c.[field].min = X AND c.[field].max = Y
-            - Check for dimmability support by using either != "NOT DIMMABLE" or = "NOT DIMMABLE"
+            - Do NOT use subqueries
             - Do not use AS and cast key names
             - For lamp compatibility: Use WHERE IS_DEFINED(c.lamps["lamp_name"]) to check if a specific lamp is supported, or WHERE IS_DEFINED(c.lamps) for any lamp support.
                                     
@@ -145,8 +145,9 @@ class NL2SQLPlugin:
             - Find converters that support a specific lamp type (e.g., "B4") : SELECT * FROM c WHERE IS_DEFINED(c.lamps["B4"])
             - Find converters that support any lamp (check for lamp compatibility) : SELECT * FROM c WHERE IS_DEFINED(c.lamps)
             - Find converters with a specific IP rating (e.g., 67): SELECT * FROM c WHERE c.ip = 67
-            - List of 350mA converters compatible with Haloled: SELECT * FROM c WHERE IS_DEFINED(c.lamps["Haloled"]) ANlist oD c.type="350mA"
+            - List of 350mA converters compatible with Haloled: SELECT * FROM c WHERE IS_DEFINED(c.lamps["Haloled"]) AND c.type="350mA"
             - List 700mA drivers: SELECT * FROM c WHERE c.type="700mA"
+            - Most efficient ip20 driver: SELECT TOP 1 FROM c WHERE c.ip=20 ORDER BY c.efficiency_full_load DESC
         Return ONLY SQL without explanations""")
                 
         response = await chat_service.get_chat_message_content(
@@ -212,6 +213,7 @@ async def handle_query(user_input: str, session_state:str):
     - Combining multiple conditions (AND/OR/NOT)
     - Needs complex filtering/sorting
     - Requesting technical specifications for a specific converter like "dimming type of converter [artnr]", "size of [artnr]"
+    - You CANNOT INSERT DELETE or UPDATE. Return a message saying you cannot help with that immediately.
     
     5. NEVER
         - use get_converters_by_dimming when artnr Pattern is detected
@@ -246,8 +248,18 @@ async def handle_query(user_input: str, session_state:str):
             settings=settings
         )
 
-        func_name = result.model_dump()["metadata"]["messages"]["messages"][2]["items"][0]["name"]
-        print(func_name)
+        metadata = result.model_dump().get("metadata", {})
+        messages = metadata.get("messages", {})
+        message_list = messages.get("messages", [])
+        
+        if len(message_list) > 2 and message_list[2].get("items") and len(message_list[2]["items"]) > 0:
+            func_name = message_list[2]["items"][0].get("name")
+        else:
+            func_name = None
+
+        # func_name = result.model_dump()["metadata"]["messages"]["messages"][2]["items"][0]["name"] if result.model_dump()["metadata"]["messages"]["messages"][2]["items"][0]["name"] else None
+        # print(func_name)
+        
         log_func = kernel.get_function("ChatMemoryPlugin", "log_interaction")
         await log_func.invoke(
             kernel=kernel,
@@ -258,6 +270,9 @@ async def handle_query(user_input: str, session_state:str):
         )
         
         return str(result)
+        
+    except (KeyError, IndexError, AttributeError):
+        func_name = None
     
     except Exception as e:
         # Handle errors properly

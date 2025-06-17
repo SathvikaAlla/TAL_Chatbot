@@ -119,7 +119,7 @@ class ConverterPlugin:
             return f"Error retrieving lamp limits: {str(e)}"
 
     @kernel_function(
-        name="get_converters_by_voltage",
+        name="get_converters_by_voltage_current",
         description="Get converters that have the mentioned input/output voltage range or current"
     )
     async def get_converters_by_voltage_current(

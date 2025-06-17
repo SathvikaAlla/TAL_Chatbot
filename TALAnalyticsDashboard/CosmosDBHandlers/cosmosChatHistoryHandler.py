@@ -280,13 +280,13 @@ class ChatMemoryHandlerForAnalytics():
             print(f"Error getting SQL error analysis: {e}")
             return []
 
+
+
+
 import asyncio
 
-
-
-handler = ChatMemoryHandlerForAnalytics()
-
 async def main():
+    handler = ChatMemoryHandlerForAnalytics()
     faqs = await handler.get_semantic_faqs()
     for faq in faqs:
         
