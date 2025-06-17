@@ -246,8 +246,18 @@ async def handle_query(user_input: str, session_state:str):
             settings=settings
         )
 
-        func_name = result.model_dump()["metadata"]["messages"]["messages"][2]["items"][0]["name"]
-        print(func_name)
+        metadata = result.model_dump().get("metadata", {})
+        messages = metadata.get("messages", {})
+        message_list = messages.get("messages", [])
+        
+        if len(message_list) > 2 and message_list[2].get("items") and len(message_list[2]["items"]) > 0:
+            func_name = message_list[2]["items"][0].get("name")
+        else:
+            func_name = None
+
+        # func_name = result.model_dump()["metadata"]["messages"]["messages"][2]["items"][0]["name"] if result.model_dump()["metadata"]["messages"]["messages"][2]["items"][0]["name"] else None
+        # print(func_name)
+        
         log_func = kernel.get_function("ChatMemoryPlugin", "log_interaction")
         await log_func.invoke(
             kernel=kernel,
@@ -258,6 +268,9 @@ async def handle_query(user_input: str, session_state:str):
         )
         
         return str(result)
+        
+    except (KeyError, IndexError, AttributeError):
+        func_name = None
     
     except Exception as e:
         # Handle errors properly
