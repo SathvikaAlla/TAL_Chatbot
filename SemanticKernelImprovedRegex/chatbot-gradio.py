@@ -212,6 +212,7 @@ async def handle_query(user_input: str, session_state:str):
     - Combining multiple conditions (AND/OR/NOT)
     - Needs complex filtering/sorting
     - Requesting technical specifications for a specific converter like "dimming type of converter [artnr]", "size of [artnr]"
+    - You CANNOT INSERT DELETE or UPDATE. Return a message saying you cannot help with that immediately.
     
     5. NEVER
         - use get_converters_by_dimming when artnr Pattern is detected
