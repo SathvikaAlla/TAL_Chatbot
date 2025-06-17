@@ -104,7 +104,7 @@ class ChatMemoryHandler():
         except Exception as e:
             self.logger.error(f"Failed to log SQL query: {str(e)}")
 
-    async def get_semantic_faqs(self, limit: int = 5, threshold: float = 0.1) -> List[Dict]:
+    async def get_semantic_faqs(self, limit: int = 6, threshold: float = 0.1) -> List[Dict]:
         """Retrieve FAQs using vector embeddings for semantic similarity"""
         try:            
             query = """
@@ -116,7 +116,6 @@ class ChatMemoryHandler():
                 max_item_count=-1
             ))
 
-            # Group by question in Python
             from collections import Counter
             question_counts = Counter(item['question'] for item in raw_results)
             top_questions = question_counts.most_common(limit)
