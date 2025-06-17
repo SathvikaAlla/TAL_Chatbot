@@ -24,7 +24,7 @@ class CosmosLampHandler:
         )
         self.chat_memory_handler = ChatMemoryHandler()
         self.database = self.client.get_database_client("TAL_DB")
-        self.container = self.database.get_container_client("Converters_with_embeddings")
+        self.container = self.database.get_container_client("Converters")
         self.logger = logging.Logger("test")
         # self.logger = logger
         self.embedding_model = AzureOpenAIEmbeddings(

@@ -28,7 +28,7 @@ HOST = os.environ["AZURE_COSMOS_DB_ENDPOINT"]
 KEY = os.environ["AZURE_COSMOS_DB_KEY"]
 
 cosmos_client = CosmosClient(HOST, KEY)
-database_name = "TAL"
+database_name = "TAL_DB"
 container_name = "Converters"
 partition_key = PartitionKey(path="/artnr") # set ARTNR as partition key which improves performance when querying
 cosmos_container_properties = {"partition_key": partition_key}
