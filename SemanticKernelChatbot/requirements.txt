@@ -2,3 +2,6 @@ semantic-kernel
 azure-cosmos
 rapidfuzz
 langchain-openai
+gradio
+python-dotenv
+pydantic

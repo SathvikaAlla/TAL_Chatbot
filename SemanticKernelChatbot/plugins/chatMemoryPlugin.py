@@ -5,6 +5,7 @@ import uuid
 from CosmosDBHandlers.cosmosConnector import CosmosLampHandler
 from semantic_kernel.functions import kernel_function
 from CosmosDBHandlers.cosmosChatHistoryHandler import ChatMemoryHandler
+
 class ChatMemoryPlugin:
     def __init__(self, logger):
         self.logger = logger
