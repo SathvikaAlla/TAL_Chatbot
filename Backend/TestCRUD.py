@@ -13,13 +13,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # File paths
-DATA_PATH = "/Users/alessiacolumban/TAL_Chatbot/DataPrep/converters_with_links_and_pricelist.json"
-META_PATH = "/Users/alessiacolumban/TAL_Chatbot/DataPrep/converters_metadata.json"
+DATA_PATH = "./converters_with_links_and_pricelist.json"
+META_PATH = "./converters_metadata.json"
 
 # Cosmos DB configuration from environment variables
 COSMOS_ENDPOINT = os.getenv("AZURE_COSMOS_DB_ENDPOINT")
 COSMOS_KEY = os.getenv("AZURE_COSMOS_DB_KEY")
-DATABASE_NAME = os.getenv("AZURE_COSMOS_DB_DATABASE", "TAL")  # Default to TAL_DB
+DATABASE_NAME = os.getenv("AZURE_COSMOS_DB_DATABASE", "TAL_DB")  # Default to TAL_DB
 print(DATABASE_NAME)
 CONTAINER_NAME = os.getenv("AZURE_COSMOS_DB_CONTAINER", "Converters")  # Default to Converters_with_embeddings
 
