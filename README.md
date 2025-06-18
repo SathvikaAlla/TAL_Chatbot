@@ -12,7 +12,7 @@ Before you begin, you'll need:
 
 - A valid email address (Microsoft account or GitHub account)
 - A phone number for verification
-- A credit card or debit card (non-prepaid) for identity verification[1](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account)
+- A credit card or debit card (non-prepaid) for identity verification
 
 **Account Creation Process**
 
