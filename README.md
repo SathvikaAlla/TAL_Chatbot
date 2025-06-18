@@ -122,9 +122,8 @@ We will do this via the python script provided in the source code at `./Semantic
 Before this, we need to install some required packages.
 
 - Create a virtual environment (either .venv. or .conda) in your code editor for the folder the source code is in (I’m using VSCode). This is not needed but is considered good practice.
-    
-    ![image.png](Installation%20Guide%20215825add12a80c3853fe4e47925072f/image.png)
-    
+    <img width="663" alt="image" src="https://github.com/user-attachments/assets/51bcd6fa-0539-4324-8d20-68babb81f410" />
+
 - After creating the virtual environment using python 3.11, make sure it is activated in the terminal. You should see a prefix like (.conda) or (.venv) before your directory path.
 - Now, run pip install -r `./SemanticKernelChatbot/requirements.txt` from the root path of the source code.
 - This should successfully install all the required packages.
@@ -133,8 +132,7 @@ To use this script we will need to get some access keys from the portal.
 
 - First, we need to create a `.env` file in the `./SemanticKernelChatbot` directory.
 - Navigate to the Keys section in the menu bar on the left.
-    
-    ![image.png](Installation%20Guide%20215825add12a80c3853fe4e47925072f/image%201.png)
+    <img width="1468" alt="image 1" src="https://github.com/user-attachments/assets/664466b8-2fad-47ea-a7a2-bc317ec1af7b" />
     
     - Copy the URI shown at the top and and store it as `AZURE_COSMOS_DB_ENDPOINT = <copied_uri>`  in the .env file.
     - Copy the PRIMARY KEY and store it as `AZURE_COSMOS_DB_KEY = <copied_key>`  in the .env file as well.
@@ -143,7 +141,8 @@ We can now run the `./cosmosConverterUploader.py` to upload the converters from 
 
 You should also see the newly created database and container in the Data Explorer section.
 
-![image.png](Installation%20Guide%20215825add12a80c3853fe4e47925072f/image%202.png)
+<img width="1512" alt="image 2" src="https://github.com/user-attachments/assets/69a6565d-8696-4ae8-b7f7-0229bf6d372c" />
+
 
 **Explore Additional Features**
 
@@ -164,15 +163,15 @@ You should also see the newly created database and container in the Data Explore
 
 - Click on **Create New** at the top right corner of the screen
     
-    ![image.png](Installation%20Guide%20215825add12a80c3853fe4e47925072f/image%203.png)
-    
+    <img width="1046" alt="image 3" src="https://github.com/user-attachments/assets/3453941a-0eeb-4b2c-bea0-5fcdae88fa4e" />
+
 - Select the “**Azure AI Foundry Resource Type → Next”** when prompted
 - Enter a new project name of your choice and a resource name. Ensure that the Resource Group is the same one we created and used for the Cosmos DB account and that the region is set to Sweden Central. Then click “Next”.
 - This should take about 5-10 minutes.
-    
-    ![image.png](Installation%20Guide%20215825add12a80c3853fe4e47925072f/image%204.png)
-    
+    <img width="566" alt="image 4" src="https://github.com/user-attachments/assets/f4a611c6-7362-4473-8e96-78aaabcd8e16" />
 
+    
+    
 ---
 
 **Step 3: Deploy GPT Model**
@@ -190,8 +189,8 @@ You should also see the newly created database and container in the Data Explore
 - Copy the **Target URI** and save it as `AZURE_OPENAI_ENDPOINT=<copied_uri>` in the same .env file as earlier.
 - Similarly, copy the **Key** under the URI and save it as `AZURE_OPENAI_KEY=<copied_key>` .
 - Also save these variables. You should find the api version here
-    
-    ![image.png](Installation%20Guide%20215825add12a80c3853fe4e47925072f/image%205.png)
+    <img width="833" alt="image 5" src="https://github.com/user-attachments/assets/16233b88-a18a-4aa2-aff8-5e6a731e893d" />
+
     
     ```xml
     OPENAI_API_TYPE = azure
@@ -208,7 +207,8 @@ You should also see the newly created database and container in the Data Explore
 - Deploy a text-embedding-ada model of your choice in a process similar to the gpt model deployment. We used a text-embedding-ada-002 model.
 - Now navigate to the Overview page and copy the Azure AI Endpoint and save it as `OPENAI_API_ENDPOINT=<copied_endpoint>` in the same .env file. Also save the the name of your text embedding model deployment as `OPENAI_EMBEDDINGS_MODEL_DEPLOYMENT=<deployment_name>.`
     
-    ![image.png](Installation%20Guide%20215825add12a80c3853fe4e47925072f/image%206.png)
+    <img width="614" alt="image 6" src="https://github.com/user-attachments/assets/4190e1cd-0d29-4203-8dfe-f44f2821ed4e" />
+
     
 
 ## Run the Chatbot
@@ -216,11 +216,13 @@ You should also see the newly created database and container in the Data Explore
 - Simply run the `chatbot-gradio.py` script in the `SemanticKernelChatbot` folder.
 - If there aren’t any issues, you should see the following output
     
-    ![image.png](Installation%20Guide%20215825add12a80c3853fe4e47925072f/image%207.png)
+    <img width="1151" alt="image 7" src="https://github.com/user-attachments/assets/8729e3c8-be5f-4900-951a-93b3e808ee46" />
+
     
     - `Ctrl/Cmd + Click` on the URL shown and it will direct you to the locally deployed chatbot!
-    
-    ![image.png](Installation%20Guide%20215825add12a80c3853fe4e47925072f/image%208.png)
+    <img width="1512" alt="image 8" src="https://github.com/user-attachments/assets/c5c3d180-aff0-4bb5-a45c-12ac75addbbb" />
+
+
     
     **Chat History Support**
     
