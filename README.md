@@ -168,6 +168,7 @@ You should also see the newly created database and container in the Data Explore
 - Select the “**Azure AI Foundry Resource Type → Next”** when prompted
 - Enter a new project name of your choice and a resource name. Ensure that the Resource Group is the same one we created and used for the Cosmos DB account and that the region is set to Sweden Central. Then click “Next”.
 - This should take about 5-10 minutes.
+  
     <img width="566" alt="image 4" src="https://github.com/user-attachments/assets/f4a611c6-7362-4473-8e96-78aaabcd8e16" />
 
     
@@ -218,7 +219,8 @@ You should also see the newly created database and container in the Data Explore
     
     <img width="1151" alt="image 7" src="https://github.com/user-attachments/assets/8729e3c8-be5f-4900-951a-93b3e808ee46" />
 
-    
+
+
     - `Ctrl/Cmd + Click` on the URL shown and it will direct you to the locally deployed chatbot!
     <img width="1512" alt="image 8" src="https://github.com/user-attachments/assets/c5c3d180-aff0-4bb5-a45c-12ac75addbbb" />
 
