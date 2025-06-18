@@ -62,7 +62,7 @@ A Resource Group is a container that holds related resources for an Azure soluti
     - From the Azure portal menu or Home page, select **"Create a resource"**
     - In the search bar, type "Resource Group" and select it from the results
 2. **Configure Resource Group Settings**
-    - Click **"Create"** to start the resource group creation process[6](https://triedandtestedbuilds.com/easy-guide-to-creating-a-resource-group-in-azure)
+    - Click **"Create"** to start the resource group creation process
     - Fill in the following details:
         - **Resource Group Name**: Choose a unique, descriptive name (e.g., "RG-TAL-Chatbot")
         - **Subscription**: Select your active Azure subscription
