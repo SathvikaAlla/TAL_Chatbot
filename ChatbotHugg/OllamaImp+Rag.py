@@ -19,7 +19,7 @@ os.environ["HUGGINGFACEHUB_API_TOKEN"] = os.getenv("HUGGINGFACEHUB_API_TOKEN")
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 # --- Data Loading ---
-file_path = "/Users/alessiacolumban/TAL_Chatbot/DataPrep/converters_with_links_and_pricelist.json"
+file_path = "./DataPrep/converters_with_links_and_pricelist.json"
 try:
     with open(file_path, 'r', encoding='utf-8') as f:
         product_data = json.load(f)
