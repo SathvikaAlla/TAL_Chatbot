@@ -75,8 +75,7 @@ class CosmosLampHandler:
             # Collect results properly
             result = self.container.query_items(
                 query=query,
-                parameters=parameters,
-                enable_cross_partition_query=True
+                parameters=parameters           
             )
             
             if not result:
